@@ -1,4 +1,4 @@
-import MC from "@kissmybutton/motorcortex";
+import MC from "@donkeyclip/motorcortex";
 import compAtrrs from "./compoAttributes";
 let dont = false;
 
@@ -12,7 +12,7 @@ class testIn extends MC.Effect {
       for (let i = 0; i < LeonAttrs.length; i++) {
         obj[LeonAttrs[i]] = currentLeonAttrs[LeonAttrs[i]];
       }
-      
+
       return obj;
     }
   }
