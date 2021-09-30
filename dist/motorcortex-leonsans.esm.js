@@ -1,4 +1,4 @@
-import MC from '@kissmybutton/motorcortex';
+import MC from '@donkeyclip/motorcortex';
 
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
@@ -146,6 +146,8 @@ function _assertThisInitialized(self) {
 function _possibleConstructorReturn(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
     return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
   }
 
   return _assertThisInitialized(self);
@@ -5539,7 +5541,7 @@ var clipValidationRules = {
   }
 };
 
-var name = "@kissmybutton/motorcortex-leonsans";
+var name = "@donkeyclip/motorcortex-leonsans";
 var version = "1.0.14";
 
 var index = {
@@ -5559,4 +5561,4 @@ var index = {
   compositeAttributes: compositeAttributes
 };
 
-export default index;
+export { index as default };

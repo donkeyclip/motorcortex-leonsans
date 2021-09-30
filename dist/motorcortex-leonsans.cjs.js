@@ -1,6 +1,6 @@
 'use strict';
 
-var MC = require('@kissmybutton/motorcortex');
+var MC = require('@donkeyclip/motorcortex');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -152,6 +152,8 @@ function _assertThisInitialized(self) {
 function _possibleConstructorReturn(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
     return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
   }
 
   return _assertThisInitialized(self);
@@ -5285,7 +5287,7 @@ var LeonSans = /*#__PURE__*/function (_MC$BrowserClip) {
   }]);
 
   return LeonSans;
-}(MC__default['default'].BrowserClip);
+}(MC__default["default"].BrowserClip);
 
 var compositeAttributes = {
   LeonAttrs: ["completion_rate", "weight", "tracking", "leading", "size", "pathGap", "patternWidth", "patternHeight"]
@@ -5403,7 +5405,7 @@ var testIn = /*#__PURE__*/function (_MC$Effect) {
   }]);
 
   return testIn;
-}(MC__default['default'].Effect);
+}(MC__default["default"].Effect);
 
 var _COLOR = "color";
 var animatedAttrs = {
@@ -5545,7 +5547,7 @@ var clipValidationRules = {
   }
 };
 
-var name = "@kissmybutton/motorcortex-leonsans";
+var name = "@donkeyclip/motorcortex-leonsans";
 var version = "1.0.14";
 
 var index = {

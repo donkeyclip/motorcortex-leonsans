@@ -1,4 +1,4 @@
-import MC from "@kissmybutton/motorcortex";
+import MC from "@donkeyclip/motorcortex";
 import leonSans from "./src/index.js";
 let cValue = 0;
 const PI2 = 2 * Math.PI;

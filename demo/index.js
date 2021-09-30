@@ -1,5 +1,5 @@
-import { loadPlugin, HTMLClip, AudioPlayback } from "@kissmybutton/motorcortex";
-import Player from "@kissmybutton/motorcortex-player";
+import { loadPlugin, HTMLClip, AudioPlayback } from "@donkeyclip/motorcortex";
+import Player from "@donkeyclip/motorcortex-player";
 import LeonPlugin from "../dist/motorcortex-leonsans.umd";
 
 const LeonSans = loadPlugin(LeonPlugin);
@@ -43,7 +43,7 @@ const clip = new HTMLClip({
   containerParams,
   audioSources: [
     {
-      src: "https://kissmybutton.github.io/motorcortex-leonsans/demo/d2.mp3",
+      src: "https://donkeyclip.github.io/motorcortex-leonsans/demo/d2.mp3",
       id: "my-wav",
       base64: false
     }
