@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.0.14](https://www.github.com/donkeyclip/motorcortex-leonsans/compare/v1.0.13...v1.0.14) (2021-09-30)
+
+
+### Bug Fixes
+
+* update deps ([cca9242](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/cca92424a1f91986a1237f80de933d27f933db65))
+* update npm name ([113dc45](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/113dc458b8b57e4b0e565709dc28e462212f815b))
+
 ### 1.0.13 (2021-04-16)
 
 
