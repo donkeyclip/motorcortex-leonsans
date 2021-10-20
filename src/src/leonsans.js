@@ -31,7 +31,7 @@ export default class LeonSans extends Dispatcher {
       "#fec330",
       "#5eb96e",
       "#fc5356",
-      "#f38f31"
+      "#f38f31",
     ],
     tracking = 0,
     leading = 0,
@@ -42,7 +42,7 @@ export default class LeonSans extends Dispatcher {
     breakWord = false,
     fps = 30,
     isPath = false,
-    isWave = false
+    isWave = false,
   } = {}) {
     super();
 
