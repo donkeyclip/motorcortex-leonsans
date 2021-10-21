@@ -1,6 +1,6 @@
-import { loadPlugin, HTMLClip, AudioPlayback } from "@donkeyclip/motorcortex";
+import { AudioPlayback, HTMLClip, loadPlugin } from "@donkeyclip/motorcortex";
 import Player from "@donkeyclip/motorcortex-player";
-import LeonPlugin from "../dist/motorcortex-leonsans.umd";
+import LeonPlugin from "../dist/motorcortex-leonsans.esm";
 
 const LeonSans = loadPlugin(LeonPlugin);
 
@@ -33,7 +33,7 @@ const host = document.getElementById("clip");
 
 const containerParams = {
   width: "800px",
-  height: "600px"
+  height: "600px",
 };
 
 const clip = new HTMLClip({
@@ -45,9 +45,9 @@ const clip = new HTMLClip({
     {
       src: "https://donkeyclip.github.io/motorcortex-leonsans/demo/d2.mp3",
       id: "my-wav",
-      base64: false
-    }
-  ]
+      base64: false,
+    },
+  ],
 });
 
 const songPlayback = new AudioPlayback(
@@ -55,7 +55,7 @@ const songPlayback = new AudioPlayback(
   {
     selector: "~#my-wav",
     startFrom: 0,
-    duration: 5600
+    duration: 5600,
   }
 );
 
@@ -76,7 +76,7 @@ const test = new LeonSans.Clip(
       ["rgb(0, 255, 68)", "#2a92ce82", "#2a92ce40", "#2a92ce2e", "#2a92ce00"],
       ["rgb(0, 255, 68)", "#ffe600", "#2a92ce40", "#2a92ce2e", "#2a92ce00"],
 
-      ["#ff00fb", "#2a92ce", "#2a92ce40", "#2a92ce2e", "#2a92ce00"]
+      ["#ff00fb", "#2a92ce", "#2a92ce40", "#2a92ce2e", "#2a92ce00"],
     ],
     // pathGap: -1,
     patternWidth: 1,
@@ -84,10 +84,10 @@ const test = new LeonSans.Clip(
     speed: 1,
     // tracking: 20,
     // leading: 10,
-    size: 80
+    size: 80,
   },
   {
-    selector: ".container"
+    selector: ".container",
   }
 );
 
@@ -96,31 +96,31 @@ const gem = new LeonSans.LeonIncident(
     animatedAttrs: {
       LeonAttrs: {
         completion_rate: 1,
-        weight: 100
+        weight: 100,
         // tracking: 20,
         // leading: 10,
         // size: 90,
         // pathGap: 1,
         // patternWidth: 100
         // patternHeight: 90
-      }
+      },
     },
     initialValues: {
       LeonAttrs: {
         completion_rate: 0,
-        weight: 100
+        weight: 100,
         // tracking: 10,
         // leading: 1,
         // size: 80,
         // pathGap: 0,
         // patternWidth: 1
         // patternHeight: 10
-      }
-    }
+      },
+    },
   },
   {
     duration: 900,
-    selector: "!#leonObj"
+    selector: "!#leonObj",
   }
 );
 
@@ -128,18 +128,18 @@ const meg = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
-        weight: 900
-      }
+        weight: 900,
+      },
     },
     initialValues: {
       LeonAttrs: {
         //weight: 100
-      }
-    }
+      },
+    },
   },
   {
     duration: 50,
-    selector: "!#leonObj"
+    selector: "!#leonObj",
   }
 );
 
@@ -147,18 +147,18 @@ const mic = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
-        weight: 100
-      }
+        weight: 100,
+      },
     },
     initialValues: {
       LeonAttrs: {
         //weight: 100
-      }
-    }
+      },
+    },
   },
   {
     duration: 50,
-    selector: "!#leonObj"
+    selector: "!#leonObj",
   }
 );
 
@@ -166,36 +166,36 @@ const gemb = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
-        completion_rate: 0.5
-      }
+        completion_rate: 0.5,
+      },
     },
     initialValues: {
       LeonAttrs: {
-        completion_rate: 1
-      }
-    }
+        completion_rate: 1,
+      },
+    },
   },
   {
     duration: 1000,
-    selector: "!#leonObj"
+    selector: "!#leonObj",
   }
 );
 const gem2 = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
-        completion_rate: 1
-      }
+        completion_rate: 1,
+      },
     },
     initialValues: {
       LeonAttrs: {
-        completion_rate: 0.5
-      }
-    }
+        completion_rate: 0.5,
+      },
+    },
   },
   {
     duration: 1000,
-    selector: "!#leonObj"
+    selector: "!#leonObj",
   }
 );
 
@@ -204,18 +204,18 @@ const meg2 = new LeonSans.LeonIncident(
     animatedAttrs: {
       LeonAttrs: {
         weight: 900,
-        leading: 7
-      }
+        leading: 7,
+      },
     },
     initialValues: {
       LeonAttrs: {
         //weight: 100
-      }
-    }
+      },
+    },
   },
   {
     duration: 900,
-    selector: "!#leonObj"
+    selector: "!#leonObj",
   }
 );
 
