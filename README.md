@@ -1,6 +1,33 @@
-# motorcortex-LeonSans
+# MotorCortex-LeonSans
 
-## [Demo](https://donkeyclip.github.io/motorcortex-leonsans/demo/)
+**Table of Contents**
+
+- [MotorMortex-LeonSans](#motorcortex-leonsans)
+  - [Demo](#demo)
+- [Intro / Features](#intro--features)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Importing and Loading](#importing-and-loading)
+- [Creating Incidents](#creating-incidents)
+  - [LeonSans Clip](#leonsans-clip)
+  - [LeonIncident](#leonincident)
+- [Adding Incidents in your clip](#adding-incidents-in-your-clip)
+- [Contributing](#contributing)
+- [License](#license)
+- [Sponsored by](#sponsored-by)
+
+## Demo
+
+[Check it out here](https://donkeyclip.github.io/motorcortex-leonsans/demo/)
+
+# Intro / Features
+With LeonSans plugin you can render exquisite text anywhere in your clip.
+
+This Plugin exposes two Incidents:
+- LeonSans Clip
+- LeonIncident
+
+# Getting Started
 
 ## Installation
 
@@ -10,21 +37,22 @@ $ npm install --save @donkeyclip/motorcortex-leonsans
 $ yarn add @donkeyclip/motorcortex-leonsans
 ```
 
-## Loading
+## Importing and loading
 
 ```javascript
 import { loadPlugin } from "@donkeyclip/motorcortex/";
 import LeonPlugin from "@donkeyclip/motorcortex-leonsans";
 const LeonSans = loadPlugin(LeonPlugin);
 ```
+# Creating Incidents
 
-# LeonSans Clip
+## LeonSans Clip
 
-By the use of the plugin's `Clip` you can instantiate / render a text anywhere in your DOM. The Incident will render a canvas which will host your text.
+By the use of the plugin's `Clip` you can render a canvas which will host your text.
 
 The `Clip` takes a number of attributes (listed below) that define both the canvas and the rendered text characteristics and it can accept an unlimited number of `LeonSans` Incidents that can animate the rendered text.
 
-## Example
+### Example
 
 ```javascript
 const clipName = new LeonSans.Clip(
@@ -53,7 +81,7 @@ const clipName = new LeonSans.Clip(
 );
 ```
 
-## Supported Attrs explained
+### LeonSans Clip Attrs
 
 | Name          |                                                                                   Are                                                                                   |                                                   Values |
 | ------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------: | -------------------------------------------------------: |
@@ -75,9 +103,9 @@ const clipName = new LeonSans.Clip(
 | leading       |                                                                 The distance between each line of text                                                                  |                                                   number |
 | size          |                                                                              size of text                                                                               |                                                   number |
 
-# LeonIncident
+## LeonIncident
 
-## Example
+### Example
 
 ```javascript
 const nameOfIncident = new LeonSans.LeonIncident(
@@ -114,7 +142,7 @@ const nameOfIncident = new LeonSans.LeonIncident(
 );
 ```
 
-## Supported Attrs explained
+### LeonIncident Attrs
 
 The `LeonIncident` attrs takes on the `animatedAttrs` object just one composite attribute: `LeonAtrs`. The supported attributes of this composite attribute are:
 
@@ -129,10 +157,27 @@ The `LeonIncident` attrs takes on the `animatedAttrs` object just one composite 
 | leading         |                  The distance between each line of text                   |          number |
 | size            |                               size of text                                |          number |
 
+#### IMPORTANT
 Along with the attributes, all `LeonIncident` incidents must take on their props the `selector` key which targets the canvas id of their parent Clip via the convention: `!#<canvasId>`
 
-## License
+# Adding Incidents in your clip
+
+```javascript
+clipName.addIncident(incidentName,startTime);
+```
+
+### Contributing 
+
+In general, we follow the "fork-and-pull" Git workflow, so if you want to submit patches and additions you should follow the next steps:
+1.	**Fork** the repo on GitHub
+2.	**Clone** the project to your own machine
+3.	**Commit** changes to your own branch
+4.	**Push** your work back up to your fork
+5.	Submit a **Pull request** so that we can review your changes
+
+# License
 
 [MIT License](https://opensource.org/licenses/MIT)
 
+# Sponsored by
 [<img src="https://presskit.donkeyclip.com/logos/donkey%20clip%20logo.svg" width=250></img>](https://donkeyclip.com)
