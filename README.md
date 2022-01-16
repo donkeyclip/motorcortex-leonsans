@@ -2,7 +2,7 @@
 
 **Table of Contents**
 
-- [MotorMortex-LeonSans](#motorcortex-leonsans)
+- [MotorCortex-LeonSans](#motorcortex-leonsans)
   - [Demo](#demo)
 - [Intro / Features](#intro--features)
 - [Getting Started](#getting-started)
