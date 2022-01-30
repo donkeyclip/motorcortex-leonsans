@@ -1,5 +1,18 @@
 # Changelog
 
+### [1.0.15](https://www.github.com/donkeyclip/motorcortex-leonsans/compare/v1.0.14...v1.0.15) (2022-01-30)
+
+
+### Bug Fixes
+
+* drop code from demo config ([fde0447](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/fde0447705bb14da20fb8ff1508c4bd373f974e1))
+* fix broken config ([89e3c68](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/89e3c68c73b73e1f4dffd4ef06ced7addb8fbe25))
+* fix broken webpack config ([c71eac9](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/c71eac92923bcd1fb063bfebfd5d25bdefce501f))
+* update build and demo files drop old babel config ([a19cf48](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/a19cf48272bf38fdd574fdf8e78ad7cc15df046b))
+* update build and demo files drop old babel config ([be92250](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/be92250ab97b87e05927941fd69bb7be670b9827))
+* update build and demo files drop old babel config ([bff3ee4](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/bff3ee45dbb6b24d9c24fe37ab61e66c18fd39b3))
+* update rollup deps to latest packages ([286c541](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/286c5411f6bb42318e7b9a3fcf4839abf63dbada))
+
 ### [1.0.14](https://www.github.com/donkeyclip/motorcortex-leonsans/compare/v1.0.13...v1.0.14) (2021-09-30)
 
 
