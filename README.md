@@ -21,7 +21,7 @@
 [Check it out here](https://donkeyclip.github.io/motorcortex-leonsans/demo/)
 
 # Intro / Features
-With LeonSans plugin you can render exquisite text anywhere in your clip.
+MotorCortex-LeonSans brings some capabilities of [LeonSans](https://github.com/cmiscm/leonsans#readme) library into MotorCortex. With LeonSans plugin you can render exquisite text anywhere in your clip.
 
 This Plugin exposes two Incidents:
 - LeonSans Clip
