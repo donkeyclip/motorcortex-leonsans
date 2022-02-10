@@ -1,106 +1,91 @@
 import MC from "@donkeyclip/motorcortex";
 import compAtrrs from "./compoAttributes";
-let dont = false;
 
-class testIn extends MC.Effect {
-  getScratchValue() {
-    if (this.attributeKey === "LeonAttrs") {
-      const obj = {};
-      const LeonAttrs = compAtrrs[this.attributeKey];
-      const currentLeonAttrs = this.element.entity.leon;
-
-      for (let i = 0; i < LeonAttrs.length; i++) {
-        obj[LeonAttrs[i]] = currentLeonAttrs[LeonAttrs[i]];
-      }
-
-      return obj;
-    }
+class LeonIncident extends MC.Effect {
+  onInitialise() {
+    this.performDraw = true;
   }
 
-  onProgress(f) {
-    const drawning = () => {
-      switch (this.element.entity.drawing) {
-        case "colorful":
-          this.element.entity.leon.drawColorful(this.element.entity.ctx);
-          break;
-        case "pattern":
-          //this.element.entity.ctx.fillStyle = "#32a852";
-          // console.log(this.element.entity.ctx.fillStyle);
-          this.element.entity.leon.pattern(
-            this.element.entity.ctx,
-            this.element.entity.leon.patternWidth
-              ? this.element.entity.leon.patternWidth
-              : this.element.entity.patternWidth,
-            this.element.entity.leon.patternHeight
-              ? this.element.entity.leon.patternHeight
-              : this.element.entity.patternHeight
-          );
-          break;
-        case "wave":
-          break;
-        case "colorPattern":
-          break;
-        default:
-          if (!dont) {
-            this.element.entity.leon.draw(this.element.entity.ctx);
-          }
-      }
-    };
+  getScratchValue() {
+    const scratchValues = {};
+    const LeonClip = this.element.entity.leon;
+    compAtrrs.LeonAttrs.forEach(
+      (key) => (scratchValues[key] = LeonClip[key] ?? 0)
+    );
+    return scratchValues;
+  }
 
-    const clearRect = () => {
-      this.element.entity.ctx.clearRect(
-        0,
-        0,
-        this.element.entity.sw,
-        this.element.entity.sh
-      );
-    };
+  drawning() {
+    // handle different cases of drawing functionalities
+    const { drawing, ctx, leon, patternHeight, patternWidth } =
+      this.element.entity;
 
-    const animate = () => {
-      for (let j = 0; j < compAtrrs.LeonAttrs.length; j++) {
-        const t = compAtrrs.LeonAttrs[j];
-
-        if (this.targetValue.hasOwnProperty("completion_rate")) {
-          dont = false;
-        }
-        this.element.entity.leon[t] =
-          f * (this.targetValue[t] - this.initialValue[t]) +
-          this.initialValue[t];
-
-        if (t === "completion_rate") {
-          let i;
-          const total = this.element.entity.leon.drawing.length;
-          for (i = 0; i < total; i++) {
-            this.element.entity.leon.drawing[i].value =
-              f * (this.targetValue[t] - this.initialValue[t]) +
-              this.initialValue[t];
-          }
-          dont = true;
-        }
-      }
-    };
-
-    for (let j = 0; j < compAtrrs.LeonAttrs.length; j++) {
-      const t = compAtrrs.LeonAttrs[j];
-      if (this.initialValue[t] !== this.targetValue[t]) {
-        if (this.targetValue.hasOwnProperty("completion_rate")) {
-          dont = false;
-        } else {
-          dont = true;
-        }
-        this.element.entity.leon[t] =
-          f * (this.targetValue[t] - this.initialValue[t]) +
-          this.initialValue[t];
-      }
+    switch (drawing) {
+      case "colorful":
+        leon.drawColorful(ctx);
+        break;
+      case "pattern":
+        leon.pattern(
+          ctx,
+          leon.patternWidth ?? patternWidth,
+          leon.patternHeight ?? patternHeight
+        );
+        break;
+      default:
+        leon.draw(ctx);
     }
+  }
+  clearRect() {
+    // this function clears the canvas in every RAF
+    const { ctx, sw, sh } = this.element.entity;
+    ctx.clearRect(0, 0, sw, sh);
+  }
 
-    clearRect();
-    // console.log("initial", this.initialValue, "target", this.targetValue);
-    if (!dont) {
-      animate();
-      drawning();
+  animate(fraction) {
+    // this function animate the attributes before drawing them
+    const { leon } = this.element.entity;
+    compAtrrs.LeonAttrs.forEach((compoAttribute) => {
+      const targetValue = this.targetValue[compoAttribute];
+      const initialValue = this.initialValue[compoAttribute];
+      const difference = targetValue - initialValue;
+      const finalValue = fraction * difference + initialValue;
+
+      leon[compoAttribute] = finalValue;
+
+      if (compoAttribute === "completion_rate") {
+        leon.drawing.forEach((drawingElement) => {
+          drawingElement.value = finalValue;
+        });
+        // maybe because this affects in real time the canvas
+        this.performDraw = false;
+      }
+    });
+  }
+
+  onProgress(fraction) {
+    compAtrrs.LeonAttrs.forEach((compoAttribute) => {
+      const initialValue = this.initialValue[compoAttribute];
+      const targetValue = this.targetValue[compoAttribute];
+      const difference = targetValue - initialValue;
+      const { leon } = this.element.entity;
+      const hasCompletionRate = Object.prototype.hasOwnProperty.call(
+        this.targetValue,
+        "completion_rate"
+      );
+
+      if (initialValue !== targetValue) {
+        if (hasCompletionRate) this.performDraw = true;
+        else this.performDraw = false;
+      }
+      leon[compoAttribute] = fraction * difference + initialValue;
+    });
+
+    this.clearRect();
+    if (this.performDraw) {
+      this.animate(fraction);
+      this.drawning();
     }
   }
 }
 
-export default testIn;
+export default LeonIncident;

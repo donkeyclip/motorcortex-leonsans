@@ -1,5 +1,4 @@
 "use strict";
-
 export default {
   LeonAttrs: [
     "completion_rate",
@@ -9,6 +8,6 @@ export default {
     "size",
     "pathGap",
     "patternWidth",
-    "patternHeight"
-  ]
+    "patternHeight",
+  ],
 };
