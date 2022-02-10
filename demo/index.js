@@ -61,7 +61,7 @@ const songPlayback = new AudioPlayback(
 
 clip.addIncident(songPlayback, 0);
 
-const test = new LeonSans.Clip(
+const LeonClip = new LeonSans.Clip(
   {
     canvasId: "leonObj",
     sw: 1400 / 2,
@@ -69,7 +69,6 @@ const test = new LeonSans.Clip(
     text: "KISSMYBUTTON\nLEON_SANS\nPLUGIN",
     weight: 100,
     round: true,
-    // multiply: true,
     drawing: "colorful",
     colorful: ["#64d3ce", "#2a92ce82", "#ff003c", "#2a92ce2e", "#2a92ce00"],
     color: [
@@ -78,12 +77,9 @@ const test = new LeonSans.Clip(
 
       ["#ff00fb", "#2a92ce", "#2a92ce40", "#2a92ce2e", "#2a92ce00"],
     ],
-    // pathGap: -1,
     patternWidth: 1,
     patternHeight: 10,
     speed: 1,
-    // tracking: 20,
-    // leading: 10,
     size: 80,
   },
   {
@@ -91,30 +87,18 @@ const test = new LeonSans.Clip(
   }
 );
 
-const gem = new LeonSans.LeonIncident(
+const InitialDrawLetter = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
         completion_rate: 1,
         weight: 100,
-        // tracking: 20,
-        // leading: 10,
-        // size: 90,
-        // pathGap: 1,
-        // patternWidth: 100
-        // patternHeight: 90
       },
     },
     initialValues: {
       LeonAttrs: {
         completion_rate: 0,
         weight: 100,
-        // tracking: 10,
-        // leading: 1,
-        // size: 80,
-        // pathGap: 0,
-        // patternWidth: 1
-        // patternHeight: 10
       },
     },
   },
@@ -124,18 +108,13 @@ const gem = new LeonSans.LeonIncident(
   }
 );
 
-const meg = new LeonSans.LeonIncident(
+const ScaleUpFontWeight = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
         weight: 900,
       },
     },
-    initialValues: {
-      LeonAttrs: {
-        //weight: 100
-      },
-    },
   },
   {
     duration: 50,
@@ -143,18 +122,13 @@ const meg = new LeonSans.LeonIncident(
   }
 );
 
-const mic = new LeonSans.LeonIncident(
+const ScaleDownFontWeight = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
         weight: 100,
       },
     },
-    initialValues: {
-      LeonAttrs: {
-        //weight: 100
-      },
-    },
   },
   {
     duration: 50,
@@ -162,7 +136,7 @@ const mic = new LeonSans.LeonIncident(
   }
 );
 
-const gemb = new LeonSans.LeonIncident(
+const SecondFill = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
@@ -180,7 +154,7 @@ const gemb = new LeonSans.LeonIncident(
     selector: "!#leonObj",
   }
 );
-const gem2 = new LeonSans.LeonIncident(
+const ThirdFill = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
@@ -199,7 +173,7 @@ const gem2 = new LeonSans.LeonIncident(
   }
 );
 
-const meg2 = new LeonSans.LeonIncident(
+const ScaleUpTwo = new LeonSans.LeonIncident(
   {
     animatedAttrs: {
       LeonAttrs: {
@@ -207,11 +181,6 @@ const meg2 = new LeonSans.LeonIncident(
         leading: 7,
       },
     },
-    initialValues: {
-      LeonAttrs: {
-        //weight: 100
-      },
-    },
   },
   {
     duration: 900,
@@ -219,12 +188,12 @@ const meg2 = new LeonSans.LeonIncident(
   }
 );
 
-test.addIncident(gem, 0);
-test.addIncident(meg, 900);
-test.addIncident(mic, 950);
-test.addIncident(gemb, 1100);
-test.addIncident(gem2, 2400);
-test.addIncident(meg2, 3400);
-clip.addIncident(test, 0);
+LeonClip.addIncident(InitialDrawLetter, 0);
+LeonClip.addIncident(ScaleUpFontWeight, 900);
+LeonClip.addIncident(ScaleDownFontWeight, 950);
+LeonClip.addIncident(SecondFill, 1100);
+LeonClip.addIncident(ThirdFill, 2400);
+LeonClip.addIncident(ScaleUpTwo, 3400);
+clip.addIncident(LeonClip, 0);
 
 new Player({ clip });

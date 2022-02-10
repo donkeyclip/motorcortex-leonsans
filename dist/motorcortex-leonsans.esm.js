@@ -7646,118 +7646,121 @@ var compositeAttributes = {
   LeonAttrs: ["completion_rate", "weight", "tracking", "leading", "size", "pathGap", "patternWidth", "patternHeight"]
 };
 
-var dont = false;
+var LeonIncident = /*#__PURE__*/function (_MC$Effect) {
+  _inherits(LeonIncident, _MC$Effect);
 
-var testIn = /*#__PURE__*/function (_MC$Effect) {
-  _inherits(testIn, _MC$Effect);
+  var _super = _createSuper(LeonIncident);
 
-  var _super = _createSuper(testIn);
-
-  function testIn() {
-    _classCallCheck(this, testIn);
+  function LeonIncident() {
+    _classCallCheck(this, LeonIncident);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(testIn, [{
+  _createClass(LeonIncident, [{
+    key: "onInitialise",
+    value: function onInitialise() {
+      this.performDraw = true;
+    }
+  }, {
     key: "getScratchValue",
     value: function getScratchValue() {
-      if (this.attributeKey === "LeonAttrs") {
-        var obj = {};
-        var LeonAttrs = compositeAttributes[this.attributeKey];
-        var currentLeonAttrs = this.element.entity.leon;
+      var scratchValues = {};
+      var LeonClip = this.element.entity.leon;
+      compositeAttributes.LeonAttrs.forEach(function (key) {
+        var _LeonClip$key;
 
-        for (var i = 0; i < LeonAttrs.length; i++) {
-          obj[LeonAttrs[i]] = currentLeonAttrs[LeonAttrs[i]];
-        }
+        return scratchValues[key] = (_LeonClip$key = LeonClip[key]) !== null && _LeonClip$key !== void 0 ? _LeonClip$key : 0;
+      });
+      return scratchValues;
+    }
+  }, {
+    key: "drawning",
+    value: function drawning() {
+      var _leon$patternWidth, _leon$patternHeight;
 
-        return obj;
+      // handle different cases of drawing functionalities
+      var _this$element$entity = this.element.entity,
+          drawing = _this$element$entity.drawing,
+          ctx = _this$element$entity.ctx,
+          leon = _this$element$entity.leon,
+          patternHeight = _this$element$entity.patternHeight,
+          patternWidth = _this$element$entity.patternWidth;
+
+      switch (drawing) {
+        case "colorful":
+          leon.drawColorful(ctx);
+          break;
+
+        case "pattern":
+          leon.pattern(ctx, (_leon$patternWidth = leon.patternWidth) !== null && _leon$patternWidth !== void 0 ? _leon$patternWidth : patternWidth, (_leon$patternHeight = leon.patternHeight) !== null && _leon$patternHeight !== void 0 ? _leon$patternHeight : patternHeight);
+          break;
+
+        default:
+          leon.draw(ctx);
       }
     }
   }, {
-    key: "onProgress",
-    value: function onProgress(f) {
+    key: "clearRect",
+    value: function clearRect() {
+      // this function clears the canvas in every RAF
+      var _this$element$entity2 = this.element.entity,
+          ctx = _this$element$entity2.ctx,
+          sw = _this$element$entity2.sw,
+          sh = _this$element$entity2.sh;
+      ctx.clearRect(0, 0, sw, sh);
+    }
+  }, {
+    key: "animate",
+    value: function animate(fraction) {
       var _this = this;
 
-      var drawning = function drawning() {
-        switch (_this.element.entity.drawing) {
-          case "colorful":
-            _this.element.entity.leon.drawColorful(_this.element.entity.ctx);
+      // this function animate the attributes before drawing them
+      var leon = this.element.entity.leon;
+      compositeAttributes.LeonAttrs.forEach(function (compoAttribute) {
+        var targetValue = _this.targetValue[compoAttribute];
+        var initialValue = _this.initialValue[compoAttribute];
+        var difference = targetValue - initialValue;
+        var finalValue = fraction * difference + initialValue;
+        leon[compoAttribute] = finalValue;
 
-            break;
+        if (compoAttribute === "completion_rate") {
+          leon.drawing.forEach(function (drawingElement) {
+            drawingElement.value = finalValue;
+          }); // maybe because this affects in real time the canvas
 
-          case "pattern":
-            //this.element.entity.ctx.fillStyle = "#32a852";
-            // console.log(this.element.entity.ctx.fillStyle);
-            _this.element.entity.leon.pattern(_this.element.entity.ctx, _this.element.entity.leon.patternWidth ? _this.element.entity.leon.patternWidth : _this.element.entity.patternWidth, _this.element.entity.leon.patternHeight ? _this.element.entity.leon.patternHeight : _this.element.entity.patternHeight);
-
-            break;
-
-          case "wave":
-            break;
-
-          case "colorPattern":
-            break;
-
-          default:
-            if (!dont) {
-              _this.element.entity.leon.draw(_this.element.entity.ctx);
-            }
-
+          _this.performDraw = false;
         }
-      };
+      });
+    }
+  }, {
+    key: "onProgress",
+    value: function onProgress(fraction) {
+      var _this2 = this;
 
-      var clearRect = function clearRect() {
-        _this.element.entity.ctx.clearRect(0, 0, _this.element.entity.sw, _this.element.entity.sh);
-      };
+      compositeAttributes.LeonAttrs.forEach(function (compoAttribute) {
+        var initialValue = _this2.initialValue[compoAttribute];
+        var targetValue = _this2.targetValue[compoAttribute];
+        var difference = targetValue - initialValue;
+        var leon = _this2.element.entity.leon;
+        var hasCompletionRate = Object.prototype.hasOwnProperty.call(_this2.targetValue, "completion_rate");
 
-      var animate = function animate() {
-        for (var j = 0; j < compositeAttributes.LeonAttrs.length; j++) {
-          var t = compositeAttributes.LeonAttrs[j];
-
-          if (_this.targetValue.hasOwnProperty("completion_rate")) {
-            dont = false;
-          }
-
-          _this.element.entity.leon[t] = f * (_this.targetValue[t] - _this.initialValue[t]) + _this.initialValue[t];
-
-          if (t === "completion_rate") {
-            var i = void 0;
-            var total = _this.element.entity.leon.drawing.length;
-
-            for (i = 0; i < total; i++) {
-              _this.element.entity.leon.drawing[i].value = f * (_this.targetValue[t] - _this.initialValue[t]) + _this.initialValue[t];
-            }
-
-            dont = true;
-          }
+        if (initialValue !== targetValue) {
+          if (hasCompletionRate) _this2.performDraw = true;else _this2.performDraw = false;
         }
-      };
 
-      for (var j = 0; j < compositeAttributes.LeonAttrs.length; j++) {
-        var t = compositeAttributes.LeonAttrs[j];
+        leon[compoAttribute] = fraction * difference + initialValue;
+      });
+      this.clearRect();
 
-        if (this.initialValue[t] !== this.targetValue[t]) {
-          if (this.targetValue.hasOwnProperty("completion_rate")) {
-            dont = false;
-          } else {
-            dont = true;
-          }
-
-          this.element.entity.leon[t] = f * (this.targetValue[t] - this.initialValue[t]) + this.initialValue[t];
-        }
-      }
-
-      clearRect(); // console.log("initial", this.initialValue, "target", this.targetValue);
-
-      if (!dont) {
-        animate();
-        drawning();
+      if (this.performDraw) {
+        this.animate(fraction);
+        this.drawning();
       }
     }
   }]);
 
-  return testIn;
+  return LeonIncident;
 }(MC.Effect);
 
 var _COLOR = "color";
@@ -7911,7 +7914,7 @@ var index = {
     attributesValidationRules: _objectSpread2({}, clipValidationRules)
   },
   incidents: [{
-    exportable: testIn,
+    exportable: LeonIncident,
     name: "LeonIncident",
     attributesValidationRules: {
       animatedAttrs: animatedAttrs
