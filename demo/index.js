@@ -17,7 +17,6 @@ const css = `.container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
  }
  .cel{
   display: flex;

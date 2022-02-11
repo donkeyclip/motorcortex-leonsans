@@ -2,10 +2,6 @@ import MC from "@donkeyclip/motorcortex";
 import compAtrrs from "./compoAttributes";
 
 class LeonIncident extends MC.Effect {
-  onInitialise() {
-    this.performDraw = true;
-  }
-
   getScratchValue() {
     const scratchValues = {};
     const LeonClip = this.element.entity.leon;
@@ -56,8 +52,6 @@ class LeonIncident extends MC.Effect {
         leon.drawing.forEach((drawingElement) => {
           drawingElement.value = finalValue;
         });
-        // maybe because this affects in real time the canvas
-        this.performDraw = false;
       }
     });
   }
@@ -72,19 +66,12 @@ class LeonIncident extends MC.Effect {
         this.targetValue,
         "completion_rate"
       );
-
-      if (initialValue !== targetValue) {
-        if (hasCompletionRate) this.performDraw = true;
-        else this.performDraw = false;
-      }
       leon[compoAttribute] = fraction * difference + initialValue;
     });
 
     this.clearRect();
-    if (this.performDraw) {
-      this.animate(fraction);
-      this.drawning();
-    }
+    this.animate(fraction);
+    this.drawning();
   }
 }
 
