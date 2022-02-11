@@ -7664,11 +7664,6 @@ var LeonIncident = /*#__PURE__*/function (_MC$Effect) {
   }
 
   _createClass(LeonIncident, [{
-    key: "onInitialise",
-    value: function onInitialise() {
-      this.performDraw = true;
-    }
-  }, {
     key: "getScratchValue",
     value: function getScratchValue() {
       var scratchValues = {};
@@ -7733,9 +7728,7 @@ var LeonIncident = /*#__PURE__*/function (_MC$Effect) {
         if (compoAttribute === "completion_rate") {
           leon.drawing.forEach(function (drawingElement) {
             drawingElement.value = finalValue;
-          }); // maybe because this affects in real time the canvas
-
-          _this.performDraw = false;
+          });
         }
       });
     }
@@ -7749,20 +7742,12 @@ var LeonIncident = /*#__PURE__*/function (_MC$Effect) {
         var targetValue = _this2.targetValue[compoAttribute];
         var difference = targetValue - initialValue;
         var leon = _this2.element.entity.leon;
-        var hasCompletionRate = Object.prototype.hasOwnProperty.call(_this2.targetValue, "completion_rate");
-
-        if (initialValue !== targetValue) {
-          if (hasCompletionRate) _this2.performDraw = true;else _this2.performDraw = false;
-        }
-
+        Object.prototype.hasOwnProperty.call(_this2.targetValue, "completion_rate");
         leon[compoAttribute] = fraction * difference + initialValue;
       });
       this.clearRect();
-
-      if (this.performDraw) {
-        this.animate(fraction);
-        this.drawning();
-      }
+      this.animate(fraction);
+      this.drawning();
     }
   }]);
 
