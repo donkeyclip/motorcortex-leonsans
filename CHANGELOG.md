@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.17](https://www.github.com/donkeyclip/motorcortex-leonsans/compare/v1.0.16...v1.0.17) (2022-02-11)
+
+
+### Bug Fixes
+
+* Fix leonincident ([3ca983e](https://www.github.com/donkeyclip/motorcortex-leonsans/commit/3ca983ebaa77d3517cb67c8ecab3e286eacaa707))
+
 ### [1.0.16](https://www.github.com/donkeyclip/motorcortex-leonsans/compare/v1.0.15...v1.0.16) (2022-02-10)
 
 
