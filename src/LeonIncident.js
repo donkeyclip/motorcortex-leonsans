@@ -1,7 +1,7 @@
-import MC from "@donkeyclip/motorcortex";
+import { Effect } from "@donkeyclip/motorcortex";
 import compAtrrs from "./compoAttributes";
 
-class LeonIncident extends MC.Effect {
+class LeonIncident extends Effect {
   getScratchValue() {
     const scratchValues = {};
     const LeonClip = this.element.entity.leon;
@@ -56,21 +56,17 @@ class LeonIncident extends MC.Effect {
     });
   }
 
-  onProgress(fraction) {
+  onProgress(m) {
     compAtrrs.LeonAttrs.forEach((compoAttribute) => {
       const initialValue = this.initialValue[compoAttribute];
       const targetValue = this.targetValue[compoAttribute];
       const difference = targetValue - initialValue;
       const { leon } = this.element.entity;
-      const hasCompletionRate = Object.prototype.hasOwnProperty.call(
-        this.targetValue,
-        "completion_rate"
-      );
-      leon[compoAttribute] = fraction * difference + initialValue;
+      leon[compoAttribute] = this.getFraction(m) * difference + initialValue;
     });
 
     this.clearRect();
-    this.animate(fraction);
+    this.animate(this.getFraction(m));
     this.drawning();
   }
 }

@@ -7652,8 +7652,8 @@ var compositeAttributes = {
   LeonAttrs: ["completion_rate", "weight", "tracking", "leading", "size", "pathGap", "patternWidth", "patternHeight"]
 };
 
-var LeonIncident = /*#__PURE__*/function (_MC$Effect) {
-  _inherits(LeonIncident, _MC$Effect);
+var LeonIncident = /*#__PURE__*/function (_Effect) {
+  _inherits(LeonIncident, _Effect);
 
   var _super = _createSuper(LeonIncident);
 
@@ -7734,7 +7734,7 @@ var LeonIncident = /*#__PURE__*/function (_MC$Effect) {
     }
   }, {
     key: "onProgress",
-    value: function onProgress(fraction) {
+    value: function onProgress(m) {
       var _this2 = this;
 
       compositeAttributes.LeonAttrs.forEach(function (compoAttribute) {
@@ -7742,17 +7742,16 @@ var LeonIncident = /*#__PURE__*/function (_MC$Effect) {
         var targetValue = _this2.targetValue[compoAttribute];
         var difference = targetValue - initialValue;
         var leon = _this2.element.entity.leon;
-        Object.prototype.hasOwnProperty.call(_this2.targetValue, "completion_rate");
-        leon[compoAttribute] = fraction * difference + initialValue;
+        leon[compoAttribute] = _this2.getFraction(m) * difference + initialValue;
       });
       this.clearRect();
-      this.animate(fraction);
+      this.animate(this.getFraction(m));
       this.drawning();
     }
   }]);
 
   return LeonIncident;
-}(MC__default["default"].Effect);
+}(MC.Effect);
 
 var _COLOR = "color";
 var animatedAttrs = {
