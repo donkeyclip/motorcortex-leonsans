@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/donkeyclip/motorcortex-leonsans/compare/v1.1.0...v1.2.0) (2022-03-22)
+
+
+### Features
+
+* declare mc 8 as compatible ([b91be11](https://github.com/donkeyclip/motorcortex-leonsans/commit/b91be11e1a64a57f9439be75c4c30dcf8698f126))
+
 ## [1.1.0](https://www.github.com/donkeyclip/motorcortex-leonsans/compare/v1.0.17...v1.1.0) (2022-03-16)
 
 
