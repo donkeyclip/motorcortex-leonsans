@@ -35,7 +35,7 @@ class LeonSans extends MC.BrowserClip {
       size: this.attrs.size || 80,
       patternWidth: 10,
       patternHeight: 90,
-      colorful: this.attrs.colorful
+      colorful: this.attrs.colorful,
     });
 
     // leon.grid(this.ctx);
@@ -56,7 +56,7 @@ class LeonSans extends MC.BrowserClip {
       drawing: this.attrs.drawing,
       pathGap: this.attrs.pathGap,
       patternWidth: this.attrs.patternWidth,
-      patternHeight: this.attrs.patternHeight
+      patternHeight: this.attrs.patternHeight,
     });
 
     // switch (this.attrs.drawing) {
