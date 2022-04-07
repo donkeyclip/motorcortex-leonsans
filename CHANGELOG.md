@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/donkeyclip/motorcortex-leonsans/compare/v1.2.0...v1.3.0) (2022-04-07)
+
+
+### Features
+
+* drop explorer 11 support ([87f77b7](https://github.com/donkeyclip/motorcortex-leonsans/commit/87f77b7ffeb5245e4171578d1c5fd3ad0dbd340f))
+* update compatibility with motorcortex ([7aae496](https://github.com/donkeyclip/motorcortex-leonsans/commit/7aae4961588f2479af7d88eee8e38b9164aa36aa))
+
 ## [1.2.0](https://github.com/donkeyclip/motorcortex-leonsans/compare/v1.1.0...v1.2.0) (2022-03-22)
 
 
