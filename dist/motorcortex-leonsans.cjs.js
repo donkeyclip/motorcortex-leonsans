@@ -6,1629 +6,8 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var MC__default = /*#__PURE__*/_interopDefaultLegacy(MC);
 
-function ownKeys$2(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    enumerableOnly && (symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    })), keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? ownKeys$2(Object(source), !0).forEach(function (key) {
-      _defineProperty(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$2(Object(source)).forEach(function (key) {
-      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-    });
-  }
-
-  return target;
-}
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, _typeof(obj);
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, "prototype", {
-    writable: false
-  });
-  return Constructor;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  Object.defineProperty(subClass, "prototype", {
-    writable: false
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-
-  return _assertThisInitialized(self);
-}
-
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-        result;
-
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-
-    return _possibleConstructorReturn(this, result);
-  };
-}
-
-function _superPropBase(object, property) {
-  while (!Object.prototype.hasOwnProperty.call(object, property)) {
-    object = _getPrototypeOf(object);
-    if (object === null) break;
-  }
-
-  return object;
-}
-
-function _get() {
-  if (typeof Reflect !== "undefined" && Reflect.get) {
-    _get = Reflect.get;
-  } else {
-    _get = function _get(target, property, receiver) {
-      var base = _superPropBase(target, property);
-
-      if (!base) return;
-      var desc = Object.getOwnPropertyDescriptor(base, property);
-
-      if (desc.get) {
-        return desc.get.call(arguments.length < 3 ? target : receiver);
-      }
-
-      return desc.value;
-    };
-  }
-
-  return _get.apply(this, arguments);
-}
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
-  return arr2;
-}
-
-function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-
-  if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-      if (it) o = it;
-      var i = 0;
-
-      var F = function () {};
-
-      return {
-        s: F,
-        n: function () {
-          if (i >= o.length) return {
-            done: true
-          };
-          return {
-            done: false,
-            value: o[i++]
-          };
-        },
-        e: function (e) {
-          throw e;
-        },
-        f: F
-      };
-    }
-
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-
-  var normalCompletion = true,
-      didErr = false,
-      err;
-  return {
-    s: function () {
-      it = it.call(o);
-    },
-    n: function () {
-      var step = it.next();
-      normalCompletion = step.done;
-      return step;
-    },
-    e: function (e) {
-      didErr = true;
-      err = e;
-    },
-    f: function () {
-      try {
-        if (!normalCompletion && it.return != null) it.return();
-      } finally {
-        if (didErr) throw err;
-      }
-    }
-  };
-}
-
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-var check = function (it) {
-  return it && it.Math == Math && it;
-}; // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-
-
-var global$y = // eslint-disable-next-line es/no-global-this -- safe
-check(typeof globalThis == 'object' && globalThis) || check(typeof window == 'object' && window) || // eslint-disable-next-line no-restricted-globals -- safe
-check(typeof self == 'object' && self) || check(typeof commonjsGlobal == 'object' && commonjsGlobal) || // eslint-disable-next-line no-new-func -- fallback
-function () {
-  return this;
-}() || Function('return this')();
-
-var objectGetOwnPropertyDescriptor = {};
-
-var fails$j = function (exec) {
-  try {
-    return !!exec();
-  } catch (error) {
-    return true;
-  }
-};
-
-var fails$i = fails$j; // Detect IE8's incomplete defineProperty implementation
-
-var descriptors = !fails$i(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-  return Object.defineProperty({}, 1, {
-    get: function () {
-      return 7;
-    }
-  })[1] != 7;
-});
-
-var fails$h = fails$j;
-var functionBindNative = !fails$h(function () {
-  var test = function () {
-    /* empty */
-  }.bind(); // eslint-disable-next-line no-prototype-builtins -- safe
-
-
-  return typeof test != 'function' || test.hasOwnProperty('prototype');
-});
-
-var NATIVE_BIND$3 = functionBindNative;
-var call$9 = Function.prototype.call;
-var functionCall = NATIVE_BIND$3 ? call$9.bind(call$9) : function () {
-  return call$9.apply(call$9, arguments);
-};
-
-var objectPropertyIsEnumerable = {};
-
-var $propertyIsEnumerable = {}.propertyIsEnumerable; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-
-var getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor; // Nashorn ~ JDK8 bug
-
-var NASHORN_BUG = getOwnPropertyDescriptor$1 && !$propertyIsEnumerable.call({
-  1: 2
-}, 1); // `Object.prototype.propertyIsEnumerable` method implementation
-// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
-
-objectPropertyIsEnumerable.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
-  var descriptor = getOwnPropertyDescriptor$1(this, V);
-  return !!descriptor && descriptor.enumerable;
-} : $propertyIsEnumerable;
-
-var createPropertyDescriptor$3 = function (bitmap, value) {
-  return {
-    enumerable: !(bitmap & 1),
-    configurable: !(bitmap & 2),
-    writable: !(bitmap & 4),
-    value: value
-  };
-};
-
-var NATIVE_BIND$2 = functionBindNative;
-var FunctionPrototype$2 = Function.prototype;
-var bind$2 = FunctionPrototype$2.bind;
-var call$8 = FunctionPrototype$2.call;
-var uncurryThis$m = NATIVE_BIND$2 && bind$2.bind(call$8, call$8);
-var functionUncurryThis = NATIVE_BIND$2 ? function (fn) {
-  return fn && uncurryThis$m(fn);
-} : function (fn) {
-  return fn && function () {
-    return call$8.apply(fn, arguments);
-  };
-};
-
-var uncurryThis$l = functionUncurryThis;
-var toString$6 = uncurryThis$l({}.toString);
-var stringSlice$3 = uncurryThis$l(''.slice);
-
-var classofRaw$1 = function (it) {
-  return stringSlice$3(toString$6(it), 8, -1);
-};
-
-var global$x = global$y;
-var uncurryThis$k = functionUncurryThis;
-var fails$g = fails$j;
-var classof$7 = classofRaw$1;
-var Object$4 = global$x.Object;
-var split = uncurryThis$k(''.split); // fallback for non-array-like ES3 and non-enumerable old V8 strings
-
-var indexedObject = fails$g(function () {
-  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
-  // eslint-disable-next-line no-prototype-builtins -- safe
-  return !Object$4('z').propertyIsEnumerable(0);
-}) ? function (it) {
-  return classof$7(it) == 'String' ? split(it, '') : Object$4(it);
-} : Object$4;
-
-var global$w = global$y;
-var TypeError$a = global$w.TypeError; // `RequireObjectCoercible` abstract operation
-// https://tc39.es/ecma262/#sec-requireobjectcoercible
-
-var requireObjectCoercible$4 = function (it) {
-  if (it == undefined) throw TypeError$a("Can't call method on " + it);
-  return it;
-};
-
-var IndexedObject$3 = indexedObject;
-var requireObjectCoercible$3 = requireObjectCoercible$4;
-
-var toIndexedObject$6 = function (it) {
-  return IndexedObject$3(requireObjectCoercible$3(it));
-};
-
-// https://tc39.es/ecma262/#sec-iscallable
-
-var isCallable$c = function (argument) {
-  return typeof argument == 'function';
-};
-
-var isCallable$b = isCallable$c;
-
-var isObject$9 = function (it) {
-  return typeof it == 'object' ? it !== null : isCallable$b(it);
-};
-
-var global$v = global$y;
-var isCallable$a = isCallable$c;
-
-var aFunction = function (argument) {
-  return isCallable$a(argument) ? argument : undefined;
-};
-
-var getBuiltIn$6 = function (namespace, method) {
-  return arguments.length < 2 ? aFunction(global$v[namespace]) : global$v[namespace] && global$v[namespace][method];
-};
-
-var uncurryThis$j = functionUncurryThis;
-var objectIsPrototypeOf = uncurryThis$j({}.isPrototypeOf);
-
-var getBuiltIn$5 = getBuiltIn$6;
-var engineUserAgent = getBuiltIn$5('navigator', 'userAgent') || '';
-
-var global$u = global$y;
-var userAgent = engineUserAgent;
-var process = global$u.process;
-var Deno = global$u.Deno;
-var versions = process && process.versions || Deno && Deno.version;
-var v8 = versions && versions.v8;
-var match, version$1;
-
-if (v8) {
-  match = v8.split('.'); // in old Chrome, versions of V8 isn't V8 = Chrome / 10
-  // but their correct versions are not interesting for us
-
-  version$1 = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
-} // BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`
-// so check `userAgent` even if `.v8` exists, but 0
-
-
-if (!version$1 && userAgent) {
-  match = userAgent.match(/Edge\/(\d+)/);
-
-  if (!match || match[1] >= 74) {
-    match = userAgent.match(/Chrome\/(\d+)/);
-    if (match) version$1 = +match[1];
-  }
-}
-
-var engineV8Version = version$1;
-
-/* eslint-disable es/no-symbol -- required for testing */
-var V8_VERSION$2 = engineV8Version;
-var fails$f = fails$j; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
-
-var nativeSymbol = !!Object.getOwnPropertySymbols && !fails$f(function () {
-  var symbol = Symbol(); // Chrome 38 Symbol has incorrect toString conversion
-  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
-
-  return !String(symbol) || !(Object(symbol) instanceof Symbol) || // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
-  !Symbol.sham && V8_VERSION$2 && V8_VERSION$2 < 41;
-});
-
-/* eslint-disable es/no-symbol -- required for testing */
-var NATIVE_SYMBOL$1 = nativeSymbol;
-var useSymbolAsUid = NATIVE_SYMBOL$1 && !Symbol.sham && typeof Symbol.iterator == 'symbol';
-
-var global$t = global$y;
-var getBuiltIn$4 = getBuiltIn$6;
-var isCallable$9 = isCallable$c;
-var isPrototypeOf$1 = objectIsPrototypeOf;
-var USE_SYMBOL_AS_UID$1 = useSymbolAsUid;
-var Object$3 = global$t.Object;
-var isSymbol$2 = USE_SYMBOL_AS_UID$1 ? function (it) {
-  return typeof it == 'symbol';
-} : function (it) {
-  var $Symbol = getBuiltIn$4('Symbol');
-  return isCallable$9($Symbol) && isPrototypeOf$1($Symbol.prototype, Object$3(it));
-};
-
-var global$s = global$y;
-var String$3 = global$s.String;
-
-var tryToString$2 = function (argument) {
-  try {
-    return String$3(argument);
-  } catch (error) {
-    return 'Object';
-  }
-};
-
-var global$r = global$y;
-var isCallable$8 = isCallable$c;
-var tryToString$1 = tryToString$2;
-var TypeError$9 = global$r.TypeError; // `Assert: IsCallable(argument) is true`
-
-var aCallable$2 = function (argument) {
-  if (isCallable$8(argument)) return argument;
-  throw TypeError$9(tryToString$1(argument) + ' is not a function');
-};
-
-var aCallable$1 = aCallable$2; // `GetMethod` abstract operation
-// https://tc39.es/ecma262/#sec-getmethod
-
-var getMethod$2 = function (V, P) {
-  var func = V[P];
-  return func == null ? undefined : aCallable$1(func);
-};
-
-var global$q = global$y;
-var call$7 = functionCall;
-var isCallable$7 = isCallable$c;
-var isObject$8 = isObject$9;
-var TypeError$8 = global$q.TypeError; // `OrdinaryToPrimitive` abstract operation
-// https://tc39.es/ecma262/#sec-ordinarytoprimitive
-
-var ordinaryToPrimitive$1 = function (input, pref) {
-  var fn, val;
-  if (pref === 'string' && isCallable$7(fn = input.toString) && !isObject$8(val = call$7(fn, input))) return val;
-  if (isCallable$7(fn = input.valueOf) && !isObject$8(val = call$7(fn, input))) return val;
-  if (pref !== 'string' && isCallable$7(fn = input.toString) && !isObject$8(val = call$7(fn, input))) return val;
-  throw TypeError$8("Can't convert object to primitive value");
-};
-
-var shared$4 = {exports: {}};
-
-var global$p = global$y; // eslint-disable-next-line es/no-object-defineproperty -- safe
-
-var defineProperty$1 = Object.defineProperty;
-
-var setGlobal$3 = function (key, value) {
-  try {
-    defineProperty$1(global$p, key, {
-      value: value,
-      configurable: true,
-      writable: true
-    });
-  } catch (error) {
-    global$p[key] = value;
-  }
-
-  return value;
-};
-
-var global$o = global$y;
-var setGlobal$2 = setGlobal$3;
-var SHARED = '__core-js_shared__';
-var store$3 = global$o[SHARED] || setGlobal$2(SHARED, {});
-var sharedStore = store$3;
-
-var store$2 = sharedStore;
-(shared$4.exports = function (key, value) {
-  return store$2[key] || (store$2[key] = value !== undefined ? value : {});
-})('versions', []).push({
-  version: '3.21.1',
-  mode: 'global',
-  copyright: '© 2014-2022 Denis Pushkarev (zloirock.ru)',
-  license: 'https://github.com/zloirock/core-js/blob/v3.21.1/LICENSE',
-  source: 'https://github.com/zloirock/core-js'
-});
-
-var global$n = global$y;
-var requireObjectCoercible$2 = requireObjectCoercible$4;
-var Object$2 = global$n.Object; // `ToObject` abstract operation
-// https://tc39.es/ecma262/#sec-toobject
-
-var toObject$5 = function (argument) {
-  return Object$2(requireObjectCoercible$2(argument));
-};
-
-var uncurryThis$i = functionUncurryThis;
-var toObject$4 = toObject$5;
-var hasOwnProperty = uncurryThis$i({}.hasOwnProperty); // `HasOwnProperty` abstract operation
-// https://tc39.es/ecma262/#sec-hasownproperty
-
-var hasOwnProperty_1 = Object.hasOwn || function hasOwn(it, key) {
-  return hasOwnProperty(toObject$4(it), key);
-};
-
-var uncurryThis$h = functionUncurryThis;
-var id = 0;
-var postfix = Math.random();
-var toString$5 = uncurryThis$h(1.0.toString);
-
-var uid$2 = function (key) {
-  return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString$5(++id + postfix, 36);
-};
-
-var global$m = global$y;
-var shared$3 = shared$4.exports;
-var hasOwn$6 = hasOwnProperty_1;
-var uid$1 = uid$2;
-var NATIVE_SYMBOL = nativeSymbol;
-var USE_SYMBOL_AS_UID = useSymbolAsUid;
-var WellKnownSymbolsStore = shared$3('wks');
-var Symbol$1 = global$m.Symbol;
-var symbolFor = Symbol$1 && Symbol$1['for'];
-var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol$1 : Symbol$1 && Symbol$1.withoutSetter || uid$1;
-
-var wellKnownSymbol$b = function (name) {
-  if (!hasOwn$6(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] == 'string')) {
-    var description = 'Symbol.' + name;
-
-    if (NATIVE_SYMBOL && hasOwn$6(Symbol$1, name)) {
-      WellKnownSymbolsStore[name] = Symbol$1[name];
-    } else if (USE_SYMBOL_AS_UID && symbolFor) {
-      WellKnownSymbolsStore[name] = symbolFor(description);
-    } else {
-      WellKnownSymbolsStore[name] = createWellKnownSymbol(description);
-    }
-  }
-
-  return WellKnownSymbolsStore[name];
-};
-
-var global$l = global$y;
-var call$6 = functionCall;
-var isObject$7 = isObject$9;
-var isSymbol$1 = isSymbol$2;
-var getMethod$1 = getMethod$2;
-var ordinaryToPrimitive = ordinaryToPrimitive$1;
-var wellKnownSymbol$a = wellKnownSymbol$b;
-var TypeError$7 = global$l.TypeError;
-var TO_PRIMITIVE = wellKnownSymbol$a('toPrimitive'); // `ToPrimitive` abstract operation
-// https://tc39.es/ecma262/#sec-toprimitive
-
-var toPrimitive$1 = function (input, pref) {
-  if (!isObject$7(input) || isSymbol$1(input)) return input;
-  var exoticToPrim = getMethod$1(input, TO_PRIMITIVE);
-  var result;
-
-  if (exoticToPrim) {
-    if (pref === undefined) pref = 'default';
-    result = call$6(exoticToPrim, input, pref);
-    if (!isObject$7(result) || isSymbol$1(result)) return result;
-    throw TypeError$7("Can't convert object to primitive value");
-  }
-
-  if (pref === undefined) pref = 'number';
-  return ordinaryToPrimitive(input, pref);
-};
-
-var toPrimitive = toPrimitive$1;
-var isSymbol = isSymbol$2; // `ToPropertyKey` abstract operation
-// https://tc39.es/ecma262/#sec-topropertykey
-
-var toPropertyKey$3 = function (argument) {
-  var key = toPrimitive(argument, 'string');
-  return isSymbol(key) ? key : key + '';
-};
-
-var global$k = global$y;
-var isObject$6 = isObject$9;
-var document$1 = global$k.document; // typeof document.createElement is 'object' in old IE
-
-var EXISTS$1 = isObject$6(document$1) && isObject$6(document$1.createElement);
-
-var documentCreateElement$2 = function (it) {
-  return EXISTS$1 ? document$1.createElement(it) : {};
-};
-
-var DESCRIPTORS$7 = descriptors;
-var fails$e = fails$j;
-var createElement = documentCreateElement$2; // Thanks to IE8 for its funny defineProperty
-
-var ie8DomDefine = !DESCRIPTORS$7 && !fails$e(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-  return Object.defineProperty(createElement('div'), 'a', {
-    get: function () {
-      return 7;
-    }
-  }).a != 7;
-});
-
-var DESCRIPTORS$6 = descriptors;
-var call$5 = functionCall;
-var propertyIsEnumerableModule$1 = objectPropertyIsEnumerable;
-var createPropertyDescriptor$2 = createPropertyDescriptor$3;
-var toIndexedObject$5 = toIndexedObject$6;
-var toPropertyKey$2 = toPropertyKey$3;
-var hasOwn$5 = hasOwnProperty_1;
-var IE8_DOM_DEFINE$1 = ie8DomDefine; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-
-var $getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
-// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
-
-objectGetOwnPropertyDescriptor.f = DESCRIPTORS$6 ? $getOwnPropertyDescriptor$1 : function getOwnPropertyDescriptor(O, P) {
-  O = toIndexedObject$5(O);
-  P = toPropertyKey$2(P);
-  if (IE8_DOM_DEFINE$1) try {
-    return $getOwnPropertyDescriptor$1(O, P);
-  } catch (error) {
-    /* empty */
-  }
-  if (hasOwn$5(O, P)) return createPropertyDescriptor$2(!call$5(propertyIsEnumerableModule$1.f, O, P), O[P]);
-};
-
-var objectDefineProperty = {};
-
-var DESCRIPTORS$5 = descriptors;
-var fails$d = fails$j; // V8 ~ Chrome 36-
-// https://bugs.chromium.org/p/v8/issues/detail?id=3334
-
-var v8PrototypeDefineBug = DESCRIPTORS$5 && fails$d(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-  return Object.defineProperty(function () {
-    /* empty */
-  }, 'prototype', {
-    value: 42,
-    writable: false
-  }).prototype != 42;
-});
-
-var global$j = global$y;
-var isObject$5 = isObject$9;
-var String$2 = global$j.String;
-var TypeError$6 = global$j.TypeError; // `Assert: Type(argument) is Object`
-
-var anObject$9 = function (argument) {
-  if (isObject$5(argument)) return argument;
-  throw TypeError$6(String$2(argument) + ' is not an object');
-};
-
-var global$i = global$y;
-var DESCRIPTORS$4 = descriptors;
-var IE8_DOM_DEFINE = ie8DomDefine;
-var V8_PROTOTYPE_DEFINE_BUG$1 = v8PrototypeDefineBug;
-var anObject$8 = anObject$9;
-var toPropertyKey$1 = toPropertyKey$3;
-var TypeError$5 = global$i.TypeError; // eslint-disable-next-line es/no-object-defineproperty -- safe
-
-var $defineProperty = Object.defineProperty; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-
-var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-var ENUMERABLE = 'enumerable';
-var CONFIGURABLE$1 = 'configurable';
-var WRITABLE = 'writable'; // `Object.defineProperty` method
-// https://tc39.es/ecma262/#sec-object.defineproperty
-
-objectDefineProperty.f = DESCRIPTORS$4 ? V8_PROTOTYPE_DEFINE_BUG$1 ? function defineProperty(O, P, Attributes) {
-  anObject$8(O);
-  P = toPropertyKey$1(P);
-  anObject$8(Attributes);
-
-  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
-    var current = $getOwnPropertyDescriptor(O, P);
-
-    if (current && current[WRITABLE]) {
-      O[P] = Attributes.value;
-      Attributes = {
-        configurable: CONFIGURABLE$1 in Attributes ? Attributes[CONFIGURABLE$1] : current[CONFIGURABLE$1],
-        enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
-        writable: false
-      };
-    }
-  }
-
-  return $defineProperty(O, P, Attributes);
-} : $defineProperty : function defineProperty(O, P, Attributes) {
-  anObject$8(O);
-  P = toPropertyKey$1(P);
-  anObject$8(Attributes);
-  if (IE8_DOM_DEFINE) try {
-    return $defineProperty(O, P, Attributes);
-  } catch (error) {
-    /* empty */
-  }
-  if ('get' in Attributes || 'set' in Attributes) throw TypeError$5('Accessors not supported');
-  if ('value' in Attributes) O[P] = Attributes.value;
-  return O;
-};
-
-var DESCRIPTORS$3 = descriptors;
-var definePropertyModule$4 = objectDefineProperty;
-var createPropertyDescriptor$1 = createPropertyDescriptor$3;
-var createNonEnumerableProperty$5 = DESCRIPTORS$3 ? function (object, key, value) {
-  return definePropertyModule$4.f(object, key, createPropertyDescriptor$1(1, value));
-} : function (object, key, value) {
-  object[key] = value;
-  return object;
-};
-
-var redefine$4 = {exports: {}};
-
-var uncurryThis$g = functionUncurryThis;
-var isCallable$6 = isCallable$c;
-var store$1 = sharedStore;
-var functionToString = uncurryThis$g(Function.toString); // this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
-
-if (!isCallable$6(store$1.inspectSource)) {
-  store$1.inspectSource = function (it) {
-    return functionToString(it);
-  };
-}
-
-var inspectSource$3 = store$1.inspectSource;
-
-var global$h = global$y;
-var isCallable$5 = isCallable$c;
-var inspectSource$2 = inspectSource$3;
-var WeakMap$1 = global$h.WeakMap;
-var nativeWeakMap = isCallable$5(WeakMap$1) && /native code/.test(inspectSource$2(WeakMap$1));
-
-var shared$2 = shared$4.exports;
-var uid = uid$2;
-var keys = shared$2('keys');
-
-var sharedKey$2 = function (key) {
-  return keys[key] || (keys[key] = uid(key));
-};
-
-var hiddenKeys$4 = {};
-
-var NATIVE_WEAK_MAP = nativeWeakMap;
-var global$g = global$y;
-var uncurryThis$f = functionUncurryThis;
-var isObject$4 = isObject$9;
-var createNonEnumerableProperty$4 = createNonEnumerableProperty$5;
-var hasOwn$4 = hasOwnProperty_1;
-var shared$1 = sharedStore;
-var sharedKey$1 = sharedKey$2;
-var hiddenKeys$3 = hiddenKeys$4;
-var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
-var TypeError$4 = global$g.TypeError;
-var WeakMap = global$g.WeakMap;
-var set, get, has;
-
-var enforce = function (it) {
-  return has(it) ? get(it) : set(it, {});
-};
-
-var getterFor = function (TYPE) {
-  return function (it) {
-    var state;
-
-    if (!isObject$4(it) || (state = get(it)).type !== TYPE) {
-      throw TypeError$4('Incompatible receiver, ' + TYPE + ' required');
-    }
-
-    return state;
-  };
-};
-
-if (NATIVE_WEAK_MAP || shared$1.state) {
-  var store = shared$1.state || (shared$1.state = new WeakMap());
-  var wmget = uncurryThis$f(store.get);
-  var wmhas = uncurryThis$f(store.has);
-  var wmset = uncurryThis$f(store.set);
-
-  set = function (it, metadata) {
-    if (wmhas(store, it)) throw new TypeError$4(OBJECT_ALREADY_INITIALIZED);
-    metadata.facade = it;
-    wmset(store, it, metadata);
-    return metadata;
-  };
-
-  get = function (it) {
-    return wmget(store, it) || {};
-  };
-
-  has = function (it) {
-    return wmhas(store, it);
-  };
-} else {
-  var STATE = sharedKey$1('state');
-  hiddenKeys$3[STATE] = true;
-
-  set = function (it, metadata) {
-    if (hasOwn$4(it, STATE)) throw new TypeError$4(OBJECT_ALREADY_INITIALIZED);
-    metadata.facade = it;
-    createNonEnumerableProperty$4(it, STATE, metadata);
-    return metadata;
-  };
-
-  get = function (it) {
-    return hasOwn$4(it, STATE) ? it[STATE] : {};
-  };
-
-  has = function (it) {
-    return hasOwn$4(it, STATE);
-  };
-}
-
-var internalState = {
-  set: set,
-  get: get,
-  has: has,
-  enforce: enforce,
-  getterFor: getterFor
-};
-
-var DESCRIPTORS$2 = descriptors;
-var hasOwn$3 = hasOwnProperty_1;
-var FunctionPrototype$1 = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-
-var getDescriptor = DESCRIPTORS$2 && Object.getOwnPropertyDescriptor;
-var EXISTS = hasOwn$3(FunctionPrototype$1, 'name'); // additional protection from minified / mangled / dropped function names
-
-var PROPER = EXISTS && function something() {
-  /* empty */
-}.name === 'something';
-
-var CONFIGURABLE = EXISTS && (!DESCRIPTORS$2 || DESCRIPTORS$2 && getDescriptor(FunctionPrototype$1, 'name').configurable);
-var functionName = {
-  EXISTS: EXISTS,
-  PROPER: PROPER,
-  CONFIGURABLE: CONFIGURABLE
-};
-
-var global$f = global$y;
-var isCallable$4 = isCallable$c;
-var hasOwn$2 = hasOwnProperty_1;
-var createNonEnumerableProperty$3 = createNonEnumerableProperty$5;
-var setGlobal$1 = setGlobal$3;
-var inspectSource$1 = inspectSource$3;
-var InternalStateModule = internalState;
-var CONFIGURABLE_FUNCTION_NAME = functionName.CONFIGURABLE;
-var getInternalState$1 = InternalStateModule.get;
-var enforceInternalState = InternalStateModule.enforce;
-var TEMPLATE = String(String).split('String');
-(redefine$4.exports = function (O, key, value, options) {
-  var unsafe = options ? !!options.unsafe : false;
-  var simple = options ? !!options.enumerable : false;
-  var noTargetGet = options ? !!options.noTargetGet : false;
-  var name = options && options.name !== undefined ? options.name : key;
-  var state;
-
-  if (isCallable$4(value)) {
-    if (String(name).slice(0, 7) === 'Symbol(') {
-      name = '[' + String(name).replace(/^Symbol\(([^)]*)\)/, '$1') + ']';
-    }
-
-    if (!hasOwn$2(value, 'name') || CONFIGURABLE_FUNCTION_NAME && value.name !== name) {
-      createNonEnumerableProperty$3(value, 'name', name);
-    }
-
-    state = enforceInternalState(value);
-
-    if (!state.source) {
-      state.source = TEMPLATE.join(typeof name == 'string' ? name : '');
-    }
-  }
-
-  if (O === global$f) {
-    if (simple) O[key] = value;else setGlobal$1(key, value);
-    return;
-  } else if (!unsafe) {
-    delete O[key];
-  } else if (!noTargetGet && O[key]) {
-    simple = true;
-  }
-
-  if (simple) O[key] = value;else createNonEnumerableProperty$3(O, key, value); // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
-})(Function.prototype, 'toString', function toString() {
-  return isCallable$4(this) && getInternalState$1(this).source || inspectSource$1(this);
-});
-
-var objectGetOwnPropertyNames = {};
-
-var ceil = Math.ceil;
-var floor = Math.floor; // `ToIntegerOrInfinity` abstract operation
-// https://tc39.es/ecma262/#sec-tointegerorinfinity
-
-var toIntegerOrInfinity$3 = function (argument) {
-  var number = +argument; // eslint-disable-next-line no-self-compare -- safe
-
-  return number !== number || number === 0 ? 0 : (number > 0 ? floor : ceil)(number);
-};
-
-var toIntegerOrInfinity$2 = toIntegerOrInfinity$3;
-var max$2 = Math.max;
-var min$2 = Math.min; // Helper for a popular repeating case of the spec:
-// Let integer be ? ToInteger(index).
-// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
-
-var toAbsoluteIndex$4 = function (index, length) {
-  var integer = toIntegerOrInfinity$2(index);
-  return integer < 0 ? max$2(integer + length, 0) : min$2(integer, length);
-};
-
-var toIntegerOrInfinity$1 = toIntegerOrInfinity$3;
-var min$1 = Math.min; // `ToLength` abstract operation
-// https://tc39.es/ecma262/#sec-tolength
-
-var toLength$2 = function (argument) {
-  return argument > 0 ? min$1(toIntegerOrInfinity$1(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
-};
-
-var toLength$1 = toLength$2; // `LengthOfArrayLike` abstract operation
-// https://tc39.es/ecma262/#sec-lengthofarraylike
-
-var lengthOfArrayLike$6 = function (obj) {
-  return toLength$1(obj.length);
-};
-
-var toIndexedObject$4 = toIndexedObject$6;
-var toAbsoluteIndex$3 = toAbsoluteIndex$4;
-var lengthOfArrayLike$5 = lengthOfArrayLike$6; // `Array.prototype.{ indexOf, includes }` methods implementation
-
-var createMethod$2 = function (IS_INCLUDES) {
-  return function ($this, el, fromIndex) {
-    var O = toIndexedObject$4($this);
-    var length = lengthOfArrayLike$5(O);
-    var index = toAbsoluteIndex$3(fromIndex, length);
-    var value; // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare -- NaN check
-
-    if (IS_INCLUDES && el != el) while (length > index) {
-      value = O[index++]; // eslint-disable-next-line no-self-compare -- NaN check
-
-      if (value != value) return true; // Array#indexOf ignores holes, Array#includes - not
-    } else for (; length > index; index++) {
-      if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
-    }
-    return !IS_INCLUDES && -1;
-  };
-};
-
-var arrayIncludes = {
-  // `Array.prototype.includes` method
-  // https://tc39.es/ecma262/#sec-array.prototype.includes
-  includes: createMethod$2(true),
-  // `Array.prototype.indexOf` method
-  // https://tc39.es/ecma262/#sec-array.prototype.indexof
-  indexOf: createMethod$2(false)
-};
-
-var uncurryThis$e = functionUncurryThis;
-var hasOwn$1 = hasOwnProperty_1;
-var toIndexedObject$3 = toIndexedObject$6;
-var indexOf$1 = arrayIncludes.indexOf;
-var hiddenKeys$2 = hiddenKeys$4;
-var push$2 = uncurryThis$e([].push);
-
-var objectKeysInternal = function (object, names) {
-  var O = toIndexedObject$3(object);
-  var i = 0;
-  var result = [];
-  var key;
-
-  for (key in O) !hasOwn$1(hiddenKeys$2, key) && hasOwn$1(O, key) && push$2(result, key); // Don't enum bug & hidden keys
-
-
-  while (names.length > i) if (hasOwn$1(O, key = names[i++])) {
-    ~indexOf$1(result, key) || push$2(result, key);
-  }
-
-  return result;
-};
-
-var enumBugKeys$3 = ['constructor', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString', 'valueOf'];
-
-var internalObjectKeys$1 = objectKeysInternal;
-var enumBugKeys$2 = enumBugKeys$3;
-var hiddenKeys$1 = enumBugKeys$2.concat('length', 'prototype'); // `Object.getOwnPropertyNames` method
-// https://tc39.es/ecma262/#sec-object.getownpropertynames
-// eslint-disable-next-line es/no-object-getownpropertynames -- safe
-
-objectGetOwnPropertyNames.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return internalObjectKeys$1(O, hiddenKeys$1);
-};
-
-var objectGetOwnPropertySymbols = {};
-
-objectGetOwnPropertySymbols.f = Object.getOwnPropertySymbols;
-
-var getBuiltIn$3 = getBuiltIn$6;
-var uncurryThis$d = functionUncurryThis;
-var getOwnPropertyNamesModule = objectGetOwnPropertyNames;
-var getOwnPropertySymbolsModule$1 = objectGetOwnPropertySymbols;
-var anObject$7 = anObject$9;
-var concat$1 = uncurryThis$d([].concat); // all object keys, includes non-enumerable and symbols
-
-var ownKeys$1 = getBuiltIn$3('Reflect', 'ownKeys') || function ownKeys(it) {
-  var keys = getOwnPropertyNamesModule.f(anObject$7(it));
-  var getOwnPropertySymbols = getOwnPropertySymbolsModule$1.f;
-  return getOwnPropertySymbols ? concat$1(keys, getOwnPropertySymbols(it)) : keys;
-};
-
-var hasOwn = hasOwnProperty_1;
-var ownKeys = ownKeys$1;
-var getOwnPropertyDescriptorModule = objectGetOwnPropertyDescriptor;
-var definePropertyModule$3 = objectDefineProperty;
-
-var copyConstructorProperties$1 = function (target, source, exceptions) {
-  var keys = ownKeys(source);
-  var defineProperty = definePropertyModule$3.f;
-  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
-
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-
-    if (!hasOwn(target, key) && !(exceptions && hasOwn(exceptions, key))) {
-      defineProperty(target, key, getOwnPropertyDescriptor(source, key));
-    }
-  }
-};
-
-var fails$c = fails$j;
-var isCallable$3 = isCallable$c;
-var replacement = /#|\.prototype\./;
-
-var isForced$1 = function (feature, detection) {
-  var value = data[normalize(feature)];
-  return value == POLYFILL ? true : value == NATIVE ? false : isCallable$3(detection) ? fails$c(detection) : !!detection;
-};
-
-var normalize = isForced$1.normalize = function (string) {
-  return String(string).replace(replacement, '.').toLowerCase();
-};
-
-var data = isForced$1.data = {};
-var NATIVE = isForced$1.NATIVE = 'N';
-var POLYFILL = isForced$1.POLYFILL = 'P';
-var isForced_1 = isForced$1;
-
-var global$e = global$y;
-var getOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
-var createNonEnumerableProperty$2 = createNonEnumerableProperty$5;
-var redefine$3 = redefine$4.exports;
-var setGlobal = setGlobal$3;
-var copyConstructorProperties = copyConstructorProperties$1;
-var isForced = isForced_1;
-/*
-  options.target      - name of the target object
-  options.global      - target is the global object
-  options.stat        - export as static methods of target
-  options.proto       - export as prototype methods of target
-  options.real        - real prototype method for the `pure` version
-  options.forced      - export even if the native feature is available
-  options.bind        - bind methods to the target, required for the `pure` version
-  options.wrap        - wrap constructors to preventing global pollution, required for the `pure` version
-  options.unsafe      - use the simple assignment of property instead of delete + defineProperty
-  options.sham        - add a flag to not completely full polyfills
-  options.enumerable  - export as enumerable property
-  options.noTargetGet - prevent calling a getter on target
-  options.name        - the .name of the function if it does not match the key
-*/
-
-var _export = function (options, source) {
-  var TARGET = options.target;
-  var GLOBAL = options.global;
-  var STATIC = options.stat;
-  var FORCED, target, key, targetProperty, sourceProperty, descriptor;
-
-  if (GLOBAL) {
-    target = global$e;
-  } else if (STATIC) {
-    target = global$e[TARGET] || setGlobal(TARGET, {});
-  } else {
-    target = (global$e[TARGET] || {}).prototype;
-  }
-
-  if (target) for (key in source) {
-    sourceProperty = source[key];
-
-    if (options.noTargetGet) {
-      descriptor = getOwnPropertyDescriptor(target, key);
-      targetProperty = descriptor && descriptor.value;
-    } else targetProperty = target[key];
-
-    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced); // contained in target
-
-    if (!FORCED && targetProperty !== undefined) {
-      if (typeof sourceProperty == typeof targetProperty) continue;
-      copyConstructorProperties(sourceProperty, targetProperty);
-    } // add a flag to not completely full polyfills
-
-
-    if (options.sham || targetProperty && targetProperty.sham) {
-      createNonEnumerableProperty$2(sourceProperty, 'sham', true);
-    } // extend global
-
-
-    redefine$3(target, key, sourceProperty, options);
-  }
-};
-
-var uncurryThis$c = functionUncurryThis;
-var aCallable = aCallable$2;
-var NATIVE_BIND$1 = functionBindNative;
-var bind$1 = uncurryThis$c(uncurryThis$c.bind); // optional / simple context binding
-
-var functionBindContext = function (fn, that) {
-  aCallable(fn);
-  return that === undefined ? fn : NATIVE_BIND$1 ? bind$1(fn, that) : function
-    /* ...args */
-  () {
-    return fn.apply(that, arguments);
-  };
-};
-
-var classof$6 = classofRaw$1; // `IsArray` abstract operation
-// https://tc39.es/ecma262/#sec-isarray
-// eslint-disable-next-line es/no-array-isarray -- safe
-
-var isArray$3 = Array.isArray || function isArray(argument) {
-  return classof$6(argument) == 'Array';
-};
-
-var wellKnownSymbol$9 = wellKnownSymbol$b;
-var TO_STRING_TAG$1 = wellKnownSymbol$9('toStringTag');
-var test = {};
-test[TO_STRING_TAG$1] = 'z';
-var toStringTagSupport = String(test) === '[object z]';
-
-var global$d = global$y;
-var TO_STRING_TAG_SUPPORT$2 = toStringTagSupport;
-var isCallable$2 = isCallable$c;
-var classofRaw = classofRaw$1;
-var wellKnownSymbol$8 = wellKnownSymbol$b;
-var TO_STRING_TAG = wellKnownSymbol$8('toStringTag');
-var Object$1 = global$d.Object; // ES3 wrong here
-
-var CORRECT_ARGUMENTS = classofRaw(function () {
-  return arguments;
-}()) == 'Arguments'; // fallback for IE11 Script Access Denied error
-
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (error) {
-    /* empty */
-  }
-}; // getting tag from ES6+ `Object.prototype.toString`
-
-
-var classof$5 = TO_STRING_TAG_SUPPORT$2 ? classofRaw : function (it) {
-  var O, tag, result;
-  return it === undefined ? 'Undefined' : it === null ? 'Null' // @@toStringTag case
-  : typeof (tag = tryGet(O = Object$1(it), TO_STRING_TAG)) == 'string' ? tag // builtinTag case
-  : CORRECT_ARGUMENTS ? classofRaw(O) // ES3 arguments fallback
-  : (result = classofRaw(O)) == 'Object' && isCallable$2(O.callee) ? 'Arguments' : result;
-};
-
-var uncurryThis$b = functionUncurryThis;
-var fails$b = fails$j;
-var isCallable$1 = isCallable$c;
-var classof$4 = classof$5;
-var getBuiltIn$2 = getBuiltIn$6;
-var inspectSource = inspectSource$3;
-
-var noop = function () {
-  /* empty */
-};
-
-var empty = [];
-var construct = getBuiltIn$2('Reflect', 'construct');
-var constructorRegExp = /^\s*(?:class|function)\b/;
-var exec$3 = uncurryThis$b(constructorRegExp.exec);
-var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
-
-var isConstructorModern = function isConstructor(argument) {
-  if (!isCallable$1(argument)) return false;
-
-  try {
-    construct(noop, empty, argument);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-var isConstructorLegacy = function isConstructor(argument) {
-  if (!isCallable$1(argument)) return false;
-
-  switch (classof$4(argument)) {
-    case 'AsyncFunction':
-    case 'GeneratorFunction':
-    case 'AsyncGeneratorFunction':
-      return false;
-  }
-
-  try {
-    // we can't check .prototype since constructors produced by .bind haven't it
-    // `Function#toString` throws on some built-it function in some legacy engines
-    // (for example, `DOMQuad` and similar in FF41-)
-    return INCORRECT_TO_STRING || !!exec$3(constructorRegExp, inspectSource(argument));
-  } catch (error) {
-    return true;
-  }
-};
-
-isConstructorLegacy.sham = true; // `IsConstructor` abstract operation
-// https://tc39.es/ecma262/#sec-isconstructor
-
-var isConstructor$3 = !construct || fails$b(function () {
-  var called;
-  return isConstructorModern(isConstructorModern.call) || !isConstructorModern(Object) || !isConstructorModern(function () {
-    called = true;
-  }) || called;
-}) ? isConstructorLegacy : isConstructorModern;
-
-var global$c = global$y;
-var isArray$2 = isArray$3;
-var isConstructor$2 = isConstructor$3;
-var isObject$3 = isObject$9;
-var wellKnownSymbol$7 = wellKnownSymbol$b;
-var SPECIES$4 = wellKnownSymbol$7('species');
-var Array$4 = global$c.Array; // a part of `ArraySpeciesCreate` abstract operation
-// https://tc39.es/ecma262/#sec-arrayspeciescreate
-
-var arraySpeciesConstructor$1 = function (originalArray) {
-  var C;
-
-  if (isArray$2(originalArray)) {
-    C = originalArray.constructor; // cross-realm fallback
-
-    if (isConstructor$2(C) && (C === Array$4 || isArray$2(C.prototype))) C = undefined;else if (isObject$3(C)) {
-      C = C[SPECIES$4];
-      if (C === null) C = undefined;
-    }
-  }
-
-  return C === undefined ? Array$4 : C;
-};
-
-var arraySpeciesConstructor = arraySpeciesConstructor$1; // `ArraySpeciesCreate` abstract operation
-// https://tc39.es/ecma262/#sec-arrayspeciescreate
-
-var arraySpeciesCreate$2 = function (originalArray, length) {
-  return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length);
-};
-
-var bind = functionBindContext;
-var uncurryThis$a = functionUncurryThis;
-var IndexedObject$2 = indexedObject;
-var toObject$3 = toObject$5;
-var lengthOfArrayLike$4 = lengthOfArrayLike$6;
-var arraySpeciesCreate$1 = arraySpeciesCreate$2;
-var push$1 = uncurryThis$a([].push); // `Array.prototype.{ forEach, map, filter, some, every, find, findIndex, filterReject }` methods implementation
-
-var createMethod$1 = function (TYPE) {
-  var IS_MAP = TYPE == 1;
-  var IS_FILTER = TYPE == 2;
-  var IS_SOME = TYPE == 3;
-  var IS_EVERY = TYPE == 4;
-  var IS_FIND_INDEX = TYPE == 6;
-  var IS_FILTER_REJECT = TYPE == 7;
-  var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
-  return function ($this, callbackfn, that, specificCreate) {
-    var O = toObject$3($this);
-    var self = IndexedObject$2(O);
-    var boundFunction = bind(callbackfn, that);
-    var length = lengthOfArrayLike$4(self);
-    var index = 0;
-    var create = specificCreate || arraySpeciesCreate$1;
-    var target = IS_MAP ? create($this, length) : IS_FILTER || IS_FILTER_REJECT ? create($this, 0) : undefined;
-    var value, result;
-
-    for (; length > index; index++) if (NO_HOLES || index in self) {
-      value = self[index];
-      result = boundFunction(value, index, O);
-
-      if (TYPE) {
-        if (IS_MAP) target[index] = result; // map
-        else if (result) switch (TYPE) {
-          case 3:
-            return true;
-          // some
-
-          case 5:
-            return value;
-          // find
-
-          case 6:
-            return index;
-          // findIndex
-
-          case 2:
-            push$1(target, value);
-          // filter
-        } else switch (TYPE) {
-          case 4:
-            return false;
-          // every
-
-          case 7:
-            push$1(target, value);
-          // filterReject
-        }
-      }
-    }
-
-    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : target;
-  };
-};
-
-var arrayIteration = {
-  // `Array.prototype.forEach` method
-  // https://tc39.es/ecma262/#sec-array.prototype.foreach
-  forEach: createMethod$1(0),
-  // `Array.prototype.map` method
-  // https://tc39.es/ecma262/#sec-array.prototype.map
-  map: createMethod$1(1),
-  // `Array.prototype.filter` method
-  // https://tc39.es/ecma262/#sec-array.prototype.filter
-  filter: createMethod$1(2),
-  // `Array.prototype.some` method
-  // https://tc39.es/ecma262/#sec-array.prototype.some
-  some: createMethod$1(3),
-  // `Array.prototype.every` method
-  // https://tc39.es/ecma262/#sec-array.prototype.every
-  every: createMethod$1(4),
-  // `Array.prototype.find` method
-  // https://tc39.es/ecma262/#sec-array.prototype.find
-  find: createMethod$1(5),
-  // `Array.prototype.findIndex` method
-  // https://tc39.es/ecma262/#sec-array.prototype.findIndex
-  findIndex: createMethod$1(6),
-  // `Array.prototype.filterReject` method
-  // https://github.com/tc39/proposal-array-filtering
-  filterReject: createMethod$1(7)
-};
-
-var fails$a = fails$j;
-var wellKnownSymbol$6 = wellKnownSymbol$b;
-var V8_VERSION$1 = engineV8Version;
-var SPECIES$3 = wellKnownSymbol$6('species');
-
-var arrayMethodHasSpeciesSupport$3 = function (METHOD_NAME) {
-  // We can't use this feature detection in V8 since it causes
-  // deoptimization and serious performance degradation
-  // https://github.com/zloirock/core-js/issues/677
-  return V8_VERSION$1 >= 51 || !fails$a(function () {
-    var array = [];
-    var constructor = array.constructor = {};
-
-    constructor[SPECIES$3] = function () {
-      return {
-        foo: 1
-      };
-    };
-
-    return array[METHOD_NAME](Boolean).foo !== 1;
-  });
-};
-
-var $$8 = _export;
-var $filter = arrayIteration.filter;
-var arrayMethodHasSpeciesSupport$2 = arrayMethodHasSpeciesSupport$3;
-var HAS_SPECIES_SUPPORT$1 = arrayMethodHasSpeciesSupport$2('filter'); // `Array.prototype.filter` method
-// https://tc39.es/ecma262/#sec-array.prototype.filter
-// with adding support of @@species
-
-$$8({
-  target: 'Array',
-  proto: true,
-  forced: !HAS_SPECIES_SUPPORT$1
-}, {
-  filter: function filter(callbackfn
-  /* , thisArg */
-  ) {
-    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-var TO_STRING_TAG_SUPPORT$1 = toStringTagSupport;
-var classof$3 = classof$5; // `Object.prototype.toString` method implementation
-// https://tc39.es/ecma262/#sec-object.prototype.tostring
-
-var objectToString = TO_STRING_TAG_SUPPORT$1 ? {}.toString : function toString() {
-  return '[object ' + classof$3(this) + ']';
-};
-
-var TO_STRING_TAG_SUPPORT = toStringTagSupport;
-var redefine$2 = redefine$4.exports;
-var toString$4 = objectToString; // `Object.prototype.toString` method
-// https://tc39.es/ecma262/#sec-object.prototype.tostring
-
-if (!TO_STRING_TAG_SUPPORT) {
-  redefine$2(Object.prototype, 'toString', toString$4, {
-    unsafe: true
-  });
-}
-
-var global$b = global$y;
-var classof$2 = classof$5;
-var String$1 = global$b.String;
-
-var toString$3 = function (argument) {
-  if (classof$2(argument) === 'Symbol') throw TypeError('Cannot convert a Symbol value to a string');
-  return String$1(argument);
-};
-
-var anObject$6 = anObject$9; // `RegExp.prototype.flags` getter implementation
-// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
-
-var regexpFlags$1 = function () {
-  var that = anObject$6(this);
-  var result = '';
-  if (that.global) result += 'g';
-  if (that.ignoreCase) result += 'i';
-  if (that.multiline) result += 'm';
-  if (that.dotAll) result += 's';
-  if (that.unicode) result += 'u';
-  if (that.sticky) result += 'y';
-  return result;
-};
-
-var uncurryThis$9 = functionUncurryThis;
-var PROPER_FUNCTION_NAME = functionName.PROPER;
-var redefine$1 = redefine$4.exports;
-var anObject$5 = anObject$9;
-var isPrototypeOf = objectIsPrototypeOf;
-var $toString = toString$3;
-var fails$9 = fails$j;
-var regExpFlags = regexpFlags$1;
-var TO_STRING = 'toString';
-var RegExpPrototype$1 = RegExp.prototype;
-var n$ToString = RegExpPrototype$1[TO_STRING];
-var getFlags = uncurryThis$9(regExpFlags);
-var NOT_GENERIC = fails$9(function () {
-  return n$ToString.call({
-    source: 'a',
-    flags: 'b'
-  }) != '/a/b';
-}); // FF44- RegExp#toString has a wrong name
-
-var INCORRECT_NAME = PROPER_FUNCTION_NAME && n$ToString.name != TO_STRING; // `RegExp.prototype.toString` method
-// https://tc39.es/ecma262/#sec-regexp.prototype.tostring
-
-if (NOT_GENERIC || INCORRECT_NAME) {
-  redefine$1(RegExp.prototype, TO_STRING, function toString() {
-    var R = anObject$5(this);
-    var p = $toString(R.source);
-    var rf = R.flags;
-    var f = $toString(rf === undefined && isPrototypeOf(RegExpPrototype$1, R) && !('flags' in RegExpPrototype$1) ? getFlags(R) : rf);
-    return '/' + p + '/' + f;
-  }, {
-    unsafe: true
-  });
-}
-
-// flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
-
-var domIterables = {
-  CSSRuleList: 0,
-  CSSStyleDeclaration: 0,
-  CSSValueList: 0,
-  ClientRectList: 0,
-  DOMRectList: 0,
-  DOMStringList: 0,
-  DOMTokenList: 1,
-  DataTransferItemList: 0,
-  FileList: 0,
-  HTMLAllCollection: 0,
-  HTMLCollection: 0,
-  HTMLFormElement: 0,
-  HTMLSelectElement: 0,
-  MediaList: 0,
-  MimeTypeArray: 0,
-  NamedNodeMap: 0,
-  NodeList: 1,
-  PaintRequestList: 0,
-  Plugin: 0,
-  PluginArray: 0,
-  SVGLengthList: 0,
-  SVGNumberList: 0,
-  SVGPathSegList: 0,
-  SVGPointList: 0,
-  SVGStringList: 0,
-  SVGTransformList: 0,
-  SourceBufferList: 0,
-  StyleSheetList: 0,
-  TextTrackCueList: 0,
-  TextTrackList: 0,
-  TouchList: 0
-};
-
-var documentCreateElement$1 = documentCreateElement$2;
-var classList = documentCreateElement$1('span').classList;
-var DOMTokenListPrototype$1 = classList && classList.constructor && classList.constructor.prototype;
-var domTokenListPrototype = DOMTokenListPrototype$1 === Object.prototype ? undefined : DOMTokenListPrototype$1;
-
-var fails$8 = fails$j;
-
-var arrayMethodIsStrict$3 = function (METHOD_NAME, argument) {
-  var method = [][METHOD_NAME];
-  return !!method && fails$8(function () {
-    // eslint-disable-next-line no-useless-call -- required for testing
-    method.call(null, argument || function () {
-      return 1;
-    }, 1);
-  });
-};
-
-var $forEach = arrayIteration.forEach;
-var arrayMethodIsStrict$2 = arrayMethodIsStrict$3;
-var STRICT_METHOD$2 = arrayMethodIsStrict$2('forEach'); // `Array.prototype.forEach` method implementation
-// https://tc39.es/ecma262/#sec-array.prototype.foreach
-
-var arrayForEach = !STRICT_METHOD$2 ? function forEach(callbackfn
-/* , thisArg */
-) {
-  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined); // eslint-disable-next-line es/no-array-prototype-foreach -- safe
-} : [].forEach;
-
-var global$a = global$y;
-var DOMIterables = domIterables;
-var DOMTokenListPrototype = domTokenListPrototype;
-var forEach = arrayForEach;
-var createNonEnumerableProperty$1 = createNonEnumerableProperty$5;
-
-var handlePrototype = function (CollectionPrototype) {
-  // some Chrome versions have non-configurable methods on DOMTokenList
-  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
-    createNonEnumerableProperty$1(CollectionPrototype, 'forEach', forEach);
-  } catch (error) {
-    CollectionPrototype.forEach = forEach;
-  }
-};
-
-for (var COLLECTION_NAME in DOMIterables) {
-  if (DOMIterables[COLLECTION_NAME]) {
-    handlePrototype(global$a[COLLECTION_NAME] && global$a[COLLECTION_NAME].prototype);
-  }
-}
-
-handlePrototype(DOMTokenListPrototype);
-
-var Dispatcher = /*#__PURE__*/function () {
-  function Dispatcher() {
-    _classCallCheck(this, Dispatcher);
-
+class Dispatcher {
+  constructor() {
     this.handlers_ = {
       update: {
         listeners: []
@@ -1636,129 +15,55 @@ var Dispatcher = /*#__PURE__*/function () {
     };
   }
 
-  _createClass(Dispatcher, [{
-    key: "on",
-    value: function on(event, callback) {
-      if (typeof callback !== "function") {
-        console.error("The listener callback must be a function, the given type is ".concat(_typeof(callback)));
-        return false;
-      }
-
-      if (typeof event !== "string") {
-        console.error("The event name must be a string, the given type is ".concat(_typeof(event)));
-        return false;
-      }
-
-      if (this.handlers_[event] === undefined) {
-        this.handlers_[event] = {
-          listeners: []
-        };
-      }
-
-      this.handlers_[event].listeners.push(callback);
-    }
-  }, {
-    key: "off",
-    value: function off(event, callback) {
-      if (this.handlers_[event] === undefined) {
-        console.error("This event: ".concat(event, " does not exist"));
-        return false;
-      }
-
-      this.handlers_[event].listeners = this.handlers_[event].listeners.filter(function (listener) {
-        return listener.toString() !== callback.toString();
-      });
-    }
-  }, {
-    key: "dispatch",
-    value: function dispatch(event, data) {
-      this.handlers_[event].listeners.forEach(function (listener) {
-        listener(data);
-      });
-    }
-  }]);
-
-  return Dispatcher;
-}();
-
-var toPropertyKey = toPropertyKey$3;
-var definePropertyModule$2 = objectDefineProperty;
-var createPropertyDescriptor = createPropertyDescriptor$3;
-
-var createProperty$3 = function (object, key, value) {
-  var propertyKey = toPropertyKey(key);
-  if (propertyKey in object) definePropertyModule$2.f(object, propertyKey, createPropertyDescriptor(0, value));else object[propertyKey] = value;
-};
-
-var uncurryThis$8 = functionUncurryThis;
-var arraySlice$1 = uncurryThis$8([].slice);
-
-var $$7 = _export;
-var global$9 = global$y;
-var isArray$1 = isArray$3;
-var isConstructor$1 = isConstructor$3;
-var isObject$2 = isObject$9;
-var toAbsoluteIndex$2 = toAbsoluteIndex$4;
-var lengthOfArrayLike$3 = lengthOfArrayLike$6;
-var toIndexedObject$2 = toIndexedObject$6;
-var createProperty$2 = createProperty$3;
-var wellKnownSymbol$5 = wellKnownSymbol$b;
-var arrayMethodHasSpeciesSupport$1 = arrayMethodHasSpeciesSupport$3;
-var un$Slice = arraySlice$1;
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport$1('slice');
-var SPECIES$2 = wellKnownSymbol$5('species');
-var Array$3 = global$9.Array;
-var max$1 = Math.max; // `Array.prototype.slice` method
-// https://tc39.es/ecma262/#sec-array.prototype.slice
-// fallback for not array-like ES3 strings and DOM objects
-
-$$7({
-  target: 'Array',
-  proto: true,
-  forced: !HAS_SPECIES_SUPPORT
-}, {
-  slice: function slice(start, end) {
-    var O = toIndexedObject$2(this);
-    var length = lengthOfArrayLike$3(O);
-    var k = toAbsoluteIndex$2(start, length);
-    var fin = toAbsoluteIndex$2(end === undefined ? length : end, length); // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
-
-    var Constructor, result, n;
-
-    if (isArray$1(O)) {
-      Constructor = O.constructor; // cross-realm fallback
-
-      if (isConstructor$1(Constructor) && (Constructor === Array$3 || isArray$1(Constructor.prototype))) {
-        Constructor = undefined;
-      } else if (isObject$2(Constructor)) {
-        Constructor = Constructor[SPECIES$2];
-        if (Constructor === null) Constructor = undefined;
-      }
-
-      if (Constructor === Array$3 || Constructor === undefined) {
-        return un$Slice(O, k, fin);
-      }
+  on(event, callback) {
+    if (typeof callback !== "function") {
+      console.error("The listener callback must be a function, the given type is ".concat(typeof callback));
+      return false;
     }
 
-    result = new (Constructor === undefined ? Array$3 : Constructor)(max$1(fin - k, 0));
+    if (typeof event !== "string") {
+      console.error("The event name must be a string, the given type is ".concat(typeof event));
+      return false;
+    }
 
-    for (n = 0; k < fin; k++, n++) if (k in O) createProperty$2(result, n, O[k]);
+    if (this.handlers_[event] === undefined) {
+      this.handlers_[event] = {
+        listeners: []
+      };
+    }
 
-    result.length = n;
-    return result;
+    this.handlers_[event].listeners.push(callback);
   }
-});
 
-var DEFAULT_FONT_SIZE = 500;
-var MIN_FONT_WEIGHT = 1;
-var MAX_FONT_WEIGHT = 900;
-var MAX_LINE_WIDTH = 70;
-var FONT_WEIGHT_LIMIT = 80;
-var FR_1 = 1;
-var FR_2 = 0.78;
-var RECT_RATIO = 0.49;
-var MAX_SHAKE = 120;
-var PI2$1 = 2 * Math.PI;
+  off(event, callback) {
+    if (this.handlers_[event] === undefined) {
+      console.error("This event: ".concat(event, " does not exist"));
+      return false;
+    }
+
+    this.handlers_[event].listeners = this.handlers_[event].listeners.filter(listener => {
+      return listener.toString() !== callback.toString();
+    });
+  }
+
+  dispatch(event, data) {
+    this.handlers_[event].listeners.forEach(listener => {
+      listener(data);
+    });
+  }
+
+}
+
+const DEFAULT_FONT_SIZE = 500;
+const MIN_FONT_WEIGHT = 1;
+const MAX_FONT_WEIGHT = 900;
+const MAX_LINE_WIDTH = 70;
+const FONT_WEIGHT_LIMIT = 80;
+const FR_1 = 1;
+const FR_2 = 0.78;
+const RECT_RATIO = 0.49;
+const MAX_SHAKE = 120;
+const PI2$1 = 2 * Math.PI;
 function getAmplitude(amplitude, scale) {
   return MAX_SHAKE * amplitude * scale;
 }
@@ -1775,7 +80,7 @@ function getScale(size) {
   return size / DEFAULT_FONT_SIZE;
 }
 function getLineW(fontW, scale) {
-  var lw = fontW * scale;
+  let lw = fontW * scale;
   if (lw < 1) lw = 1; //if (weight == 1) lw = 1
 
   return lw;
@@ -1790,10 +95,10 @@ function getFontRatio(weightRatio) {
   return (FR_2 - FR_1) * weightRatio + FR_1;
 }
 function getRect(d, scale) {
-  var x = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  var y = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-  var w = d.rect.w * RECT_RATIO * scale;
-  var h = (d.rect.h + 220) * RECT_RATIO * scale;
+  let x = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  let y = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+  const w = d.rect.w * RECT_RATIO * scale;
+  const h = (d.rect.h + 220) * RECT_RATIO * scale;
   return {
     x: x,
     y: y,
@@ -1834,8 +139,8 @@ export function getGap(d, weightRatio) {
  */
 
 function getCenter(w, h, scale) {
-  var x = w / 2;
-  var y = (h - (220 - 90) * RECT_RATIO * scale) / 2;
+  const x = w / 2;
+  const y = (h - (220 - 90) * RECT_RATIO * scale) / 2;
   return {
     x: x,
     y: y
@@ -1851,10 +156,10 @@ function getCenter(w, h, scale) {
  */
 
 function getRange(d, weightRatio, circleRound) {
-  var gx1 = d.ratio.x1;
-  var gx2 = d.ratio.x2;
-  var gy1 = d.ratio.y1;
-  var gy2 = d.ratio.y2;
+  const gx1 = d.ratio.x1;
+  const gx2 = d.ratio.x2;
+  const gy1 = d.ratio.y1;
+  const gy2 = d.ratio.y2;
   return {
     r: weightRatio,
     cr: circleRound,
@@ -1867,15 +172,15 @@ function getRange(d, weightRatio, circleRound) {
   };
 }
 function getCurrent(v, vmax, vmin, max, min) {
-  var value = (max - min) / (vmax - vmin) * (v - vmin) + min;
+  let value = (max - min) / (vmax - vmin) * (v - vmin) + min;
   if (value < min) value = min;else if (value > max) value = max;
   return value;
 }
 function getLines(data) {
-  var total = data.typo.p.length;
-  var lines = [];
-  var i, j, k, j_total;
-  var d2, d3, cp, dir, lt, ltRatio, prevRatio;
+  const total = data.typo.p.length;
+  const lines = [];
+  let i, j, k, j_total;
+  let d2, d3, cp, dir, lt, ltRatio, prevRatio;
 
   for (i = 0; i < total; i++) {
     d2 = data.typo.p[i];
@@ -1905,13 +210,13 @@ function getLines(data) {
         maxDrawing: ltRatio,
         minDrawing: prevRatio,
         closePath: d3.ratio.c,
-        stroke: function stroke(ctx, d) {
-          var dv = getCurrent(d.drawing.value, d.maxDrawing, d.minDrawing, 1, 0); //if (d.direction == 1) {
+        stroke: (ctx, d) => {
+          const dv = getCurrent(d.drawing.value, d.maxDrawing, d.minDrawing, 1, 0); //if (d.direction == 1) {
           //    dv = getCurrent(1 - d.drawing.value, d.minDrawing, d.maxDrawing, 1, 0);
           //}
 
           if (dv > 0 && d.pos.type != "a") {
-            var frac = d.lengths * dv;
+            const frac = d.lengths * dv;
             ctx.setLineDash([d.lengths]);
             ctx.lineDashOffset = d.direction * (frac + d.lengths);
             ctx.stroke();
@@ -1924,9 +229,9 @@ function getLines(data) {
   return lines;
 }
 function addRectToPaths(path, data) {
-  var total = path.length;
-  var arr = [];
-  var i, cp, p;
+  const total = path.length;
+  const arr = [];
+  let i, cp, p;
 
   for (i = 0; i < total; i++) {
     p = path[i];
@@ -1937,9 +242,9 @@ function addRectToPaths(path, data) {
   return arr;
 }
 function shuffle(oldArray) {
-  var newArray = oldArray.slice(),
-      len = newArray.length;
-  var i = len,
+  const newArray = oldArray.slice(),
+        len = newArray.length;
+  let i = len,
       p,
       t;
 
@@ -1953,188 +258,9 @@ function shuffle(oldArray) {
   return newArray;
 }
 
-var toObject$2 = toObject$5;
-var toAbsoluteIndex$1 = toAbsoluteIndex$4;
-var lengthOfArrayLike$2 = lengthOfArrayLike$6; // `Array.prototype.fill` method implementation
-// https://tc39.es/ecma262/#sec-array.prototype.fill
-
-var arrayFill = function fill(value
-/* , start = 0, end = @length */
-) {
-  var O = toObject$2(this);
-  var length = lengthOfArrayLike$2(O);
-  var argumentsLength = arguments.length;
-  var index = toAbsoluteIndex$1(argumentsLength > 1 ? arguments[1] : undefined, length);
-  var end = argumentsLength > 2 ? arguments[2] : undefined;
-  var endPos = end === undefined ? length : toAbsoluteIndex$1(end, length);
-
-  while (endPos > index) O[index++] = value;
-
-  return O;
-};
-
-var objectDefineProperties = {};
-
-var internalObjectKeys = objectKeysInternal;
-var enumBugKeys$1 = enumBugKeys$3; // `Object.keys` method
-// https://tc39.es/ecma262/#sec-object.keys
-// eslint-disable-next-line es/no-object-keys -- safe
-
-var objectKeys$2 = Object.keys || function keys(O) {
-  return internalObjectKeys(O, enumBugKeys$1);
-};
-
-var DESCRIPTORS$1 = descriptors;
-var V8_PROTOTYPE_DEFINE_BUG = v8PrototypeDefineBug;
-var definePropertyModule$1 = objectDefineProperty;
-var anObject$4 = anObject$9;
-var toIndexedObject$1 = toIndexedObject$6;
-var objectKeys$1 = objectKeys$2; // `Object.defineProperties` method
-// https://tc39.es/ecma262/#sec-object.defineproperties
-// eslint-disable-next-line es/no-object-defineproperties -- safe
-
-objectDefineProperties.f = DESCRIPTORS$1 && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : function defineProperties(O, Properties) {
-  anObject$4(O);
-  var props = toIndexedObject$1(Properties);
-  var keys = objectKeys$1(Properties);
-  var length = keys.length;
-  var index = 0;
-  var key;
-
-  while (length > index) definePropertyModule$1.f(O, key = keys[index++], props[key]);
-
-  return O;
-};
-
-var getBuiltIn$1 = getBuiltIn$6;
-var html$1 = getBuiltIn$1('document', 'documentElement');
-
-/* global ActiveXObject -- old IE, WSH */
-var anObject$3 = anObject$9;
-var definePropertiesModule = objectDefineProperties;
-var enumBugKeys = enumBugKeys$3;
-var hiddenKeys = hiddenKeys$4;
-var html = html$1;
-var documentCreateElement = documentCreateElement$2;
-var sharedKey = sharedKey$2;
-var GT = '>';
-var LT = '<';
-var PROTOTYPE = 'prototype';
-var SCRIPT = 'script';
-var IE_PROTO = sharedKey('IE_PROTO');
-
-var EmptyConstructor = function () {
-  /* empty */
-};
-
-var scriptTag = function (content) {
-  return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
-}; // Create object with fake `null` prototype: use ActiveX Object with cleared prototype
-
-
-var NullProtoObjectViaActiveX = function (activeXDocument) {
-  activeXDocument.write(scriptTag(''));
-  activeXDocument.close();
-  var temp = activeXDocument.parentWindow.Object;
-  activeXDocument = null; // avoid memory leak
-
-  return temp;
-}; // Create object with fake `null` prototype: use iframe Object with cleared prototype
-
-
-var NullProtoObjectViaIFrame = function () {
-  // Thrash, waste and sodomy: IE GC bug
-  var iframe = documentCreateElement('iframe');
-  var JS = 'java' + SCRIPT + ':';
-  var iframeDocument;
-  iframe.style.display = 'none';
-  html.appendChild(iframe); // https://github.com/zloirock/core-js/issues/475
-
-  iframe.src = String(JS);
-  iframeDocument = iframe.contentWindow.document;
-  iframeDocument.open();
-  iframeDocument.write(scriptTag('document.F=Object'));
-  iframeDocument.close();
-  return iframeDocument.F;
-}; // Check for document.domain and active x support
-// No need to use active x approach when document.domain is not set
-// see https://github.com/es-shims/es5-shim/issues/150
-// variation of https://github.com/kitcambridge/es5-shim/commit/4f738ac066346
-// avoid IE GC bug
-
-
-var activeXDocument;
-
-var NullProtoObject = function () {
-  try {
-    activeXDocument = new ActiveXObject('htmlfile');
-  } catch (error) {
-    /* ignore */
-  }
-
-  NullProtoObject = typeof document != 'undefined' ? document.domain && activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) // old IE
-  : NullProtoObjectViaIFrame() : NullProtoObjectViaActiveX(activeXDocument); // WSH
-
-  var length = enumBugKeys.length;
-
-  while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
-
-  return NullProtoObject();
-};
-
-hiddenKeys[IE_PROTO] = true; // `Object.create` method
-// https://tc39.es/ecma262/#sec-object.create
-
-var objectCreate = Object.create || function create(O, Properties) {
-  var result;
-
-  if (O !== null) {
-    EmptyConstructor[PROTOTYPE] = anObject$3(O);
-    result = new EmptyConstructor();
-    EmptyConstructor[PROTOTYPE] = null; // add "__proto__" for Object.getPrototypeOf polyfill
-
-    result[IE_PROTO] = O;
-  } else result = NullProtoObject();
-
-  return Properties === undefined ? result : definePropertiesModule.f(result, Properties);
-};
-
-var wellKnownSymbol$4 = wellKnownSymbol$b;
-var create$1 = objectCreate;
-var definePropertyModule = objectDefineProperty;
-var UNSCOPABLES = wellKnownSymbol$4('unscopables');
-var ArrayPrototype = Array.prototype; // Array.prototype[@@unscopables]
-// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
-
-if (ArrayPrototype[UNSCOPABLES] == undefined) {
-  definePropertyModule.f(ArrayPrototype, UNSCOPABLES, {
-    configurable: true,
-    value: create$1(null)
-  });
-} // add a key to Array.prototype[@@unscopables]
-
-
-var addToUnscopables$1 = function (key) {
-  ArrayPrototype[UNSCOPABLES][key] = true;
-};
-
-var $$6 = _export;
-var fill = arrayFill;
-var addToUnscopables = addToUnscopables$1; // `Array.prototype.fill` method
-// https://tc39.es/ecma262/#sec-array.prototype.fill
-
-$$6({
-  target: 'Array',
-  proto: true
-}, {
-  fill: fill
-}); // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
-
-addToUnscopables('fill');
-
 function Lines(ctx, data) {
-  var total = data.lines.length;
-  var i, d, pos;
+  const total = data.lines.length;
+  let i, d, pos;
 
   for (i = 0; i < total; i++) {
     d = data.lines[i];
@@ -2161,8 +287,8 @@ function Lines(ctx, data) {
 function Points(ctx, data) {
   ctx.save();
   ctx.lineWidth = 1;
-  var total = data.lines.length;
-  var i;
+  let total = data.lines.length;
+  let i;
 
   for (i = 0; i < total; i++) {
     eachLine_$1(ctx, data.lines[i]);
@@ -2181,8 +307,8 @@ function Points(ctx, data) {
 }
 
 function eachPoint_(ctx, p, data) {
-  var total = p.v.length;
-  var i, mp, cp;
+  const total = p.v.length;
+  let i, mp, cp;
 
   for (i = 0; i < total; i++) {
     mp = p.cv[i];
@@ -2218,7 +344,7 @@ function eachPoint_(ctx, p, data) {
 }
 
 function eachLine_$1(ctx, d) {
-  var pos = d.pos;
+  const pos = d.pos;
 
   if (pos.type != "a") {
     if (pos.type == "m") {
@@ -2240,8 +366,8 @@ function Grids(ctx, data) {
   ctx.beginPath();
   ctx.lineWidth = 1;
   ctx.strokeStyle = "#aaaaaa";
-  var total = data.guide.length;
-  var i, grid;
+  const total = data.guide.length;
+  let i, grid;
 
   for (i = 0; i < total; i++) {
     grid = data.rect.y + data.grid[i];
@@ -2258,22 +384,22 @@ function Grids(ctx, data) {
   ctx.restore();
 }
 
-var THIN_LIMIT = 110;
-var COS = Math.cos;
-var SIN = Math.sin;
+const THIN_LIMIT = 110;
+const COS = Math.cos;
+const SIN = Math.sin;
 function Wave(ctx, data, scale, amplitude, weight, fps) {
-  var total = data.wavePaths.length;
-  var m_amplitude = getAmplitude(amplitude, scale);
-  var i, p, prev, qx, qy;
-  var saveDot = [];
+  const total = data.wavePaths.length;
+  const m_amplitude = getAmplitude(amplitude, scale);
+  let i, p, prev, qx, qy;
+  const saveDot = [];
   ctx.beginPath();
 
   for (i = 0; i < total; i++) {
     p = data.wavePaths[i];
 
     if (fps) {
-      var ranx = Math.random() * m_amplitude - m_amplitude / 2;
-      var rany = Math.random() * m_amplitude - m_amplitude / 2;
+      const ranx = Math.random() * m_amplitude - m_amplitude / 2;
+      const rany = Math.random() * m_amplitude - m_amplitude / 2;
       p.rx = p.x + ranx * COS(p.rotation);
       p.ry = p.y + ranx * SIN(p.rotation);
       p.sx = p.x + ranx;
@@ -2312,11 +438,11 @@ function Wave(ctx, data, scale, amplitude, weight, fps) {
 }
 
 function Pattern(ctx, data, w, h) {
-  var total = Math.round(data.paths.length * data.drawing.value);
-  var w2 = w / 2;
-  var w3 = w / 3;
-  var h2 = h / 2;
-  var i, p;
+  const total = Math.round(data.paths.length * data.drawing.value);
+  const w2 = w / 2;
+  const w3 = w / 3;
+  const h2 = h / 2;
+  let i, p;
 
   for (i = 0; i < total; i++) {
     p = data.paths[i];
@@ -2343,14 +469,14 @@ function Pattern(ctx, data, w, h) {
 }
 
 function Color(ctx, no, data, color) {
-  var c_total = color.length;
-  var cur = (no + c_total * (Math.abs(no / 10 | 0) + 1)) % c_total;
+  let c_total = color.length;
+  const cur = (no + c_total * (Math.abs(no / 10 | 0) + 1)) % c_total;
 
   if (Array.isArray(color[cur])) {
     c_total = color[cur].length;
-    var vv = 1 / (c_total + 1);
-    var g = ctx.createLinearGradient(data.rect.x, data.rect.y, data.rect.x, data.rect.y + data.rect.h);
-    var i;
+    const vv = 1 / (c_total + 1);
+    const g = ctx.createLinearGradient(data.rect.x, data.rect.y, data.rect.x, data.rect.y + data.rect.h);
+    let i;
     g.addColorStop(vv, color[cur][0]);
 
     for (i = 0; i < c_total; i++) {
@@ -2367,13 +493,13 @@ function Color(ctx, no, data, color) {
 }
 
 function getLengths(item, model) {
-  var total = item.typo.p.length;
-  var c,
+  const total = item.typo.p.length;
+  let c,
       p,
       max = 0,
       i;
-  var arr = [],
-      lt = [];
+  const arr = [],
+        lt = [];
 
   for (i = 0; i < total; i++) {
     p = item.typo.p[i];
@@ -2391,15 +517,15 @@ function getLengths(item, model) {
 }
 
 function getEachPath(item, points, model) {
-  var total = points.length;
-  var i,
+  const total = points.length;
+  let i,
       p,
       line,
       cp1,
       cp2,
       prev,
       length = 0;
-  var lines = [];
+  const lines = [];
 
   for (i = 0; i < total; i++) {
     p = points[i];
@@ -2453,11 +579,11 @@ function getEachPath(item, points, model) {
 }
 
 function cubicBezierLength(x1, y1, x2, y2, x3, y3, x4, y4, sampleCount) {
-  var ptCount = sampleCount || 40;
-  var totDist = 0;
-  var lastX = x1;
-  var lastY = y1;
-  var dx, dy, i, pt;
+  const ptCount = sampleCount || 40;
+  let totDist = 0;
+  let lastX = x1;
+  let lastY = y1;
+  let dx, dy, i, pt;
 
   for (i = 1; i < ptCount; i++) {
     pt = cubicQxy(i / ptCount, x1, y1, x2, y2, x3, y3, x4, y4);
@@ -2492,22 +618,22 @@ function cubicQxy(t, x1, y1, x2, y2, x3, y3, x4, y4) {
 }
 
 function distance(x1, y1, x2, y2) {
-  var a = x2 - x1,
-      b = y2 - y1;
+  const a = x2 - x1,
+        b = y2 - y1;
   return Math.sqrt(a * a + b * b);
 }
 
-var colorArr;
-var curColor = -1;
-var colorTotal;
-var MIN_DISTANCE = 10;
+let colorArr;
+let curColor = -1;
+let colorTotal;
+const MIN_DISTANCE = 10;
 function Colorful(ctx, model, colors) {
   curColor = -1;
   colorArr = colors;
   colorTotal = colorArr.length;
-  var total = model.data.length;
-  var i, d, j, j_total, line, pos, prev;
-  var max, length, prevRatio;
+  const total = model.data.length;
+  let i, d, j, j_total, line, pos, prev;
+  let max, length, prevRatio;
 
   for (i = 0; i < total; i++) {
     d = model.data[i];
@@ -2562,7 +688,7 @@ function Colorful(ctx, model, colors) {
 }
 
 function setColor(ctx) {
-  var color = getColor();
+  const color = getColor();
   ctx.fillStyle = color;
   ctx.strokeStyle = color;
 }
@@ -2574,15 +700,15 @@ function getColor() {
 }
 
 function draw(ctx, line, length, max, d, prevRatio) {
-  var ltRatio = length / max;
-  var dv = getCurrent(d.drawing.value, prevRatio + ltRatio, prevRatio, 1, 0);
+  const ltRatio = length / max;
+  let dv = getCurrent(d.drawing.value, prevRatio + ltRatio, prevRatio, 1, 0);
 
   if (line.direction == 1) {
     dv = getCurrent(1 - d.drawing.value, prevRatio, prevRatio + ltRatio, 1, 0);
   }
 
   if (dv > 0) {
-    var frac = length * dv;
+    const frac = length * dv;
     ctx.setLineDash([length]);
     ctx.lineDashOffset = line.direction * (frac + length);
     ctx.stroke();
@@ -2592,7 +718,7 @@ function draw(ctx, line, length, max, d, prevRatio) {
 }
 
 function PixiLines(graphics, data, lineW, color) {
-  var total, i;
+  let total, i;
 
   if (data.drawing.value == 1) {
     total = data.lines.length;
@@ -2610,7 +736,7 @@ function PixiLines(graphics, data, lineW, color) {
 }
 
 function eachLine_(graphics, data, lineW, color) {
-  var pos = data.pos;
+  const pos = data.pos;
 
   if (pos.type == "a") {
     graphics.lineStyle(0, color, 0);
@@ -2648,8 +774,8 @@ function eachPath_(graphics, pos, lineW, color, dValue) {
 }
 
 function PixiColor(no, data, color) {
-  var c_total = color.length;
-  var cur = (no + c_total * (Math.abs(no / 10 | 0) + 1)) % c_total;
+  const c_total = color.length;
+  const cur = (no + c_total * (Math.abs(no / 10 | 0) + 1)) % c_total;
 
   if (Array.isArray(color[cur])) ; else {
     return color[cur];
@@ -2665,9 +791,9 @@ function PixiColor(no, data, color) {
  */
 
 function getGuide(d, scale) {
-  var guide = [],
-      ggap = 10;
-  var i, gvx, gvy;
+  const guide = [],
+        ggap = 10;
+  let i, gvx, gvy;
 
   for (i = 0; i < 6; i++) {
     gvx = ggap * i + 20;
@@ -2691,9 +817,9 @@ function getGuide(d, scale) {
  */
 
 function getGrid(d, scale) {
-  var grid = [],
-      gvy = [98, 340, 815];
-  var i;
+  const grid = [],
+        gvy = [98, 340, 815];
+  let i;
 
   for (i = 0; i < 3; i++) {
     grid[i] = gvy[i] * RECT_RATIO * scale;
@@ -2702,714 +828,12 @@ function getGrid(d, scale) {
   return grid;
 }
 
-/* eslint-disable es/no-array-prototype-indexof -- required for testing */
-
-
-var $$5 = _export;
-var uncurryThis$7 = functionUncurryThis;
-var $IndexOf = arrayIncludes.indexOf;
-var arrayMethodIsStrict$1 = arrayMethodIsStrict$3;
-var un$IndexOf = uncurryThis$7([].indexOf);
-var NEGATIVE_ZERO = !!un$IndexOf && 1 / un$IndexOf([1], 1, -0) < 0;
-var STRICT_METHOD$1 = arrayMethodIsStrict$1('indexOf'); // `Array.prototype.indexOf` method
-// https://tc39.es/ecma262/#sec-array.prototype.indexof
-
-$$5({
-  target: 'Array',
-  proto: true,
-  forced: NEGATIVE_ZERO || !STRICT_METHOD$1
-}, {
-  indexOf: function indexOf(searchElement
-  /* , fromIndex = 0 */
-  ) {
-    var fromIndex = arguments.length > 1 ? arguments[1] : undefined;
-    return NEGATIVE_ZERO // convert -0 to +0
-    ? un$IndexOf(this, searchElement, fromIndex) || 0 : $IndexOf(this, searchElement, fromIndex);
-  }
-});
-
-var fails$7 = fails$j;
-var global$8 = global$y; // babel-minify and Closure Compiler transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError
-
-var $RegExp$2 = global$8.RegExp;
-var UNSUPPORTED_Y$2 = fails$7(function () {
-  var re = $RegExp$2('a', 'y');
-  re.lastIndex = 2;
-  return re.exec('abcd') != null;
-}); // UC Browser bug
-// https://github.com/zloirock/core-js/issues/1008
-
-var MISSED_STICKY = UNSUPPORTED_Y$2 || fails$7(function () {
-  return !$RegExp$2('a', 'y').sticky;
-});
-var BROKEN_CARET = UNSUPPORTED_Y$2 || fails$7(function () {
-  // https://bugzilla.mozilla.org/show_bug.cgi?id=773687
-  var re = $RegExp$2('^r', 'gy');
-  re.lastIndex = 2;
-  return re.exec('str') != null;
-});
-var regexpStickyHelpers = {
-  BROKEN_CARET: BROKEN_CARET,
-  MISSED_STICKY: MISSED_STICKY,
-  UNSUPPORTED_Y: UNSUPPORTED_Y$2
-};
-
-var fails$6 = fails$j;
-var global$7 = global$y; // babel-minify and Closure Compiler transpiles RegExp('.', 's') -> /./s and it causes SyntaxError
-
-var $RegExp$1 = global$7.RegExp;
-var regexpUnsupportedDotAll = fails$6(function () {
-  var re = $RegExp$1('.', 's');
-  return !(re.dotAll && re.exec('\n') && re.flags === 's');
-});
-
-var fails$5 = fails$j;
-var global$6 = global$y; // babel-minify and Closure Compiler transpiles RegExp('(?<a>b)', 'g') -> /(?<a>b)/g and it causes SyntaxError
-
-var $RegExp = global$6.RegExp;
-var regexpUnsupportedNcg = fails$5(function () {
-  var re = $RegExp('(?<a>b)', 'g');
-  return re.exec('b').groups.a !== 'b' || 'b'.replace(re, '$<a>c') !== 'bc';
-});
-
-/* eslint-disable regexp/no-empty-capturing-group, regexp/no-empty-group, regexp/no-lazy-ends -- testing */
-
-/* eslint-disable regexp/no-useless-quantifier -- testing */
-
-
-var call$4 = functionCall;
-var uncurryThis$6 = functionUncurryThis;
-var toString$2 = toString$3;
-var regexpFlags = regexpFlags$1;
-var stickyHelpers$1 = regexpStickyHelpers;
-var shared = shared$4.exports;
-var create = objectCreate;
-var getInternalState = internalState.get;
-var UNSUPPORTED_DOT_ALL = regexpUnsupportedDotAll;
-var UNSUPPORTED_NCG = regexpUnsupportedNcg;
-var nativeReplace = shared('native-string-replace', String.prototype.replace);
-var nativeExec = RegExp.prototype.exec;
-var patchedExec = nativeExec;
-var charAt$3 = uncurryThis$6(''.charAt);
-var indexOf = uncurryThis$6(''.indexOf);
-var replace$1 = uncurryThis$6(''.replace);
-var stringSlice$2 = uncurryThis$6(''.slice);
-
-var UPDATES_LAST_INDEX_WRONG = function () {
-  var re1 = /a/;
-  var re2 = /b*/g;
-  call$4(nativeExec, re1, 'a');
-  call$4(nativeExec, re2, 'a');
-  return re1.lastIndex !== 0 || re2.lastIndex !== 0;
-}();
-
-var UNSUPPORTED_Y$1 = stickyHelpers$1.BROKEN_CARET; // nonparticipating capturing group, copied from es5-shim's String#split patch.
-
-var NPCG_INCLUDED = /()??/.exec('')[1] !== undefined;
-var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED || UNSUPPORTED_Y$1 || UNSUPPORTED_DOT_ALL || UNSUPPORTED_NCG;
-
-if (PATCH) {
-  patchedExec = function exec(string) {
-    var re = this;
-    var state = getInternalState(re);
-    var str = toString$2(string);
-    var raw = state.raw;
-    var result, reCopy, lastIndex, match, i, object, group;
-
-    if (raw) {
-      raw.lastIndex = re.lastIndex;
-      result = call$4(patchedExec, raw, str);
-      re.lastIndex = raw.lastIndex;
-      return result;
-    }
-
-    var groups = state.groups;
-    var sticky = UNSUPPORTED_Y$1 && re.sticky;
-    var flags = call$4(regexpFlags, re);
-    var source = re.source;
-    var charsAdded = 0;
-    var strCopy = str;
-
-    if (sticky) {
-      flags = replace$1(flags, 'y', '');
-
-      if (indexOf(flags, 'g') === -1) {
-        flags += 'g';
-      }
-
-      strCopy = stringSlice$2(str, re.lastIndex); // Support anchored sticky behavior.
-
-      if (re.lastIndex > 0 && (!re.multiline || re.multiline && charAt$3(str, re.lastIndex - 1) !== '\n')) {
-        source = '(?: ' + source + ')';
-        strCopy = ' ' + strCopy;
-        charsAdded++;
-      } // ^(? + rx + ) is needed, in combination with some str slicing, to
-      // simulate the 'y' flag.
-
-
-      reCopy = new RegExp('^(?:' + source + ')', flags);
-    }
-
-    if (NPCG_INCLUDED) {
-      reCopy = new RegExp('^' + source + '$(?!\\s)', flags);
-    }
-
-    if (UPDATES_LAST_INDEX_WRONG) lastIndex = re.lastIndex;
-    match = call$4(nativeExec, sticky ? reCopy : re, strCopy);
-
-    if (sticky) {
-      if (match) {
-        match.input = stringSlice$2(match.input, charsAdded);
-        match[0] = stringSlice$2(match[0], charsAdded);
-        match.index = re.lastIndex;
-        re.lastIndex += match[0].length;
-      } else re.lastIndex = 0;
-    } else if (UPDATES_LAST_INDEX_WRONG && match) {
-      re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
-    }
-
-    if (NPCG_INCLUDED && match && match.length > 1) {
-      // Fix browsers whose `exec` methods don't consistently return `undefined`
-      // for NPCG, like IE8. NOTE: This doesn' work for /(.?)?/
-      call$4(nativeReplace, match[0], reCopy, function () {
-        for (i = 1; i < arguments.length - 2; i++) {
-          if (arguments[i] === undefined) match[i] = undefined;
-        }
-      });
-    }
-
-    if (match && groups) {
-      match.groups = object = create(null);
-
-      for (i = 0; i < groups.length; i++) {
-        group = groups[i];
-        object[group[0]] = match[group[1]];
-      }
-    }
-
-    return match;
-  };
-}
-
-var regexpExec$3 = patchedExec;
-
-var $$4 = _export;
-var exec$2 = regexpExec$3; // `RegExp.prototype.exec` method
-// https://tc39.es/ecma262/#sec-regexp.prototype.exec
-
-$$4({
-  target: 'RegExp',
-  proto: true,
-  forced: /./.exec !== exec$2
-}, {
-  exec: exec$2
-});
-
-var NATIVE_BIND = functionBindNative;
-var FunctionPrototype = Function.prototype;
-var apply$2 = FunctionPrototype.apply;
-var call$3 = FunctionPrototype.call; // eslint-disable-next-line es/no-reflect -- safe
-
-var functionApply = typeof Reflect == 'object' && Reflect.apply || (NATIVE_BIND ? call$3.bind(apply$2) : function () {
-  return call$3.apply(apply$2, arguments);
-});
-
-var uncurryThis$5 = functionUncurryThis;
-var redefine = redefine$4.exports;
-var regexpExec$2 = regexpExec$3;
-var fails$4 = fails$j;
-var wellKnownSymbol$3 = wellKnownSymbol$b;
-var createNonEnumerableProperty = createNonEnumerableProperty$5;
-var SPECIES$1 = wellKnownSymbol$3('species');
-var RegExpPrototype = RegExp.prototype;
-
-var fixRegexpWellKnownSymbolLogic = function (KEY, exec, FORCED, SHAM) {
-  var SYMBOL = wellKnownSymbol$3(KEY);
-  var DELEGATES_TO_SYMBOL = !fails$4(function () {
-    // String methods call symbol-named RegEp methods
-    var O = {};
-
-    O[SYMBOL] = function () {
-      return 7;
-    };
-
-    return ''[KEY](O) != 7;
-  });
-  var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL && !fails$4(function () {
-    // Symbol-named RegExp methods call .exec
-    var execCalled = false;
-    var re = /a/;
-
-    if (KEY === 'split') {
-      // We can't use real regex here since it causes deoptimization
-      // and serious performance degradation in V8
-      // https://github.com/zloirock/core-js/issues/306
-      re = {}; // RegExp[@@split] doesn't call the regex's exec method, but first creates
-      // a new one. We need to return the patched regex when creating the new one.
-
-      re.constructor = {};
-
-      re.constructor[SPECIES$1] = function () {
-        return re;
-      };
-
-      re.flags = '';
-      re[SYMBOL] = /./[SYMBOL];
-    }
-
-    re.exec = function () {
-      execCalled = true;
-      return null;
-    };
-
-    re[SYMBOL]('');
-    return !execCalled;
-  });
-
-  if (!DELEGATES_TO_SYMBOL || !DELEGATES_TO_EXEC || FORCED) {
-    var uncurriedNativeRegExpMethod = uncurryThis$5(/./[SYMBOL]);
-    var methods = exec(SYMBOL, ''[KEY], function (nativeMethod, regexp, str, arg2, forceStringMethod) {
-      var uncurriedNativeMethod = uncurryThis$5(nativeMethod);
-      var $exec = regexp.exec;
-
-      if ($exec === regexpExec$2 || $exec === RegExpPrototype.exec) {
-        if (DELEGATES_TO_SYMBOL && !forceStringMethod) {
-          // The native String method already delegates to @@method (this
-          // polyfilled function), leasing to infinite recursion.
-          // We avoid it by directly calling the native @@method method.
-          return {
-            done: true,
-            value: uncurriedNativeRegExpMethod(regexp, str, arg2)
-          };
-        }
-
-        return {
-          done: true,
-          value: uncurriedNativeMethod(str, regexp, arg2)
-        };
-      }
-
-      return {
-        done: false
-      };
-    });
-    redefine(String.prototype, KEY, methods[0]);
-    redefine(RegExpPrototype, SYMBOL, methods[1]);
-  }
-
-  if (SHAM) createNonEnumerableProperty(RegExpPrototype[SYMBOL], 'sham', true);
-};
-
-var isObject$1 = isObject$9;
-var classof$1 = classofRaw$1;
-var wellKnownSymbol$2 = wellKnownSymbol$b;
-var MATCH = wellKnownSymbol$2('match'); // `IsRegExp` abstract operation
-// https://tc39.es/ecma262/#sec-isregexp
-
-var isRegexp = function (it) {
-  var isRegExp;
-  return isObject$1(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classof$1(it) == 'RegExp');
-};
-
-var global$5 = global$y;
-var isConstructor = isConstructor$3;
-var tryToString = tryToString$2;
-var TypeError$3 = global$5.TypeError; // `Assert: IsConstructor(argument) is true`
-
-var aConstructor$1 = function (argument) {
-  if (isConstructor(argument)) return argument;
-  throw TypeError$3(tryToString(argument) + ' is not a constructor');
-};
-
-var anObject$2 = anObject$9;
-var aConstructor = aConstructor$1;
-var wellKnownSymbol$1 = wellKnownSymbol$b;
-var SPECIES = wellKnownSymbol$1('species'); // `SpeciesConstructor` abstract operation
-// https://tc39.es/ecma262/#sec-speciesconstructor
-
-var speciesConstructor$1 = function (O, defaultConstructor) {
-  var C = anObject$2(O).constructor;
-  var S;
-  return C === undefined || (S = anObject$2(C)[SPECIES]) == undefined ? defaultConstructor : aConstructor(S);
-};
-
-var uncurryThis$4 = functionUncurryThis;
-var toIntegerOrInfinity = toIntegerOrInfinity$3;
-var toString$1 = toString$3;
-var requireObjectCoercible$1 = requireObjectCoercible$4;
-var charAt$2 = uncurryThis$4(''.charAt);
-var charCodeAt$1 = uncurryThis$4(''.charCodeAt);
-var stringSlice$1 = uncurryThis$4(''.slice);
-
-var createMethod = function (CONVERT_TO_STRING) {
-  return function ($this, pos) {
-    var S = toString$1(requireObjectCoercible$1($this));
-    var position = toIntegerOrInfinity(pos);
-    var size = S.length;
-    var first, second;
-    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
-    first = charCodeAt$1(S, position);
-    return first < 0xD800 || first > 0xDBFF || position + 1 === size || (second = charCodeAt$1(S, position + 1)) < 0xDC00 || second > 0xDFFF ? CONVERT_TO_STRING ? charAt$2(S, position) : first : CONVERT_TO_STRING ? stringSlice$1(S, position, position + 2) : (first - 0xD800 << 10) + (second - 0xDC00) + 0x10000;
-  };
-};
-
-var stringMultibyte = {
-  // `String.prototype.codePointAt` method
-  // https://tc39.es/ecma262/#sec-string.prototype.codepointat
-  codeAt: createMethod(false),
-  // `String.prototype.at` method
-  // https://github.com/mathiasbynens/String.prototype.at
-  charAt: createMethod(true)
-};
-
-var charAt$1 = stringMultibyte.charAt; // `AdvanceStringIndex` abstract operation
-// https://tc39.es/ecma262/#sec-advancestringindex
-
-var advanceStringIndex$1 = function (S, index, unicode) {
-  return index + (unicode ? charAt$1(S, index).length : 1);
-};
-
-var global$4 = global$y;
-var toAbsoluteIndex = toAbsoluteIndex$4;
-var lengthOfArrayLike$1 = lengthOfArrayLike$6;
-var createProperty$1 = createProperty$3;
-var Array$2 = global$4.Array;
-var max = Math.max;
-
-var arraySliceSimple = function (O, start, end) {
-  var length = lengthOfArrayLike$1(O);
-  var k = toAbsoluteIndex(start, length);
-  var fin = toAbsoluteIndex(end === undefined ? length : end, length);
-  var result = Array$2(max(fin - k, 0));
-
-  for (var n = 0; k < fin; k++, n++) createProperty$1(result, n, O[k]);
-
-  result.length = n;
-  return result;
-};
-
-var global$3 = global$y;
-var call$2 = functionCall;
-var anObject$1 = anObject$9;
-var isCallable = isCallable$c;
-var classof = classofRaw$1;
-var regexpExec$1 = regexpExec$3;
-var TypeError$2 = global$3.TypeError; // `RegExpExec` abstract operation
-// https://tc39.es/ecma262/#sec-regexpexec
-
-var regexpExecAbstract = function (R, S) {
-  var exec = R.exec;
-
-  if (isCallable(exec)) {
-    var result = call$2(exec, R, S);
-    if (result !== null) anObject$1(result);
-    return result;
-  }
-
-  if (classof(R) === 'RegExp') return call$2(regexpExec$1, R, S);
-  throw TypeError$2('RegExp#exec called on incompatible receiver');
-};
-
-var apply$1 = functionApply;
-var call$1 = functionCall;
-var uncurryThis$3 = functionUncurryThis;
-var fixRegExpWellKnownSymbolLogic = fixRegexpWellKnownSymbolLogic;
-var isRegExp = isRegexp;
-var anObject = anObject$9;
-var requireObjectCoercible = requireObjectCoercible$4;
-var speciesConstructor = speciesConstructor$1;
-var advanceStringIndex = advanceStringIndex$1;
-var toLength = toLength$2;
-var toString = toString$3;
-var getMethod = getMethod$2;
-var arraySlice = arraySliceSimple;
-var callRegExpExec = regexpExecAbstract;
-var regexpExec = regexpExec$3;
-var stickyHelpers = regexpStickyHelpers;
-var fails$3 = fails$j;
-var UNSUPPORTED_Y = stickyHelpers.UNSUPPORTED_Y;
-var MAX_UINT32 = 0xFFFFFFFF;
-var min = Math.min;
-var $push = [].push;
-var exec$1 = uncurryThis$3(/./.exec);
-var push = uncurryThis$3($push);
-var stringSlice = uncurryThis$3(''.slice); // Chrome 51 has a buggy "split" implementation when RegExp#exec !== nativeExec
-// Weex JS has frozen built-in prototypes, so use try / catch wrapper
-
-var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = !fails$3(function () {
-  // eslint-disable-next-line regexp/no-empty-group -- required for testing
-  var re = /(?:)/;
-  var originalExec = re.exec;
-
-  re.exec = function () {
-    return originalExec.apply(this, arguments);
-  };
-
-  var result = 'ab'.split(re);
-  return result.length !== 2 || result[0] !== 'a' || result[1] !== 'b';
-}); // @@split logic
-
-fixRegExpWellKnownSymbolLogic('split', function (SPLIT, nativeSplit, maybeCallNative) {
-  var internalSplit;
-
-  if ('abbc'.split(/(b)*/)[1] == 'c' || // eslint-disable-next-line regexp/no-empty-group -- required for testing
-  'test'.split(/(?:)/, -1).length != 4 || 'ab'.split(/(?:ab)*/).length != 2 || '.'.split(/(.?)(.?)/).length != 4 || // eslint-disable-next-line regexp/no-empty-capturing-group, regexp/no-empty-group -- required for testing
-  '.'.split(/()()/).length > 1 || ''.split(/.?/).length) {
-    // based on es5-shim implementation, need to rework it
-    internalSplit = function (separator, limit) {
-      var string = toString(requireObjectCoercible(this));
-      var lim = limit === undefined ? MAX_UINT32 : limit >>> 0;
-      if (lim === 0) return [];
-      if (separator === undefined) return [string]; // If `separator` is not a regex, use native split
-
-      if (!isRegExp(separator)) {
-        return call$1(nativeSplit, string, separator, lim);
-      }
-
-      var output = [];
-      var flags = (separator.ignoreCase ? 'i' : '') + (separator.multiline ? 'm' : '') + (separator.unicode ? 'u' : '') + (separator.sticky ? 'y' : '');
-      var lastLastIndex = 0; // Make `global` and avoid `lastIndex` issues by working with a copy
-
-      var separatorCopy = new RegExp(separator.source, flags + 'g');
-      var match, lastIndex, lastLength;
-
-      while (match = call$1(regexpExec, separatorCopy, string)) {
-        lastIndex = separatorCopy.lastIndex;
-
-        if (lastIndex > lastLastIndex) {
-          push(output, stringSlice(string, lastLastIndex, match.index));
-          if (match.length > 1 && match.index < string.length) apply$1($push, output, arraySlice(match, 1));
-          lastLength = match[0].length;
-          lastLastIndex = lastIndex;
-          if (output.length >= lim) break;
-        }
-
-        if (separatorCopy.lastIndex === match.index) separatorCopy.lastIndex++; // Avoid an infinite loop
-      }
-
-      if (lastLastIndex === string.length) {
-        if (lastLength || !exec$1(separatorCopy, '')) push(output, '');
-      } else push(output, stringSlice(string, lastLastIndex));
-
-      return output.length > lim ? arraySlice(output, 0, lim) : output;
-    }; // Chakra, V8
-
-  } else if ('0'.split(undefined, 0).length) {
-    internalSplit = function (separator, limit) {
-      return separator === undefined && limit === 0 ? [] : call$1(nativeSplit, this, separator, limit);
-    };
-  } else internalSplit = nativeSplit;
-
-  return [// `String.prototype.split` method
-  // https://tc39.es/ecma262/#sec-string.prototype.split
-  function split(separator, limit) {
-    var O = requireObjectCoercible(this);
-    var splitter = separator == undefined ? undefined : getMethod(separator, SPLIT);
-    return splitter ? call$1(splitter, separator, O, limit) : call$1(internalSplit, toString(O), separator, limit);
-  }, // `RegExp.prototype[@@split]` method
-  // https://tc39.es/ecma262/#sec-regexp.prototype-@@split
-  //
-  // NOTE: This cannot be properly polyfilled in engines that don't support
-  // the 'y' flag.
-  function (string, limit) {
-    var rx = anObject(this);
-    var S = toString(string);
-    var res = maybeCallNative(internalSplit, rx, S, limit, internalSplit !== nativeSplit);
-    if (res.done) return res.value;
-    var C = speciesConstructor(rx, RegExp);
-    var unicodeMatching = rx.unicode;
-    var flags = (rx.ignoreCase ? 'i' : '') + (rx.multiline ? 'm' : '') + (rx.unicode ? 'u' : '') + (UNSUPPORTED_Y ? 'g' : 'y'); // ^(? + rx + ) is needed, in combination with some S slicing, to
-    // simulate the 'y' flag.
-
-    var splitter = new C(UNSUPPORTED_Y ? '^(?:' + rx.source + ')' : rx, flags);
-    var lim = limit === undefined ? MAX_UINT32 : limit >>> 0;
-    if (lim === 0) return [];
-    if (S.length === 0) return callRegExpExec(splitter, S) === null ? [S] : [];
-    var p = 0;
-    var q = 0;
-    var A = [];
-
-    while (q < S.length) {
-      splitter.lastIndex = UNSUPPORTED_Y ? 0 : q;
-      var z = callRegExpExec(splitter, UNSUPPORTED_Y ? stringSlice(S, q) : S);
-      var e;
-
-      if (z === null || (e = min(toLength(splitter.lastIndex + (UNSUPPORTED_Y ? q : 0)), S.length)) === p) {
-        q = advanceStringIndex(S, q, unicodeMatching);
-      } else {
-        push(A, stringSlice(S, p, q));
-        if (A.length === lim) return A;
-
-        for (var i = 1; i <= z.length - 1; i++) {
-          push(A, z[i]);
-          if (A.length === lim) return A;
-        }
-
-        q = p = e;
-      }
-    }
-
-    push(A, stringSlice(S, p));
-    return A;
-  }];
-}, !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC, UNSUPPORTED_Y);
-
-var $$3 = _export;
-var uncurryThis$2 = functionUncurryThis;
-var IndexedObject$1 = indexedObject;
-var toIndexedObject = toIndexedObject$6;
-var arrayMethodIsStrict = arrayMethodIsStrict$3;
-var un$Join = uncurryThis$2([].join);
-var ES3_STRINGS = IndexedObject$1 != Object;
-var STRICT_METHOD = arrayMethodIsStrict('join', ','); // `Array.prototype.join` method
-// https://tc39.es/ecma262/#sec-array.prototype.join
-
-$$3({
-  target: 'Array',
-  proto: true,
-  forced: ES3_STRINGS || !STRICT_METHOD
-}, {
-  join: function join(separator) {
-    return un$Join(toIndexedObject(this), separator === undefined ? ',' : separator);
-  }
-});
-
-var DESCRIPTORS = descriptors;
-var uncurryThis$1 = functionUncurryThis;
-var call = functionCall;
-var fails$2 = fails$j;
-var objectKeys = objectKeys$2;
-var getOwnPropertySymbolsModule = objectGetOwnPropertySymbols;
-var propertyIsEnumerableModule = objectPropertyIsEnumerable;
-var toObject$1 = toObject$5;
-var IndexedObject = indexedObject; // eslint-disable-next-line es/no-object-assign -- safe
-
-var $assign = Object.assign; // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-
-var defineProperty = Object.defineProperty;
-var concat = uncurryThis$1([].concat); // `Object.assign` method
-// https://tc39.es/ecma262/#sec-object.assign
-
-var objectAssign = !$assign || fails$2(function () {
-  // should have correct order of operations (Edge bug)
-  if (DESCRIPTORS && $assign({
-    b: 1
-  }, $assign(defineProperty({}, 'a', {
-    enumerable: true,
-    get: function () {
-      defineProperty(this, 'b', {
-        value: 3,
-        enumerable: false
-      });
-    }
-  }), {
-    b: 2
-  })).b !== 1) return true; // should work with symbols and should have deterministic property order (V8 bug)
-
-  var A = {};
-  var B = {}; // eslint-disable-next-line es/no-symbol -- safe
-
-  var symbol = Symbol();
-  var alphabet = 'abcdefghijklmnopqrst';
-  A[symbol] = 7;
-  alphabet.split('').forEach(function (chr) {
-    B[chr] = chr;
-  });
-  return $assign({}, A)[symbol] != 7 || objectKeys($assign({}, B)).join('') != alphabet;
-}) ? function assign(target, source) {
-  // eslint-disable-line no-unused-vars -- required for `.length`
-  var T = toObject$1(target);
-  var argumentsLength = arguments.length;
-  var index = 1;
-  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
-  var propertyIsEnumerable = propertyIsEnumerableModule.f;
-
-  while (argumentsLength > index) {
-    var S = IndexedObject(arguments[index++]);
-    var keys = getOwnPropertySymbols ? concat(objectKeys(S), getOwnPropertySymbols(S)) : objectKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-
-    while (length > j) {
-      key = keys[j++];
-      if (!DESCRIPTORS || call(propertyIsEnumerable, S, key)) T[key] = S[key];
-    }
-  }
-
-  return T;
-} : $assign;
-
-var $$2 = _export;
-var assign = objectAssign; // `Object.assign` method
-// https://tc39.es/ecma262/#sec-object.assign
-// eslint-disable-next-line es/no-object-assign -- required for testing
-
-$$2({
-  target: 'Object',
-  stat: true,
-  forced: Object.assign !== assign
-}, {
-  assign: assign
-});
-
-var $$1 = _export;
-var global$2 = global$y;
-var getBuiltIn = getBuiltIn$6;
-var apply = functionApply;
-var uncurryThis = functionUncurryThis;
-var fails$1 = fails$j;
-var Array$1 = global$2.Array;
-var $stringify = getBuiltIn('JSON', 'stringify');
-var exec = uncurryThis(/./.exec);
-var charAt = uncurryThis(''.charAt);
-var charCodeAt = uncurryThis(''.charCodeAt);
-var replace = uncurryThis(''.replace);
-var numberToString = uncurryThis(1.0.toString);
-var tester = /[\uD800-\uDFFF]/g;
-var low = /^[\uD800-\uDBFF]$/;
-var hi = /^[\uDC00-\uDFFF]$/;
-
-var fix = function (match, offset, string) {
-  var prev = charAt(string, offset - 1);
-  var next = charAt(string, offset + 1);
-
-  if (exec(low, match) && !exec(hi, next) || exec(hi, match) && !exec(low, prev)) {
-    return '\\u' + numberToString(charCodeAt(match, 0), 16);
-  }
-
-  return match;
-};
-
-var FORCED$1 = fails$1(function () {
-  return $stringify('\uDF06\uD834') !== '"\\udf06\\ud834"' || $stringify('\uDEAD') !== '"\\udead"';
-});
-
-if ($stringify) {
-  // `JSON.stringify` method
-  // https://tc39.es/ecma262/#sec-json.stringify
-  // https://github.com/tc39/proposal-well-formed-stringify
-  $$1({
-    target: 'JSON',
-    stat: true,
-    forced: FORCED$1
-  }, {
-    // eslint-disable-next-line no-unused-vars -- required for `.length`
-    stringify: function stringify(it, replacer, space) {
-      for (var i = 0, l = arguments.length, args = Array$1(l); i < l; i++) args[i] = arguments[i];
-
-      var result = apply($stringify, null, args);
-      return typeof result == 'string' ? replace(result, tester, fix) : result;
-    }
-  });
-}
-
 function Point(mp) {
   Object.assign(this, mp);
 }
 Object.assign(Point.prototype, {
-  addRect: function addRect(rect) {
-    var vv = new Point(this);
+  addRect: function (rect) {
+    const vv = new Point(this);
     vv.x = this.x + rect.x;
     vv.y = this.y + rect.y;
     vv.x2 = this.x2 + rect.x;
@@ -3485,15 +909,15 @@ function Vector(mp) {
   }
 }
 Object.assign(Vector.prototype, {
-  convert: function convert(pos, model) {
-    var x = convertX(this.x, pos, this.ratio, model);
-    var y = convertY(this.y, pos, this.ratio, model);
-    var x2 = convertX(this.x2, pos, this.ratio, model);
-    var y2 = convertY(this.y2, pos, this.ratio, model);
-    var x3 = convertX(this.x3, pos, this.ratio, model);
-    var y3 = convertY(this.y3, pos, this.ratio, model);
-    var rd = convertR(this.type, pos, model);
-    var vv = new Point(this);
+  convert: function (pos, model) {
+    const x = convertX(this.x, pos, this.ratio, model);
+    const y = convertY(this.y, pos, this.ratio, model);
+    const x2 = convertX(this.x2, pos, this.ratio, model);
+    const y2 = convertY(this.y2, pos, this.ratio, model);
+    const x3 = convertX(this.x3, pos, this.ratio, model);
+    const y3 = convertY(this.y3, pos, this.ratio, model);
+    const rd = convertR(this.type, pos, model);
+    const vv = new Point(this);
     vv.x = x;
     vv.y = y;
     vv.x2 = x2;
@@ -3506,26 +930,26 @@ Object.assign(Vector.prototype, {
 });
 
 function convertR(type, pos, model) {
-  var rd = 0;
+  let rd = 0;
   if (type == "a") rd = pos.range.cr * model.scale * model.fontRatio;
   return rd;
 }
 
 function convertX(x, pos, ratio, model) {
-  var rr = pos.range.r * ratio.x;
-  var gx = (pos.range.gx2 - pos.range.gx1) * rr + pos.range.gx1;
-  var fr = (pos.range.fr2 - pos.range.fr1) * rr + pos.range.fr1;
+  const rr = pos.range.r * ratio.x;
+  const gx = (pos.range.gx2 - pos.range.gx1) * rr + pos.range.gx1;
+  const fr = (pos.range.fr2 - pos.range.fr1) * rr + pos.range.fr1;
   return pos.center.x + (x - gx) * model.scale * fr; // + pos.rect.x
 }
 
 function convertY(y, pos, ratio, model) {
-  var rr = pos.range.r * ratio.y;
-  var gy = (pos.range.gy2 - pos.range.gy1) * rr + pos.range.gy1;
-  var fr = (pos.range.fr2 - pos.range.fr1) * rr + pos.range.fr1;
+  const rr = pos.range.r * ratio.y;
+  const gy = (pos.range.gy2 - pos.range.gy1) * rr + pos.range.gy1;
+  const fr = (pos.range.fr2 - pos.range.fr1) * rr + pos.range.fr1;
   return pos.center.y + (y - gy) * model.scale * fr; // + pos.rect.y
 }
 
-var prevPoint = null;
+let prevPoint = null;
 /**
  * @name getPaths
  * @property {Model} model - mode.js
@@ -3536,9 +960,9 @@ var prevPoint = null;
  */
 
 function getPaths(model, data, pathGap, isPattern) {
-  var lines = data.pointsLength.lines;
-  var scale = model.scale;
-  var total = lines.length,
+  const lines = data.pointsLength.lines;
+  const scale = model.scale;
+  let total = lines.length,
       i,
       j_total,
       j,
@@ -3546,8 +970,8 @@ function getPaths(model, data, pathGap, isPattern) {
       lg,
       direction,
       paths2 = [];
-  var arr = [],
-      paths = [];
+  const arr = [],
+        paths = [];
 
   for (i = 0; i < total; i++) {
     line = lines[i];
@@ -3593,14 +1017,14 @@ function getPaths(model, data, pathGap, isPattern) {
 }
 
 function getDotPos(lines, pathGap, scale) {
-  var total = lines.length;
-  var i, j, j_total;
-  var line;
-  var curPoint;
-  var num, pp;
-  var arr = [];
-  var isFirst = 1;
-  var pgap = 1;
+  const total = lines.length;
+  let i, j, j_total;
+  let line;
+  let curPoint;
+  let num, pp;
+  const arr = [];
+  let isFirst = 1;
+  let pgap = 1;
   if (pathGap > -1) pgap = getCurrent(pathGap, 1, 0, 80, 10) * scale;
 
   for (i = 0; i < total; i++) {
@@ -3687,9 +1111,9 @@ function setPointValues(cur, prev, line, num) {
   cur.num = num;
 
   if (!(!prev || cur.rotation != null)) {
-    var dx = cur.x - prev.x;
-    var dy = cur.y - prev.y;
-    var rad = Math.atan2(dx, dy);
+    const dx = cur.x - prev.x;
+    const dy = cur.y - prev.y;
+    const rad = Math.atan2(dx, dy);
     cur.rotation = -rad;
   }
 
@@ -3701,11 +1125,11 @@ function setPointValues(cur, prev, line, num) {
 }
 
 function getCubicBezierXYatT(line, t) {
-  var x = CubicN(line.x1, line.x2, line.x3, line.x4, t);
-  var y = CubicN(line.y1, line.y2, line.y3, line.y4, t);
-  var tx = bezierTangent(line.x1, line.x2, line.x3, line.x4, t);
-  var ty = bezierTangent(line.y1, line.y2, line.y3, line.y4, t);
-  var rotation = -Math.atan2(tx, ty);
+  const x = CubicN(line.x1, line.x2, line.x3, line.x4, t);
+  const y = CubicN(line.y1, line.y2, line.y3, line.y4, t);
+  const tx = bezierTangent(line.x1, line.x2, line.x3, line.x4, t);
+  const ty = bezierTangent(line.y1, line.y2, line.y3, line.y4, t);
+  const rotation = -Math.atan2(tx, ty);
   return new Point({
     x: x,
     y: y,
@@ -3714,8 +1138,8 @@ function getCubicBezierXYatT(line, t) {
 }
 
 function CubicN(a, b, c, d, t) {
-  var t2 = t * t;
-  var t3 = t2 * t;
+  const t2 = t * t;
+  const t3 = t2 * t;
   return a + (-a * 3 + t * (3 * a - a * t)) * t + (3 * b + t * (-6 * b + b * 3 * t)) * t + (c * 3 - c * 3 * t) * t2 + d * t3;
 } //http://qaru.site/questions/10657973/quadratic-curve-with-rope-pattern
 //https://stackoverflow.com/questions/32322966/quadratic-curve-with-rope-pattern
@@ -3725,17 +1149,17 @@ function bezierTangent(a, b, c, d, t) {
   return 3 * t * t * (-a + 3 * b - 3 * c + d) + 6 * t * (a - 2 * b + c) + 3 * (-a + b);
 }
 
-var ROTATE_HORIZONTAL = 180 * (Math.PI / 180);
-var ROTATE_VERTICAL = 90 * (Math.PI / 180);
-var ROTATE_NONE = -100;
-var VERTEX_GAP = 3;
-var VERTEX_GAP2 = VERTEX_GAP / 2;
-var TOFU = "tofu";
-var FONT_HEIGHT = 824;
+const ROTATE_HORIZONTAL = 180 * (Math.PI / 180);
+const ROTATE_VERTICAL = 90 * (Math.PI / 180);
+const ROTATE_NONE = -100;
+const VERTEX_GAP = 3;
+const VERTEX_GAP2 = VERTEX_GAP / 2;
+const TOFU = "tofu";
+const FONT_HEIGHT = 824;
 function generateFontData(w, fw, fh, x1, x2, y1, y2, path) {
-  var arr = [];
-  var total = path.length;
-  var i;
+  const arr = [];
+  const total = path.length;
+  let i;
 
   for (i = 0; i < total; i++) {
     arr.push({
@@ -3762,11 +1186,11 @@ function generateFontData(w, fw, fh, x1, x2, y1, y2, path) {
 }
 
 function setCenter(arr, fw, fh) {
-  var total = arr.length;
-  var cx = fw / 2;
-  var cy = fh / 2;
-  var mp, i;
-  var ct = [];
+  const total = arr.length;
+  const cx = fw / 2;
+  const cy = fh / 2;
+  let mp, i;
+  const ct = [];
 
   for (i = 0; i < total; i++) {
     mp = arr[i];
@@ -3787,17 +1211,17 @@ function setCenter(arr, fw, fh) {
 }
 
 function getR(x1, y1, x2, y2) {
-  var x = x1 - x2;
-  var y = y1 - y2;
+  const x = x1 - x2;
+  const y = y1 - y2;
   return -Math.atan2(x, y);
 }
 function getCurveR(x1, y1, x2, y2, x3, y3, x4, y4, t) {
-  var x = bezierTangent(x1, x2, x3, x4, t);
-  var y = bezierTangent(y1, y2, y3, y4, t);
+  const x = bezierTangent(x1, x2, x3, x4, t);
+  const y = bezierTangent(y1, y2, y3, y4, t);
   return -Math.atan2(x, y);
 }
 
-var DATA_UA = [{
+const DATA_UA = [{
   d: -1,
   v: [["m", 0, 352, {
     x: 0.55,
@@ -3826,14 +1250,14 @@ var DATA_UA = [{
     f: 1
   }]]
 }];
-var DATA_UC = [{
+const DATA_UC = [{
   d: 1,
   v: [["m", 293.1, 320.1, {
     r: getCurveR(293.1, 320.1, 262.2, 345, 222.8, 360, 180, 360, 0),
     f: 1
   }], ["b", 262.2, 345, 222.8, 360, 180, 360], ["b", 80.6, 360, 0, 279.4, 0, 180], ["b", 0, 80.6, 80.6, 0, 180, 0], ["b", 222.8, 0, 262.2, 15, 293.1, 39.9]]
 }];
-var DATA_UD = [{
+const DATA_UD = [{
   d: -1,
   v: [["m", 95, 352, {
     r: ROTATE_VERTICAL,
@@ -3853,7 +1277,7 @@ var DATA_UD = [{
     f: 1
   }]]
 }];
-var DATA_UE = [{
+const DATA_UE = [{
   d: -1,
   v: [["m", 192, 0, {
     x: 0,
@@ -3882,7 +1306,7 @@ var DATA_UE = [{
     f: 1
   }]]
 }];
-var DATA_UG = [{
+const DATA_UG = [{
   d: 1,
   v: [["m", 202, 180, {
     r: ROTATE_VERTICAL,
@@ -3897,7 +1321,7 @@ var DATA_UG = [{
     r: ROTATE_VERTICAL
   }], ["b", 222.8, 0, 262.1, 14.9, 293, 39.9]]
 }];
-var DATA_UH = [{
+const DATA_UH = [{
   d: -1,
   v: [["m", 0, 0, {
     y: 0,
@@ -3928,7 +1352,7 @@ var DATA_UH = [{
     p: 1
   }]]
 }];
-var DATA_UI = [{
+const DATA_UI = [{
   d: 1,
   v: [["m", 0, 352, {
     y: 0,
@@ -3939,7 +1363,7 @@ var DATA_UI = [{
     r: ROTATE_HORIZONTAL
   }]]
 }];
-var DATA_UJ = [{
+const DATA_UJ = [{
   d: 1,
   v: [["m", 0, 310.5 + 0.5, {
     r: getCurveR(0, 310.5 + 0.5, 16.2, 341.1 + 0.5, 49.3, 355.5 + 0.5, 86, 355.5 + 0.5, 0),
@@ -3951,7 +1375,7 @@ var DATA_UJ = [{
     r: ROTATE_HORIZONTAL
   }]]
 }];
-var DATA_UN = [{
+const DATA_UN = [{
   d: -1,
   v: [["m", 0, 352, {
     y: 0,
@@ -3978,7 +1402,7 @@ var DATA_UN = [{
     f: 1
   }]]
 }];
-var DATA_UO = [{
+const DATA_UO = [{
   d: 1,
   v: [["m", 360, 180, {
     r: ROTATE_HORIZONTAL,
@@ -3995,14 +1419,14 @@ var DATA_UO = [{
     c: 1
   }]]
 }];
-var DATA_US = [{
+const DATA_US = [{
   d: 1,
   v: [["m", 0, 295.4, {
     r: getCurveR(0, 295.4, 17.6, 332.1, 58.3, 360, 110.3, 360, 0),
     f: 1
   }], ["b", 17.6, 332.1, 58.3, 360, 110.3, 360], ["b", 173.9, 360, 223.8, 329.6, 224, 271], ["b", 224.2, 214.7, 180.7, 189.6, 112.4, 173.3], ["b", 47.3, 157.7, 10.9, 130.6, 12, 84.4], ["b", 13.3, 29.8, 57.3, 0, 114.8, 0], ["b", 158.4, 0, 196.5, 20.5, 212, 51.3]]
 }];
-var DATA_UU = [{
+const DATA_UU = [{
   d: 1,
   v: [["m", 250, 0, {
     y: 0,
@@ -4018,7 +1442,7 @@ var DATA_UU = [{
     r: ROTATE_HORIZONTAL
   }]]
 }];
-var DATA_UY = [{
+const DATA_UY = [{
   d: -1,
   v: [["m", 0, 0, {
     x: 0.6,
@@ -4042,7 +1466,7 @@ var DATA_UY = [{
     f: 1
   }]]
 }];
-var UPPER = {
+const UPPER = {
   A: generateFontData(620, 290, 352, 0, 0, 0, 0, JSON.parse(JSON.stringify(DATA_UA))),
   B: generateFontData(596, 209, 352, -10, -10, 0, 0, [{
     d: 1,
@@ -4382,7 +1806,7 @@ var UPPER = {
   }])
 };
 
-var DATA_LA = [{
+const DATA_LA = [{
   d: -1,
   v: [["m", 232, 8, {
     y: -3.4,
@@ -4403,7 +1827,7 @@ var DATA_LA = [{
     f: 1
   }]]
 }];
-var DATA_LC = [{
+const DATA_LC = [{
   d: 1,
   v: [["m", 212.1, 182.9, {
     r: getCurveR(212.1, 182.9, 191.1, 213.2, 156.1, 233.1, 116.5, 233.1, 0),
@@ -4416,7 +1840,7 @@ var DATA_LC = [{
     r: ROTATE_VERTICAL
   }], ["b", 156.1, 1.1, 191.1, 21, 212.1, 51.3]]
 }];
-var DATA_LD = [{
+const DATA_LD = [{
   d: -1,
   v: [["m", 232, 0, {
     y: 0
@@ -4435,7 +1859,7 @@ var DATA_LD = [{
     f: 1
   }]]
 }];
-var DATA_LE = [{
+const DATA_LE = [{
   d: 1,
   v: [["m", 211.6, 182.9, {
     r: getCurveR(211.6, 182.9, 191.1, 213.2, 156.1, 233.1, 116.5, 233.1, 0),
@@ -4453,7 +1877,7 @@ var DATA_LE = [{
     p: 1
   }]]
 }];
-var DATA_LG = [{
+const DATA_LG = [{
   d: -1,
   v: [["m", 232, 5, {
     y: -2.8
@@ -4475,7 +1899,7 @@ var DATA_LG = [{
     f: 1
   }]]
 }];
-var DATA_LH = [{
+const DATA_LH = [{
   d: -1,
   v: [["m", 0, 0, {
     y: 0,
@@ -4497,7 +1921,7 @@ var DATA_LH = [{
     f: 1
   }]]
 }];
-var DATA_LN = [{
+const DATA_LN = [{
   d: -1,
   v: [["m", 0, 130, {
     y: -3.3
@@ -4520,7 +1944,7 @@ var DATA_LN = [{
     f: 1
   }]]
 }];
-var DATA_LO = [{
+const DATA_LO = [{
   d: 1,
   v: [["m", 232, 116, {
     r: ROTATE_HORIZONTAL,
@@ -4537,14 +1961,14 @@ var DATA_LO = [{
     c: 1
   }]]
 }];
-var DATA_LS = [{
+const DATA_LS = [{
   d: 1,
   v: [["m", 0 * 0.642, 295.4 * 0.642, {
     r: getCurveR(0 * 0.642, 295.4 * 0.642, 17.6 * 0.642, 332.1 * 0.642, 58.3 * 0.642, 360 * 0.642, 110.3 * 0.642, 360 * 0.642, 0),
     f: 1
   }], ["b", 17.6 * 0.642, 332.1 * 0.642, 58.3 * 0.642, 360 * 0.642, 110.3 * 0.642, 360 * 0.642], ["b", 173.9 * 0.642, 360 * 0.642, 223.8 * 0.642, 329.6 * 0.642, 224 * 0.642, 271 * 0.642], ["b", 224.2 * 0.642, 214.7 * 0.642, 180.7 * 0.642, 189.6 * 0.642, 112.4 * 0.642, 173.3 * 0.642], ["b", 47.3 * 0.642, 157.7 * 0.642, 10.9 * 0.642, 130.6 * 0.642, 12 * 0.642, 84.4 * 0.642], ["b", 13.3 * 0.642, 29.8 * 0.642, 57.3 * 0.642, 0 * 0.642, 114.8 * 0.642, 0 * 0.642], ["b", 158.4 * 0.642, 0 * 0.642, 196.5 * 0.642, 20.5 * 0.642, 212 * 0.642, 51.3 * 0.642]]
 }];
-var DATA_LU = [{
+const DATA_LU = [{
   d: -1,
   v: [["m", 0, 130, {
     y: -3
@@ -4566,7 +1990,7 @@ var DATA_LU = [{
     f: 1
   }]]
 }];
-var DATA_LY = [{
+const DATA_LY = [{
   d: -1,
   v: [["m", 225.5, 0, {
     y: -3,
@@ -4590,7 +2014,7 @@ var DATA_LY = [{
     f: 1
   }]]
 }];
-var LOWER = {
+const LOWER = {
   a: generateFontData(600, 232, 232, 10, 2, -64, -64, JSON.parse(JSON.stringify(DATA_LA))),
   b: generateFontData(600, 232, 352, -10, -2, 0, 0, [{
     d: -1,
@@ -4949,7 +2373,7 @@ var LOWER = {
   }])
 };
 
-var NUMBER = {
+const NUMBER = {
   "0": generateFontData(660, 270, 360, 0, 0, 0, 0, [{
     d: 1,
     v: [["m", 270, 180, {
@@ -5163,7 +2587,7 @@ var NUMBER = {
   }])
 };
 
-var SPECIAL = {
+const SPECIAL = {
   " ": generateFontData(336, 0, 0, 0, 0, 0, 0, [{
     d: 1,
     v: []
@@ -5910,76 +3334,9 @@ var SPECIAL = {
   }])
 };
 
-var $ = _export;
-var global$1 = global$y;
-var fails = fails$j;
-var isArray = isArray$3;
-var isObject = isObject$9;
-var toObject = toObject$5;
-var lengthOfArrayLike = lengthOfArrayLike$6;
-var createProperty = createProperty$3;
-var arraySpeciesCreate = arraySpeciesCreate$2;
-var arrayMethodHasSpeciesSupport = arrayMethodHasSpeciesSupport$3;
-var wellKnownSymbol = wellKnownSymbol$b;
-var V8_VERSION = engineV8Version;
-var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
-var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
-var TypeError$1 = global$1.TypeError; // We can't use this feature detection in V8 since it causes
-// deoptimization and serious performance degradation
-// https://github.com/zloirock/core-js/issues/679
-
-var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
-  var array = [];
-  array[IS_CONCAT_SPREADABLE] = false;
-  return array.concat()[0] !== array;
-});
-var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
-
-var isConcatSpreadable = function (O) {
-  if (!isObject(O)) return false;
-  var spreadable = O[IS_CONCAT_SPREADABLE];
-  return spreadable !== undefined ? !!spreadable : isArray(O);
-};
-
-var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT; // `Array.prototype.concat` method
-// https://tc39.es/ecma262/#sec-array.prototype.concat
-// with adding support of @@isConcatSpreadable and @@species
-
-$({
-  target: 'Array',
-  proto: true,
-  forced: FORCED
-}, {
-  // eslint-disable-next-line no-unused-vars -- required for `.length`
-  concat: function concat(arg) {
-    var O = toObject(this);
-    var A = arraySpeciesCreate(O, 0);
-    var n = 0;
-    var i, k, length, len, E;
-
-    for (i = -1, length = arguments.length; i < length; i++) {
-      E = i === -1 ? O : arguments[i];
-
-      if (isConcatSpreadable(E)) {
-        len = lengthOfArrayLike(E);
-        if (n + len > MAX_SAFE_INTEGER) throw TypeError$1(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-
-        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
-      } else {
-        if (n >= MAX_SAFE_INTEGER) throw TypeError$1(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        createProperty(A, n++, E);
-      }
-    }
-
-    A.length = n;
-    return A;
-  }
-});
-
 function getLatin1(x, y) {
-  var tx = x;
-  var ty = -60 + y;
+  const tx = x;
+  const ty = -60 + y;
   return [{
     d: -1,
     v: [["m", -40 + tx, ty, {
@@ -5995,8 +3352,8 @@ function getLatin1(x, y) {
 } //Á
 
 function getLatin2(x, y) {
-  var tx = x;
-  var ty = -60 + y;
+  const tx = x;
+  const ty = -60 + y;
   return [{
     d: -1,
     v: [["m", 40 + tx, ty, {
@@ -6012,8 +3369,8 @@ function getLatin2(x, y) {
 } //Â
 
 function getLatin3(x, y) {
-  var tx = -68 + x;
-  var ty = 0 + y;
+  const tx = -68 + x;
+  const ty = 0 + y;
   return [{
     d: -1,
     v: [["m", 0 + tx, 50 + ty, {
@@ -6040,8 +3397,8 @@ function getLatin3(x, y) {
 } //Ã
 
 function getLatin4(x, y) {
-  var tx = x - 76.24;
-  var ty = y;
+  const tx = x - 76.24;
+  const ty = y;
   return [{
     d: 1,
     v: [["m", 159.52 + tx, 16.56 + ty, {
@@ -6084,8 +3441,8 @@ function getLatin5(x, y) {
 } //Ŭ
 
 function getLatin6(x, y) {
-  var tx = x - 57;
-  var ty = y;
+  const tx = x - 57;
+  const ty = y;
   return [{
     d: 1,
     v: [["m", 112.7 + tx, 0.0 + ty, {
@@ -6116,9 +3473,9 @@ function getLatin6(x, y) {
 } //Å
 
 function getLatin7(x, y) {
-  var tx = 88 + x;
-  var ty = -116 + y;
-  var scale = 0.5;
+  const tx = 88 + x;
+  const ty = -116 + y;
+  const scale = 0.5;
   return [{
     d: 1,
     v: [["m", 232 * scale + tx, 116 * scale + ty, {
@@ -6188,8 +3545,8 @@ function getLatin11(x, y) {
 } //Č
 
 function getLatin12(x, y) {
-  var tx = -68 + x;
-  var ty = y;
+  const tx = -68 + x;
+  const ty = y;
   return [{
     d: -1,
     v: [["m", 0 + tx, ty, {
@@ -6243,7 +3600,7 @@ function getLatin14(x, y) {
   }];
 }
 
-var DATA_LI = [{
+const DATA_LI = [{
   d: 1,
   v: [["m", 0, 352, {
     y: 0,
@@ -6252,7 +3609,7 @@ var DATA_LI = [{
     y: -3
   }]]
 }];
-var DATA_LJ = [{
+const DATA_LJ = [{
   d: 1,
   v: [["m", 0 - 115.9, 317 + 127, {
     x: 0.4,
@@ -6271,7 +3628,7 @@ var DATA_LJ = [{
     y: -3
   }]]
 }];
-var LATIN = {
+const LATIN = {
   Æ: generateFontData(996, 426, 352, 0, 0, 0, 0, [{
     d: -1,
     v: [["m", 426.0, 0.0, {
@@ -6478,15 +3835,15 @@ var LATIN = {
   ÿ: generateFontData(500, 225.5, 331.5, 10, 10, -119, -119, JSON.parse(JSON.stringify(DATA_LY)).concat(getLatin5(116.3, -90)))
 };
 
-var DATA = Object.assign({}, UPPER, LOWER, NUMBER, SPECIAL, LATIN);
+const DATA = Object.assign({}, UPPER, LOWER, NUMBER, SPECIAL, LATIN);
 function typo(v) {
-  var t = DATA[v] || DATA[TOFU];
+  const t = DATA[v] || DATA[TOFU];
   t.v = v;
   return t;
 }
 
 function getTextGroup(text, scale, width, isBreakAll) {
-  var group;
+  let group;
 
   if (text.indexOf("\n") > 0) {
     group = text.split("\n");
@@ -6500,9 +3857,9 @@ function getTextGroup(text, scale, width, isBreakAll) {
 }
 
 function keepAll(group) {
-  var textGroup = [];
-  var total = group.length;
-  var i;
+  const textGroup = [];
+  const total = group.length;
+  let i;
 
   for (i = 0; i < total; i++) {
     textGroup[i] = group[i].split("");
@@ -6512,7 +3869,7 @@ function keepAll(group) {
 }
 
 function breakWord(group, scale, width) {
-  var g2,
+  let g2,
       g3,
       t,
       m_rect,
@@ -6525,7 +3882,7 @@ function breakWord(group, scale, width) {
       j_total,
       k_total,
       index = 0;
-  var tg = [];
+  const tg = [];
   total = group.length;
 
   for (i = 0; i < total; i++) {
@@ -6563,7 +3920,7 @@ function breakWord(group, scale, width) {
   }
 
   total = tg.length;
-  var textGroup = [];
+  const textGroup = [];
 
   for (i = 0; i < total; i++) {
     t = tg[i].join(" ").split("");
@@ -6577,7 +3934,7 @@ function breakWord(group, scale, width) {
 }
 
 function breakAll(group, scale, width) {
-  var t,
+  let t,
       i,
       total,
       j,
@@ -6587,7 +3944,7 @@ function breakAll(group, scale, width) {
       g3,
       tw = 0,
       index = 0;
-  var tg = [];
+  const tg = [];
   total = group.length;
 
   for (i = 0; i < total; i++) {
@@ -6613,7 +3970,7 @@ function breakAll(group, scale, width) {
     index += 1;
   }
 
-  var textGroup = [];
+  const textGroup = [];
   total = tg.length;
 
   for (i = 0; i < total; i++) {
@@ -6646,10 +4003,8 @@ function getAlignGapX(align, alignGapX) {
   }
 }
 
-var Model = /*#__PURE__*/function () {
-  function Model() {
-    _classCallCheck(this, Model);
-
+class Model {
+  constructor() {
     this.lineWidth_ = 1;
     this.drawing_ = [];
     this.data_ = null;
@@ -6666,1095 +4021,963 @@ var Model = /*#__PURE__*/function () {
     this.fontRatio_ = 1;
   }
 
-  _createClass(Model, [{
-    key: "data",
-    get: function get() {
-      return this.data_;
-    }
-  }, {
-    key: "paths",
-    get: function get() {
-      return this.paths_;
-    }
-  }, {
-    key: "lines",
-    get: function get() {
-      return this.lines_;
-    },
-    set: function set(v) {
-      this.lines_ = v;
-    }
-  }, {
-    key: "lineWidth",
-    get: function get() {
-      return this.lineWidth_;
-    }
-  }, {
-    key: "fontRatio",
-    get: function get() {
-      return this.fontRatio_;
-    }
-  }, {
-    key: "scale",
-    get: function get() {
-      return this.scale_;
-    }
-  }, {
-    key: "rect",
-    get: function get() {
-      return this.rect_;
-    }
-  }, {
-    key: "drawing",
-    get: function get() {
-      return this.drawing_;
-    }
-  }, {
-    key: "align",
-    get: function get() {
-      return this.align_;
-    },
-    set: function set(v) {
-      if (this.align_ != v) {
-        this.align_ = v;
-        this.setPosition();
-      }
-    }
-  }, {
-    key: "position",
-    value: function position(x, y) {
-      if (this.rect_.x != x || this.rect_.y != y) {
-        this.rect_.x = x;
-        this.rect_.y = y;
-        this.setPosition();
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }, {
-    key: "setPosition",
-    value: function setPosition() {
-      var total = this.data_.length;
-      var i, d;
+  get data() {
+    return this.data_;
+  }
 
-      for (i = 0; i < total; i++) {
-        d = this.data_[i];
-        d.rect.x = d.originPos.x + this.rect_.x + getAlignGapX(this.align_, d.alignGapX);
-        d.rect.y = d.originPos.y + this.rect_.y;
-      }
-    }
-  }, {
-    key: "updateDrawingPaths",
-    value: function updateDrawingPaths() {
-      var total = this.data_.length;
-      var i, d;
+  get paths() {
+    return this.paths_;
+  }
 
-      for (i = 0; i < total; i++) {
-        d = this.data_[i];
-        d.drawingPaths = addRectToPaths(getPaths(this, d, -1, false), d);
-      }
-    }
-  }, {
-    key: "updatePatternPaths",
-    value: function updatePatternPaths(pathGap) {
-      var total = this.data_.length;
-      var i, d;
+  get lines() {
+    return this.lines_;
+  }
 
-      for (i = 0; i < total; i++) {
-        d = this.data_[i];
-        d.rawPaths = getPaths(this, d, pathGap, true);
-      }
-    }
-  }, {
-    key: "updateWavePaths",
-    value: function updateWavePaths(pathGap) {
-      var total = this.data_.length;
-      var i, d;
+  set lines(v) {
+    this.lines_ = v;
+  }
 
-      for (i = 0; i < total; i++) {
-        d = this.data_[i];
-        d.rawWavePaths = getPaths(this, d, pathGap, false);
-      }
-    }
-  }, {
-    key: "updateGuide",
-    value: function updateGuide() {
-      var total = this.data_.length;
-      var i, d;
+  get lineWidth() {
+    return this.lineWidth_;
+  }
 
-      for (i = 0; i < total; i++) {
-        d = this.data_[i];
-        d.guide = getGuide(d.typo, this.scale);
-        d.grid = getGrid(d.typo, this.scale);
-      }
-    }
-  }, {
-    key: "update",
-    value: function update(text, width, breakWord, weight, size, tracking, leading) {
-      var fontW = getFontW(weight);
-      var weightRatio = getWeightRatio(fontW);
-      var circleRound = getCircleRound(fontW);
-      var scale = getScale(size);
-      var m_tracking = getTracking(tracking, scale);
-      var m_leading = getLeading(leading, scale);
-      var fontRatio = getFontRatio(weightRatio);
-      this.fontRatio_ = fontRatio;
-      this.scale_ = scale;
-      this.lineWidth_ = getLineW(fontW, scale);
-      var textGroup = getTextGroup(text, scale, width, breakWord);
-      var total = textGroup.length;
-      var total2 = total - 1;
-      var i,
-          j,
-          j_total,
-          j_total2,
-          gt,
-          t,
-          str,
-          m_rect,
-          s_pos,
-          tw = 0,
-          th = 0,
-          tx = 0,
-          ty = 0,
-          maxW = 0,
-          maxH = 0;
-      var tmp = [];
+  get fontRatio() {
+    return this.fontRatio_;
+  }
 
-      for (i = 0; i < total; i++) {
-        gt = textGroup[i];
-        j_total = gt.length;
-        j_total2 = j_total - 1;
-        tw = 0;
-        tx = 0;
-        tmp[i] = {
-          tw: 0,
-          arr: []
-        };
+  get scale() {
+    return this.scale_;
+  }
 
-        for (j = 0; j < j_total; j++) {
-          str = gt[j];
-          t = typo(str);
-          m_rect = getRect(t, scale);
-          tw += m_rect.w;
-          th = m_rect.h;
+  get rect() {
+    return this.rect_;
+  }
 
-          if (j < j_total2) {
-            tw += m_tracking;
-          }
+  get drawing() {
+    return this.drawing_;
+  }
 
-          if (i < total2) {
-            th += m_leading;
-          }
-
-          m_rect.x = tx;
-          m_rect.y = ty;
-          s_pos = {
-            x: tx,
-            y: ty
-          };
-          tmp[i].arr[j] = {
-            str: str,
-            typo: t,
-            rect: m_rect,
-            originPos: s_pos,
-            center: getCenter(m_rect.w, m_rect.h, scale),
-            range: getRange(t, weightRatio, circleRound)
-          };
-          tx = tw;
-        }
-
-        ty += th;
-        tmp[i].tw = tw;
-        maxW = Math.max(maxW, tw);
-        maxH += th;
-      }
-
-      this.rect_.w = maxW;
-      this.rect_.h = maxH;
-      this.drawing_ = [];
-      var arr = [];
-      var aGapX, drawing;
-
-      for (var _i = 0, _tmp = tmp; _i < _tmp.length; _i++) {
-        var a = _tmp[_i];
-        aGapX = setAlignGapX(maxW, a.tw);
-
-        var _iterator = _createForOfIteratorHelper(a.arr),
-            _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var b = _step.value;
-            b.alignGapX = aGapX;
-            b.pointsLength = getLengths(b, this);
-            arr.push(b);
-            drawing = {
-              value: 1
-            };
-            this.drawing_.push(drawing);
-            b.drawing = drawing; // add converted Vector
-
-            var _iterator2 = _createForOfIteratorHelper(b.typo.p),
-                _step2;
-
-            try {
-              for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                var c = _step2.value;
-                c.cv = [];
-
-                var _iterator3 = _createForOfIteratorHelper(c.v),
-                    _step3;
-
-                try {
-                  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                    var d = _step3.value;
-                    c.cv.push(d.convert(b, this));
-                  }
-                } catch (err) {
-                  _iterator3.e(err);
-                } finally {
-                  _iterator3.f();
-                }
-              }
-            } catch (err) {
-              _iterator2.e(err);
-            } finally {
-              _iterator2.f();
-            }
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-      }
-
-      this.data_ = arr;
+  set align(v) {
+    if (this.align_ != v) {
+      this.align_ = v;
       this.setPosition();
     }
-  }, {
-    key: "updatePathsForRect",
-    value: function updatePathsForRect() {
-      var total = this.data_.length;
-      var paths = [];
-      var i, d;
+  }
 
-      for (i = 0; i < total; i++) {
-        d = this.data_[i];
+  get align() {
+    return this.align_;
+  }
 
-        if (d.rawWavePaths) {
-          d.wavePaths = addRectToPaths(d.rawWavePaths, d);
-        }
-
-        if (d.rawPaths) {
-          d.paths = addRectToPaths(d.rawPaths, d);
-          Array.prototype.push.apply(paths, d.paths);
-        }
-      }
-
-      this.paths_ = paths;
+  position(x, y) {
+    if (this.rect_.x != x || this.rect_.y != y) {
+      this.rect_.x = x;
+      this.rect_.y = y;
+      this.setPosition();
+      return true;
+    } else {
+      return false;
     }
-  }, {
-    key: "updateLinesForRect",
-    value: function updateLinesForRect() {
-      var total = this.data_.length;
-      var i, d;
+  }
 
-      for (i = 0; i < total; i++) {
-        d = this.data_[i];
-        d.lines = getLines(d);
-      }
+  setPosition() {
+    const total = this.data_.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.data_[i];
+      d.rect.x = d.originPos.x + this.rect_.x + getAlignGapX(this.align_, d.alignGapX);
+      d.rect.y = d.originPos.y + this.rect_.y;
     }
-  }, {
-    key: "reset",
-    value: function reset() {
-      this.lineWidth_ = 1;
-      this.drawing_ = [];
-      this.data_ = null;
-      this.paths_ = null;
-      this.lines_ = null;
-      this.rect_ = {
-        x: 0,
-        y: 0,
-        w: 0,
-        h: 0
+  }
+
+  updateDrawingPaths() {
+    const total = this.data_.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.data_[i];
+      d.drawingPaths = addRectToPaths(getPaths(this, d, -1, false), d);
+    }
+  }
+
+  updatePatternPaths(pathGap) {
+    const total = this.data_.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.data_[i];
+      d.rawPaths = getPaths(this, d, pathGap, true);
+    }
+  }
+
+  updateWavePaths(pathGap) {
+    const total = this.data_.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.data_[i];
+      d.rawWavePaths = getPaths(this, d, pathGap, false);
+    }
+  }
+
+  updateGuide() {
+    const total = this.data_.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.data_[i];
+      d.guide = getGuide(d.typo, this.scale);
+      d.grid = getGrid(d.typo, this.scale);
+    }
+  }
+
+  update(text, width, breakWord, weight, size, tracking, leading) {
+    const fontW = getFontW(weight);
+    const weightRatio = getWeightRatio(fontW);
+    const circleRound = getCircleRound(fontW);
+    const scale = getScale(size);
+    const m_tracking = getTracking(tracking, scale);
+    const m_leading = getLeading(leading, scale);
+    const fontRatio = getFontRatio(weightRatio);
+    this.fontRatio_ = fontRatio;
+    this.scale_ = scale;
+    this.lineWidth_ = getLineW(fontW, scale);
+    const textGroup = getTextGroup(text, scale, width, breakWord);
+    const total = textGroup.length;
+    const total2 = total - 1;
+    let i,
+        j,
+        j_total,
+        j_total2,
+        gt,
+        t,
+        str,
+        m_rect,
+        s_pos,
+        tw = 0,
+        th = 0,
+        tx = 0,
+        ty = 0,
+        maxW = 0,
+        maxH = 0;
+    const tmp = [];
+
+    for (i = 0; i < total; i++) {
+      gt = textGroup[i];
+      j_total = gt.length;
+      j_total2 = j_total - 1;
+      tw = 0;
+      tx = 0;
+      tmp[i] = {
+        tw: 0,
+        arr: []
       };
-      this.align_ = "left";
-      this.scale_ = 1;
-      this.fontRatio_ = 1;
-    }
-  }]);
 
-  return Model;
-}();
+      for (j = 0; j < j_total; j++) {
+        str = gt[j];
+        t = typo(str);
+        m_rect = getRect(t, scale);
+        tw += m_rect.w;
+        th = m_rect.h;
 
-var LeonSans$1 = /*#__PURE__*/function (_Dispatcher) {
-  _inherits(LeonSans, _Dispatcher);
-
-  var _super = _createSuper(LeonSans);
-
-  function LeonSans() {
-    var _this;
-
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        _ref$text = _ref.text,
-        text = _ref$text === void 0 ? "" : _ref$text,
-        _ref$size = _ref.size,
-        size = _ref$size === void 0 ? 500 : _ref$size,
-        _ref$weight = _ref.weight,
-        weight = _ref$weight === void 0 ? MIN_FONT_WEIGHT : _ref$weight,
-        _ref$color = _ref.color,
-        color = _ref$color === void 0 ? ["#000000"] : _ref$color,
-        _ref$colorful = _ref.colorful,
-        colorful = _ref$colorful === void 0 ? ["#c5d73f", "#9d529c", "#49a9db", "#fec330", "#5eb96e", "#fc5356", "#f38f31"] : _ref$colorful,
-        _ref$tracking = _ref.tracking,
-        tracking = _ref$tracking === void 0 ? 0 : _ref$tracking,
-        _ref$leading = _ref.leading,
-        leading = _ref$leading === void 0 ? 0 : _ref$leading,
-        _ref$align = _ref.align,
-        align = _ref$align === void 0 ? "left" : _ref$align,
-        _ref$pathGap = _ref.pathGap,
-        pathGap = _ref$pathGap === void 0 ? 0.5 : _ref$pathGap,
-        _ref$amplitude = _ref.amplitude,
-        amplitude = _ref$amplitude === void 0 ? 0.5 : _ref$amplitude,
-        _ref$width = _ref.width,
-        width = _ref$width === void 0 ? 0 : _ref$width,
-        _ref$breakWord = _ref.breakWord,
-        breakWord = _ref$breakWord === void 0 ? false : _ref$breakWord,
-        _ref$fps = _ref.fps,
-        fps = _ref$fps === void 0 ? 30 : _ref$fps,
-        _ref$isPath = _ref.isPath,
-        isPath = _ref$isPath === void 0 ? false : _ref$isPath,
-        _ref$isWave = _ref.isWave,
-        isWave = _ref$isWave === void 0 ? false : _ref$isWave;
-
-    _classCallCheck(this, LeonSans);
-
-    _this = _super.call(this);
-    _this.size_ = size;
-    _this.weight_ = weight;
-    _this.color_ = color;
-    _this.colorful_ = shuffle(colorful);
-    _this.tracking_ = tracking;
-    _this.leading_ = leading;
-    _this.pathGap_ = pathGap;
-    _this.amplitude_ = amplitude;
-    _this.width_ = width;
-    _this.breakWord_ = breakWord;
-    _this.fps_ = fps;
-    _this.fpsTime_ = 1000 / _this.fps_;
-    _this.isPath_ = isPath;
-    _this.isWave_ = isWave;
-    _this.model = new Model();
-    _this.str_ = null;
-    _this.time_ = null;
-    _this.isFps_ = false;
-    _this.isForceRander_ = false;
-    _this.updateID_ = 0;
-    _this.dPathsID_ = null;
-    _this.pPathsID_ = null;
-    _this.wPathsID_ = null;
-    _this.guideID_ = null;
-    _this.text = text;
-    _this.model.align = align;
-    return _this;
-  }
-
-  _createClass(LeonSans, [{
-    key: "on",
-    value: function on(event, callback) {
-      _get(_getPrototypeOf(LeonSans.prototype), "on", this).call(this, event, callback);
-
-      this.update();
-    }
-  }, {
-    key: "off",
-    value: function off(event, callback) {
-      _get(_getPrototypeOf(LeonSans.prototype), "off", this).call(this, event, callback);
-    }
-  }, {
-    key: "text",
-    get: function get() {
-      return this.str_;
-    },
-    set: function set(str) {
-      if (this.str_ == str) return;
-      this.str_ = str;
-      this.update();
-    }
-  }, {
-    key: "size",
-    get: function get() {
-      return this.size_;
-    },
-    set: function set(v) {
-      if (this.size_ == v) return;
-      this.size_ = v;
-      this.update();
-      this.isForceRander_ = true;
-    }
-  }, {
-    key: "weight",
-    get: function get() {
-      return this.weight_;
-    },
-    set: function set(v) {
-      if (v < MIN_FONT_WEIGHT) {
-        v = MIN_FONT_WEIGHT;
-      } else if (v > MAX_FONT_WEIGHT) {
-        v = MAX_FONT_WEIGHT;
-      }
-
-      if (this.weight_ == v) return;
-      this.weight_ = v;
-      this.update();
-      this.isForceRander_ = true;
-    }
-  }, {
-    key: "color",
-    get: function get() {
-      return this.color_;
-    },
-    set: function set(v) {
-      if (this.color_ == v) return;
-      this.color_ = v;
-    }
-  }, {
-    key: "tracking",
-    get: function get() {
-      return this.tracking_;
-    },
-    set: function set(v) {
-      if (this.tracking_ == v) return;
-      this.tracking_ = v;
-      this.update();
-      this.isForceRander_ = true;
-    }
-  }, {
-    key: "leading",
-    get: function get() {
-      return this.leading_;
-    },
-    set: function set(v) {
-      if (this.leading_ == v) return;
-      this.leading_ = v;
-      this.update();
-      this.isForceRander_ = true;
-    }
-  }, {
-    key: "align",
-    get: function get() {
-      return this.model.align;
-    },
-    set: function set(v) {
-      if (this.model.align != v) {
-        this.model.align = v;
-        this.updateID_++;
-        this.updateSignal();
-      }
-    }
-  }, {
-    key: "pathGap",
-    get: function get() {
-      return this.pathGap_;
-    },
-    set: function set(v) {
-      if (this.pathGap_ != v) {
-        this.pathGap_ = v;
-        this.updatePatternPaths(true);
-        this.updateWavePaths(true);
-        this.isForceRander_ = true;
-      }
-    }
-  }, {
-    key: "amplitude",
-    get: function get() {
-      return this.amplitude_;
-    },
-    set: function set(v) {
-      this.amplitude_ = v;
-    }
-  }, {
-    key: "rect",
-    get: function get() {
-      return this.model.rect;
-    }
-  }, {
-    key: "maxWidth",
-    get: function get() {
-      return this.width_;
-    },
-    set: function set(v) {
-      if (this.width_ == v) return;
-      this.width_ = v;
-      this.update();
-    }
-  }, {
-    key: "breakWord",
-    get: function get() {
-      return this.breakWord_;
-    },
-    set: function set(v) {
-      if (this.breakWord_ == v) return;
-      this.breakWord_ = v;
-      this.update();
-    }
-  }, {
-    key: "isPath",
-    get: function get() {
-      return this.isPath_;
-    },
-    set: function set(v) {
-      this.isPath_ = v;
-      this.updatePatternPaths(true);
-    }
-  }, {
-    key: "isWave",
-    get: function get() {
-      return this.isWave_;
-    },
-    set: function set(v) {
-      this.isWave_ = v;
-      this.updateWavePaths(true);
-    }
-  }, {
-    key: "fps",
-    get: function get() {
-      return this.fps_;
-    },
-    set: function set(v) {
-      this.fps_ = v;
-      this.fpsTime_ = 1000 / this.fps_;
-    }
-  }, {
-    key: "lineWidth",
-    get: function get() {
-      return this.model.lineWidth;
-    }
-  }, {
-    key: "scale",
-    get: function get() {
-      return this.model.scale;
-    }
-  }, {
-    key: "drawing",
-    get: function get() {
-      return this.model.drawing;
-    }
-  }, {
-    key: "data",
-    get: function get() {
-      return this.model.data;
-    }
-  }, {
-    key: "paths",
-    get: function get() {
-      return this.model.paths;
-    }
-  }, {
-    key: "drawingPaths",
-    get: function get() {
-      return this.model.drawingPaths;
-    }
-  }, {
-    key: "wavePaths",
-    get: function get() {
-      return this.model.wavePaths;
-    }
-  }, {
-    key: "position",
-    value: function position() {
-      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
-      if (this.model.position(x, y)) {
-        this.updateID_++;
-        this.updateSignal();
-      }
-    }
-  }, {
-    key: "update",
-    value: function update() {
-      this.updateID_++;
-      this.model.update(this.str_, this.width_, this.breakWord_, this.weight_, this.size_, this.tracking_, this.leading_);
-
-      if (this.isPath_ || this.isWave_) {
-        this.updatePatternPaths();
-        this.updateWavePaths();
-      } else {
-        this.updateSignal();
-      }
-    }
-  }, {
-    key: "updateGuide",
-    value: function updateGuide() {
-      if (this.guideID_ != this.updateID_) {
-        this.guideID_ = this.updateID_;
-        this.model.updateGuide();
-      }
-    }
-    /**
-     * Update paths for drawing in WebGL (PIXI.js). It's very expensive, only call when it needs.
-     */
-
-  }, {
-    key: "updateDrawingPaths",
-    value: function updateDrawingPaths() {
-      if (this.dPathsID_ != this.updateID_) {
-        this.dPathsID_ = this.updateID_;
-        this.model.updateDrawingPaths();
-      }
-    }
-    /**
-     * Update paths for pattern
-     * @param {boolean} force - Force execution
-     */
-
-  }, {
-    key: "updatePatternPaths",
-    value: function updatePatternPaths(force) {
-      if (this.isPath_ && (force || this.pPathsID_ != this.updateID_)) {
-        this.pPathsID_ = this.updateID_;
-        this.model.updatePatternPaths(this.pathGap_);
-        this.isForceRander_ = true;
-        this.updateSignal();
-      }
-    }
-    /**
-     * Update paths for wave effect
-     * @param {boolean} force - Force execution
-     */
-
-  }, {
-    key: "updateWavePaths",
-    value: function updateWavePaths(force) {
-      if (this.isWave_ && (force || this.wPathsID_ != this.updateID_)) {
-        this.wPathsID_ = this.updateID_;
-        this.model.updateWavePaths(this.pathGap_);
-        this.isForceRander_ = true;
-        this.updateSignal();
-      }
-    }
-  }, {
-    key: "updateSignal",
-    value: function updateSignal() {
-      this.model.updateLinesForRect();
-      this.model.updatePathsForRect();
-      this.dispatch("update", this.model);
-    }
-  }, {
-    key: "reset",
-    value: function reset() {
-      this.size_ = 500;
-      this.weight_ = MIN_FONT_WEIGHT;
-      this.color_ = ["#000000"];
-      this.tracking_ = 0;
-      this.leading_ = 0;
-      this.pathGap_ = 0.5;
-      this.amplitude_ = 0.5;
-      this.width_ = 0;
-      this.breakWord_ = false;
-      this.fps_ = 30;
-      this.fpsTime_ = 1000 / this.fps_;
-      this.isPath_ = false;
-      this.isWave_ = false;
-      this.str_ = null;
-      this.time_ = null;
-      this.isFps_ = false;
-      this.isForceRander_ = false;
-      this.updateID_ = 0;
-      this.dPathsID_ = null;
-      this.pPathsID_ = null;
-      this.wPathsID_ = null;
-      this.guideID_ = null;
-      this.model.reset();
-    }
-  }, {
-    key: "dispose",
-    value: function dispose() {
-      this.reset();
-      this.model = null;
-    }
-    /**
-     * Draw text in WebGL with PIXI.js
-     * @param {PIXI.Graphics} graphics
-     */
-
-  }, {
-    key: "drawPixi",
-    value: function drawPixi(graphics) {
-      var total = this.model.data.length;
-      var i, d, color;
-
-      for (i = 0; i < total; i++) {
-        d = this.model.data[i];
-        color = PixiColor(i, d, this.color_);
-        PixiLines(graphics, d, this.lineWidth, color);
-      }
-    }
-    /**
-     * Draw text in the Canvas element.
-     * @param {CanvasRenderingContext2D} ctx
-     */
-
-  }, {
-    key: "draw",
-    value: function draw(ctx) {
-      ctx.lineWidth = this.lineWidth;
-      var total = this.model.data.length;
-      var i, d;
-
-      for (i = 0; i < total; i++) {
-        d = this.model.data[i];
-        Color(ctx, i, d, this.color_);
-        Lines(ctx, d);
-      }
-    }
-    /**
-     * Draw the colorful effect.
-     * @param {CanvasRenderingContext2D} ctx
-     */
-
-  }, {
-    key: "drawColorful",
-    value: function drawColorful(ctx) {
-      ctx.lineWidth = this.lineWidth;
-      Colorful(ctx, this.model, this.colorful_);
-    }
-    /**
-     * Draw the wave effect.
-     * @param {CanvasRenderingContext2D} ctx
-     * @param {DOMHighResTimeStamp} t time stemp from requestAnimationFrame()
-     */
-
-  }, {
-    key: "wave",
-    value: function wave(ctx, t) {
-      ctx.lineWidth = this.lineWidth;
-
-      if (t) {
-        if (!this.time_) this.time_ = t;
-        var p = t - this.time_;
-
-        if (p > this.fpsTime_ || this.isForceRander_) {
-          this.time_ = t;
-          this.isFps_ = true;
-        } else {
-          this.isFps_ = false;
+        if (j < j_total2) {
+          tw += m_tracking;
         }
+
+        if (i < total2) {
+          th += m_leading;
+        }
+
+        m_rect.x = tx;
+        m_rect.y = ty;
+        s_pos = {
+          x: tx,
+          y: ty
+        };
+        tmp[i].arr[j] = {
+          str: str,
+          typo: t,
+          rect: m_rect,
+          originPos: s_pos,
+          center: getCenter(m_rect.w, m_rect.h, scale),
+          range: getRange(t, weightRatio, circleRound)
+        };
+        tx = tw;
       }
 
-      this.isForceRander_ = false;
-      var total = this.model.data.length;
-      var i, d;
-
-      for (i = 0; i < total; i++) {
-        d = this.model.data[i];
-        Color(ctx, i, d, this.color_);
-        Wave(ctx, d, this.model.scale, this.amplitude_, this.weight_, this.isFps_);
-      }
+      ty += th;
+      tmp[i].tw = tw;
+      maxW = Math.max(maxW, tw);
+      maxH += th;
     }
-    /**
-     * Draw rectangle shapes at each path point.
-     * @param {CanvasRenderingContext2D} ctx
-     * @param {number} w pattern width
-     * @param {number} h pattern height
-     */
 
-  }, {
-    key: "pattern",
-    value: function pattern(ctx, w, h) {
-      var tw = w * this.model.scale;
-      var th = h * this.model.scale;
-      var total = this.model.data.length;
-      var i, d;
+    this.rect_.w = maxW;
+    this.rect_.h = maxH;
+    this.drawing_ = [];
+    const arr = [];
+    let aGapX, drawing;
 
-      for (i = 0; i < total; i++) {
-        d = this.model.data[i];
-        Pattern(ctx, d, tw, th);
-      }
-    }
-    /**
-     * Draw grid for each type.
-     * @param {CanvasRenderingContext2D} ctx
-     */
+    for (const a of tmp) {
+      aGapX = setAlignGapX(maxW, a.tw);
 
-  }, {
-    key: "grid",
-    value: function grid(ctx) {
-      this.updateGuide();
-      var total = this.model.data.length;
-      var i, d;
+      for (const b of a.arr) {
+        b.alignGapX = aGapX;
+        b.pointsLength = getLengths(b, this);
+        arr.push(b);
+        drawing = {
+          value: 1
+        };
+        this.drawing_.push(drawing);
+        b.drawing = drawing; // add converted Vector
 
-      for (i = 0; i < total; i++) {
-        d = this.model.data[i];
-        Grids(ctx, d);
-      }
-    }
-    /**
-     * Draw circles at each drawing point and lines for each type.
-     * @param {CanvasRenderingContext2D} ctx
-     */
+        for (const c of b.typo.p) {
+          c.cv = [];
 
-  }, {
-    key: "point",
-    value: function point(ctx) {
-      var total = this.model.data.length;
-      var i, d;
-
-      for (i = 0; i < total; i++) {
-        d = this.model.data[i];
-        Points(ctx, d);
-      }
-    }
-    /**
-     * Draw outline box for the text.
-     * @param {CanvasRenderingContext2D} ctx
-     * @private
-     */
-
-  }, {
-    key: "box",
-    value: function box(ctx) {
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.strokeStyle = "#0b90dc";
-      ctx.rect(this.model.rect.x, this.model.rect.y, this.model.rect.w, this.model.rect.h);
-      ctx.stroke();
-    }
-  }]);
-
-  return LeonSans;
-}(Dispatcher);
-
-var cValue = 0;
-var PI2 = 2 * Math.PI;
-
-var LeonSans = /*#__PURE__*/function (_MC$BrowserClip) {
-  _inherits(LeonSans, _MC$BrowserClip);
-
-  var _super = _createSuper(LeonSans);
-
-  function LeonSans() {
-    _classCallCheck(this, LeonSans);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(LeonSans, [{
-    key: "html",
-    get: function get() {
-      return " <canvas> </canvas>";
-    }
-  }, {
-    key: "onAfterRender",
-    value: function onAfterRender() {
-      this.cValue = 0;
-      var canvas = this.context.getElements("canvas")[0];
-      this.sw = this.attrs.sw;
-      this.sh = this.attrs.sh;
-      var pixelRatio = 2;
-      this.ctx = canvas.getContext("2d");
-      canvas.width = this.sw * pixelRatio;
-      canvas.height = this.sh * pixelRatio;
-      canvas.style.width = this.sw + "px";
-      canvas.style.height = this.sh + "px";
-      this.ctx.scale(pixelRatio, pixelRatio);
-      var leon = new LeonSans$1({
-        text: this.attrs.text,
-        color: this.attrs.color,
-        weight: this.attrs.weight,
-        isPath: true,
-        pathGap: this.attrs.pathGap || this.attrs.drawing === "colorPattern" ? -1 : 0,
-        isWave: this.attrs.drawing === "wave" ? true : false,
-        tracking: this.attrs.tracking,
-        leading: this.attrs.leading,
-        size: this.attrs.size || 80,
-        patternWidth: 10,
-        patternHeight: 90,
-        colorful: this.attrs.colorful
-      }); // leon.grid(this.ctx);
-
-      this.attrs.round ? this.ctx.lineCap = "round" : this.ctx.lineCap = "butt";
-      this.attrs.multiply ? this.ctx.globalCompositeOperation = "multiply" : this.ctx.globalCompositeOperation = "source-over";
-      this.setCustomEntity(this.attrs.canvasId, {
-        leon: leon,
-        ctx: this.ctx,
-        sw: this.sw,
-        sh: this.sh,
-        drawing: this.attrs.drawing,
-        pathGap: this.attrs.pathGap,
-        patternWidth: this.attrs.patternWidth,
-        patternHeight: this.attrs.patternHeight
-      }); // switch (this.attrs.drawing) {
-      //   case "colorful":
-      //     leon.drawColorful(this.ctx);
-      //     break;
-      //   case "pattern":
-      //     leon.pattern(
-      //       this.ctx,
-      //       this.attrs.patternWidth,
-      //       this.attrs.patternHeight
-      //     );
-      //     break;
-      //   case "wave":
-      //     break;
-      //   default:
-      //     leon.draw(this.ctx);
-      // }
-
-      this.leon = leon;
-    }
-  }, {
-    key: "onAfterProgress",
-    value: function onAfterProgress() {
-      if (this.attrs.drawing === "colorPattern") {
-        this.ctx.clearRect(0, 0, this.sw, this.sh);
-        this.ctx.lineWidth = 0.2;
-        var w = this.attrs.patternWidth;
-        var total = this.leon.data.length;
-        var i,
-            pos,
-            no = 0;
-        var d, j, j_total;
-
-        for (i = 0; i < total; i++) {
-          d = this.leon.data[i].paths;
-          j_total = Math.round(d.length * this.leon.drawing[i].value);
-
-          for (j = 0; j < j_total; j++) {
-            pos = d[j];
-            this.ctx.fillStyle = this.randomColor(no);
-            this.ctx.strokeStyle = this.randomColor(no);
-            this.ctx.beginPath();
-            this.ctx.arc(pos.x, pos.y, w, 0, PI2);
-            this.ctx.stroke();
-            no += 1;
+          for (const d of c.v) {
+            c.cv.push(d.convert(b, this));
           }
         }
-
-        cValue -= this.attrs.speed;
       }
     }
-  }, {
-    key: "randomColor",
-    value: function randomColor(no) {
-      return "hsl(" + (no + cValue) + "," + "70%," + "50%)";
-    }
-  }]);
 
-  return LeonSans;
-}(MC__default["default"].BrowserClip);
+    this.data_ = arr;
+    this.setPosition();
+  }
+
+  updatePathsForRect() {
+    const total = this.data_.length;
+    const paths = [];
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.data_[i];
+
+      if (d.rawWavePaths) {
+        d.wavePaths = addRectToPaths(d.rawWavePaths, d);
+      }
+
+      if (d.rawPaths) {
+        d.paths = addRectToPaths(d.rawPaths, d);
+        Array.prototype.push.apply(paths, d.paths);
+      }
+    }
+
+    this.paths_ = paths;
+  }
+
+  updateLinesForRect() {
+    const total = this.data_.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.data_[i];
+      d.lines = getLines(d);
+    }
+  }
+
+  reset() {
+    this.lineWidth_ = 1;
+    this.drawing_ = [];
+    this.data_ = null;
+    this.paths_ = null;
+    this.lines_ = null;
+    this.rect_ = {
+      x: 0,
+      y: 0,
+      w: 0,
+      h: 0
+    };
+    this.align_ = "left";
+    this.scale_ = 1;
+    this.fontRatio_ = 1;
+  }
+
+}
+
+/*!
+ * VERSION: 1.6.3
+ * DATE: 2019-09-13
+ * https://leon-sans.com
+ *
+ * @license Copyright (c) 2019, Jongmin Kim. All rights reserved.
+ **/
+class LeonSans$1 extends Dispatcher {
+  constructor() {
+    let {
+      text = "",
+      size = 500,
+      weight = MIN_FONT_WEIGHT,
+      color = ["#000000"],
+      colorful = ["#c5d73f", "#9d529c", "#49a9db", "#fec330", "#5eb96e", "#fc5356", "#f38f31"],
+      tracking = 0,
+      leading = 0,
+      align = "left",
+      pathGap = 0.5,
+      amplitude = 0.5,
+      width = 0,
+      breakWord = false,
+      fps = 30,
+      isPath = false,
+      isWave = false
+    } = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    super();
+    this.size_ = size;
+    this.weight_ = weight;
+    this.color_ = color;
+    this.colorful_ = shuffle(colorful);
+    this.tracking_ = tracking;
+    this.leading_ = leading;
+    this.pathGap_ = pathGap;
+    this.amplitude_ = amplitude;
+    this.width_ = width;
+    this.breakWord_ = breakWord;
+    this.fps_ = fps;
+    this.fpsTime_ = 1000 / this.fps_;
+    this.isPath_ = isPath;
+    this.isWave_ = isWave;
+    this.model = new Model();
+    this.str_ = null;
+    this.time_ = null;
+    this.isFps_ = false;
+    this.isForceRander_ = false;
+    this.updateID_ = 0;
+    this.dPathsID_ = null;
+    this.pPathsID_ = null;
+    this.wPathsID_ = null;
+    this.guideID_ = null;
+    this.text = text;
+    this.model.align = align;
+  }
+
+  on(event, callback) {
+    super.on(event, callback);
+    this.update();
+  }
+
+  off(event, callback) {
+    super.off(event, callback);
+  }
+
+  get text() {
+    return this.str_;
+  }
+
+  set text(str) {
+    if (this.str_ == str) return;
+    this.str_ = str;
+    this.update();
+  }
+
+  get size() {
+    return this.size_;
+  }
+
+  set size(v) {
+    if (this.size_ == v) return;
+    this.size_ = v;
+    this.update();
+    this.isForceRander_ = true;
+  }
+
+  get weight() {
+    return this.weight_;
+  }
+
+  set weight(v) {
+    if (v < MIN_FONT_WEIGHT) {
+      v = MIN_FONT_WEIGHT;
+    } else if (v > MAX_FONT_WEIGHT) {
+      v = MAX_FONT_WEIGHT;
+    }
+
+    if (this.weight_ == v) return;
+    this.weight_ = v;
+    this.update();
+    this.isForceRander_ = true;
+  }
+
+  get color() {
+    return this.color_;
+  }
+
+  set color(v) {
+    if (this.color_ == v) return;
+    this.color_ = v;
+  }
+
+  get tracking() {
+    return this.tracking_;
+  }
+
+  set tracking(v) {
+    if (this.tracking_ == v) return;
+    this.tracking_ = v;
+    this.update();
+    this.isForceRander_ = true;
+  }
+
+  get leading() {
+    return this.leading_;
+  }
+
+  set leading(v) {
+    if (this.leading_ == v) return;
+    this.leading_ = v;
+    this.update();
+    this.isForceRander_ = true;
+  }
+
+  get align() {
+    return this.model.align;
+  }
+
+  set align(v) {
+    if (this.model.align != v) {
+      this.model.align = v;
+      this.updateID_++;
+      this.updateSignal();
+    }
+  }
+
+  get pathGap() {
+    return this.pathGap_;
+  }
+
+  set pathGap(v) {
+    if (this.pathGap_ != v) {
+      this.pathGap_ = v;
+      this.updatePatternPaths(true);
+      this.updateWavePaths(true);
+      this.isForceRander_ = true;
+    }
+  }
+
+  get amplitude() {
+    return this.amplitude_;
+  }
+
+  set amplitude(v) {
+    this.amplitude_ = v;
+  }
+
+  get rect() {
+    return this.model.rect;
+  }
+
+  set maxWidth(v) {
+    if (this.width_ == v) return;
+    this.width_ = v;
+    this.update();
+  }
+
+  get maxWidth() {
+    return this.width_;
+  }
+
+  set breakWord(v) {
+    if (this.breakWord_ == v) return;
+    this.breakWord_ = v;
+    this.update();
+  }
+
+  get breakWord() {
+    return this.breakWord_;
+  }
+
+  get isPath() {
+    return this.isPath_;
+  }
+
+  set isPath(v) {
+    this.isPath_ = v;
+    this.updatePatternPaths(true);
+  }
+
+  get isWave() {
+    return this.isWave_;
+  }
+
+  set isWave(v) {
+    this.isWave_ = v;
+    this.updateWavePaths(true);
+  }
+
+  get fps() {
+    return this.fps_;
+  }
+
+  set fps(v) {
+    this.fps_ = v;
+    this.fpsTime_ = 1000 / this.fps_;
+  }
+
+  get lineWidth() {
+    return this.model.lineWidth;
+  }
+
+  get scale() {
+    return this.model.scale;
+  }
+
+  get drawing() {
+    return this.model.drawing;
+  }
+
+  get data() {
+    return this.model.data;
+  }
+
+  get paths() {
+    return this.model.paths;
+  }
+
+  get drawingPaths() {
+    return this.model.drawingPaths;
+  }
+
+  get wavePaths() {
+    return this.model.wavePaths;
+  }
+
+  position() {
+    let x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    let y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+    if (this.model.position(x, y)) {
+      this.updateID_++;
+      this.updateSignal();
+    }
+  }
+
+  update() {
+    this.updateID_++;
+    this.model.update(this.str_, this.width_, this.breakWord_, this.weight_, this.size_, this.tracking_, this.leading_);
+
+    if (this.isPath_ || this.isWave_) {
+      this.updatePatternPaths();
+      this.updateWavePaths();
+    } else {
+      this.updateSignal();
+    }
+  }
+
+  updateGuide() {
+    if (this.guideID_ != this.updateID_) {
+      this.guideID_ = this.updateID_;
+      this.model.updateGuide();
+    }
+  }
+  /**
+   * Update paths for drawing in WebGL (PIXI.js). It's very expensive, only call when it needs.
+   */
+
+
+  updateDrawingPaths() {
+    if (this.dPathsID_ != this.updateID_) {
+      this.dPathsID_ = this.updateID_;
+      this.model.updateDrawingPaths();
+    }
+  }
+  /**
+   * Update paths for pattern
+   * @param {boolean} force - Force execution
+   */
+
+
+  updatePatternPaths(force) {
+    if (this.isPath_ && (force || this.pPathsID_ != this.updateID_)) {
+      this.pPathsID_ = this.updateID_;
+      this.model.updatePatternPaths(this.pathGap_);
+      this.isForceRander_ = true;
+      this.updateSignal();
+    }
+  }
+  /**
+   * Update paths for wave effect
+   * @param {boolean} force - Force execution
+   */
+
+
+  updateWavePaths(force) {
+    if (this.isWave_ && (force || this.wPathsID_ != this.updateID_)) {
+      this.wPathsID_ = this.updateID_;
+      this.model.updateWavePaths(this.pathGap_);
+      this.isForceRander_ = true;
+      this.updateSignal();
+    }
+  }
+
+  updateSignal() {
+    this.model.updateLinesForRect();
+    this.model.updatePathsForRect();
+    this.dispatch("update", this.model);
+  }
+
+  reset() {
+    this.size_ = 500;
+    this.weight_ = MIN_FONT_WEIGHT;
+    this.color_ = ["#000000"];
+    this.tracking_ = 0;
+    this.leading_ = 0;
+    this.pathGap_ = 0.5;
+    this.amplitude_ = 0.5;
+    this.width_ = 0;
+    this.breakWord_ = false;
+    this.fps_ = 30;
+    this.fpsTime_ = 1000 / this.fps_;
+    this.isPath_ = false;
+    this.isWave_ = false;
+    this.str_ = null;
+    this.time_ = null;
+    this.isFps_ = false;
+    this.isForceRander_ = false;
+    this.updateID_ = 0;
+    this.dPathsID_ = null;
+    this.pPathsID_ = null;
+    this.wPathsID_ = null;
+    this.guideID_ = null;
+    this.model.reset();
+  }
+
+  dispose() {
+    this.reset();
+    this.model = null;
+  }
+  /**
+   * Draw text in WebGL with PIXI.js
+   * @param {PIXI.Graphics} graphics
+   */
+
+
+  drawPixi(graphics) {
+    const total = this.model.data.length;
+    let i, d, color;
+
+    for (i = 0; i < total; i++) {
+      d = this.model.data[i];
+      color = PixiColor(i, d, this.color_);
+      PixiLines(graphics, d, this.lineWidth, color);
+    }
+  }
+  /**
+   * Draw text in the Canvas element.
+   * @param {CanvasRenderingContext2D} ctx
+   */
+
+
+  draw(ctx) {
+    ctx.lineWidth = this.lineWidth;
+    const total = this.model.data.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.model.data[i];
+      Color(ctx, i, d, this.color_);
+      Lines(ctx, d);
+    }
+  }
+  /**
+   * Draw the colorful effect.
+   * @param {CanvasRenderingContext2D} ctx
+   */
+
+
+  drawColorful(ctx) {
+    ctx.lineWidth = this.lineWidth;
+    Colorful(ctx, this.model, this.colorful_);
+  }
+  /**
+   * Draw the wave effect.
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {DOMHighResTimeStamp} t time stemp from requestAnimationFrame()
+   */
+
+
+  wave(ctx, t) {
+    ctx.lineWidth = this.lineWidth;
+
+    if (t) {
+      if (!this.time_) this.time_ = t;
+      const p = t - this.time_;
+
+      if (p > this.fpsTime_ || this.isForceRander_) {
+        this.time_ = t;
+        this.isFps_ = true;
+      } else {
+        this.isFps_ = false;
+      }
+    }
+
+    this.isForceRander_ = false;
+    const total = this.model.data.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.model.data[i];
+      Color(ctx, i, d, this.color_);
+      Wave(ctx, d, this.model.scale, this.amplitude_, this.weight_, this.isFps_);
+    }
+  }
+  /**
+   * Draw rectangle shapes at each path point.
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} w pattern width
+   * @param {number} h pattern height
+   */
+
+
+  pattern(ctx, w, h) {
+    const tw = w * this.model.scale;
+    const th = h * this.model.scale;
+    const total = this.model.data.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.model.data[i];
+      Pattern(ctx, d, tw, th);
+    }
+  }
+  /**
+   * Draw grid for each type.
+   * @param {CanvasRenderingContext2D} ctx
+   */
+
+
+  grid(ctx) {
+    this.updateGuide();
+    const total = this.model.data.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.model.data[i];
+      Grids(ctx, d);
+    }
+  }
+  /**
+   * Draw circles at each drawing point and lines for each type.
+   * @param {CanvasRenderingContext2D} ctx
+   */
+
+
+  point(ctx) {
+    const total = this.model.data.length;
+    let i, d;
+
+    for (i = 0; i < total; i++) {
+      d = this.model.data[i];
+      Points(ctx, d);
+    }
+  }
+  /**
+   * Draw outline box for the text.
+   * @param {CanvasRenderingContext2D} ctx
+   * @private
+   */
+
+
+  box(ctx) {
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.strokeStyle = "#0b90dc";
+    ctx.rect(this.model.rect.x, this.model.rect.y, this.model.rect.w, this.model.rect.h);
+    ctx.stroke();
+  }
+
+}
+
+let cValue = 0;
+const PI2 = 2 * Math.PI;
+
+class LeonSans extends MC__default["default"].BrowserClip {
+  get html() {
+    return " <canvas> </canvas>";
+  }
+
+  onAfterRender() {
+    this.cValue = 0;
+    const canvas = this.context.getElements("canvas")[0];
+    this.sw = this.attrs.sw;
+    this.sh = this.attrs.sh;
+    const pixelRatio = 2;
+    this.ctx = canvas.getContext("2d");
+    canvas.width = this.sw * pixelRatio;
+    canvas.height = this.sh * pixelRatio;
+    canvas.style.width = this.sw + "px";
+    canvas.style.height = this.sh + "px";
+    this.ctx.scale(pixelRatio, pixelRatio);
+    const leon = new LeonSans$1({
+      text: this.attrs.text,
+      color: this.attrs.color,
+      weight: this.attrs.weight,
+      isPath: true,
+      pathGap: this.attrs.pathGap || this.attrs.drawing === "colorPattern" ? -1 : 0,
+      isWave: this.attrs.drawing === "wave" ? true : false,
+      tracking: this.attrs.tracking,
+      leading: this.attrs.leading,
+      size: this.attrs.size || 80,
+      patternWidth: 10,
+      patternHeight: 90,
+      colorful: this.attrs.colorful
+    }); // leon.grid(this.ctx);
+
+    this.attrs.round ? this.ctx.lineCap = "round" : this.ctx.lineCap = "butt";
+    this.attrs.multiply ? this.ctx.globalCompositeOperation = "multiply" : this.ctx.globalCompositeOperation = "source-over";
+    this.setCustomEntity(this.attrs.canvasId, {
+      leon: leon,
+      ctx: this.ctx,
+      sw: this.sw,
+      sh: this.sh,
+      drawing: this.attrs.drawing,
+      pathGap: this.attrs.pathGap,
+      patternWidth: this.attrs.patternWidth,
+      patternHeight: this.attrs.patternHeight
+    }); // switch (this.attrs.drawing) {
+    //   case "colorful":
+    //     leon.drawColorful(this.ctx);
+    //     break;
+    //   case "pattern":
+    //     leon.pattern(
+    //       this.ctx,
+    //       this.attrs.patternWidth,
+    //       this.attrs.patternHeight
+    //     );
+    //     break;
+    //   case "wave":
+    //     break;
+    //   default:
+    //     leon.draw(this.ctx);
+    // }
+
+    this.leon = leon;
+  }
+
+  onAfterProgress() {
+    if (this.attrs.drawing === "colorPattern") {
+      this.ctx.clearRect(0, 0, this.sw, this.sh);
+      this.ctx.lineWidth = 0.2;
+      const w = this.attrs.patternWidth;
+      const total = this.leon.data.length;
+      let i,
+          pos,
+          no = 0;
+      let d, j, j_total;
+
+      for (i = 0; i < total; i++) {
+        d = this.leon.data[i].paths;
+        j_total = Math.round(d.length * this.leon.drawing[i].value);
+
+        for (j = 0; j < j_total; j++) {
+          pos = d[j];
+          this.ctx.fillStyle = this.randomColor(no);
+          this.ctx.strokeStyle = this.randomColor(no);
+          this.ctx.beginPath();
+          this.ctx.arc(pos.x, pos.y, w, 0, PI2);
+          this.ctx.stroke();
+          no += 1;
+        }
+      }
+
+      cValue -= this.attrs.speed;
+    }
+  }
+
+  randomColor(no) {
+    return "hsl(" + (no + cValue) + "," + "70%," + "50%)";
+  }
+
+}
 
 var compositeAttributes = {
   LeonAttrs: ["completion_rate", "weight", "tracking", "leading", "size", "pathGap", "patternWidth", "patternHeight"]
 };
 
-var LeonIncident = /*#__PURE__*/function (_Effect) {
-  _inherits(LeonIncident, _Effect);
+class LeonIncident extends MC.Effect {
+  getScratchValue() {
+    const scratchValues = {};
+    const LeonClip = this.element.entity.leon;
+    compositeAttributes.LeonAttrs.forEach(key => {
+      var _LeonClip$key;
 
-  var _super = _createSuper(LeonIncident);
-
-  function LeonIncident() {
-    _classCallCheck(this, LeonIncident);
-
-    return _super.apply(this, arguments);
+      return scratchValues[key] = (_LeonClip$key = LeonClip[key]) !== null && _LeonClip$key !== void 0 ? _LeonClip$key : 0;
+    });
+    return scratchValues;
   }
 
-  _createClass(LeonIncident, [{
-    key: "getScratchValue",
-    value: function getScratchValue() {
-      var scratchValues = {};
-      var LeonClip = this.element.entity.leon;
-      compositeAttributes.LeonAttrs.forEach(function (key) {
-        var _LeonClip$key;
+  drawning() {
+    var _leon$patternWidth, _leon$patternHeight;
 
-        return scratchValues[key] = (_LeonClip$key = LeonClip[key]) !== null && _LeonClip$key !== void 0 ? _LeonClip$key : 0;
-      });
-      return scratchValues;
+    // handle different cases of drawing functionalities
+    const {
+      drawing,
+      ctx,
+      leon,
+      patternHeight,
+      patternWidth
+    } = this.element.entity;
+
+    switch (drawing) {
+      case "colorful":
+        leon.drawColorful(ctx);
+        break;
+
+      case "pattern":
+        leon.pattern(ctx, (_leon$patternWidth = leon.patternWidth) !== null && _leon$patternWidth !== void 0 ? _leon$patternWidth : patternWidth, (_leon$patternHeight = leon.patternHeight) !== null && _leon$patternHeight !== void 0 ? _leon$patternHeight : patternHeight);
+        break;
+
+      default:
+        leon.draw(ctx);
     }
-  }, {
-    key: "drawning",
-    value: function drawning() {
-      var _leon$patternWidth, _leon$patternHeight;
+  }
 
-      // handle different cases of drawing functionalities
-      var _this$element$entity = this.element.entity,
-          drawing = _this$element$entity.drawing,
-          ctx = _this$element$entity.ctx,
-          leon = _this$element$entity.leon,
-          patternHeight = _this$element$entity.patternHeight,
-          patternWidth = _this$element$entity.patternWidth;
+  clearRect() {
+    // this function clears the canvas in every RAF
+    const {
+      ctx,
+      sw,
+      sh
+    } = this.element.entity;
+    ctx.clearRect(0, 0, sw, sh);
+  }
 
-      switch (drawing) {
-        case "colorful":
-          leon.drawColorful(ctx);
-          break;
+  animate(fraction) {
+    // this function animate the attributes before drawing them
+    const {
+      leon
+    } = this.element.entity;
+    compositeAttributes.LeonAttrs.forEach(compoAttribute => {
+      const targetValue = this.targetValue[compoAttribute];
+      const initialValue = this.initialValue[compoAttribute];
+      const difference = targetValue - initialValue;
+      const finalValue = fraction * difference + initialValue;
+      leon[compoAttribute] = finalValue;
 
-        case "pattern":
-          leon.pattern(ctx, (_leon$patternWidth = leon.patternWidth) !== null && _leon$patternWidth !== void 0 ? _leon$patternWidth : patternWidth, (_leon$patternHeight = leon.patternHeight) !== null && _leon$patternHeight !== void 0 ? _leon$patternHeight : patternHeight);
-          break;
-
-        default:
-          leon.draw(ctx);
+      if (compoAttribute === "completion_rate") {
+        leon.drawing.forEach(drawingElement => {
+          drawingElement.value = finalValue;
+        });
       }
-    }
-  }, {
-    key: "clearRect",
-    value: function clearRect() {
-      // this function clears the canvas in every RAF
-      var _this$element$entity2 = this.element.entity,
-          ctx = _this$element$entity2.ctx,
-          sw = _this$element$entity2.sw,
-          sh = _this$element$entity2.sh;
-      ctx.clearRect(0, 0, sw, sh);
-    }
-  }, {
-    key: "animate",
-    value: function animate(fraction) {
-      var _this = this;
+    });
+  }
 
-      // this function animate the attributes before drawing them
-      var leon = this.element.entity.leon;
-      compositeAttributes.LeonAttrs.forEach(function (compoAttribute) {
-        var targetValue = _this.targetValue[compoAttribute];
-        var initialValue = _this.initialValue[compoAttribute];
-        var difference = targetValue - initialValue;
-        var finalValue = fraction * difference + initialValue;
-        leon[compoAttribute] = finalValue;
+  onProgress(m) {
+    compositeAttributes.LeonAttrs.forEach(compoAttribute => {
+      const initialValue = this.initialValue[compoAttribute];
+      const targetValue = this.targetValue[compoAttribute];
+      const difference = targetValue - initialValue;
+      const {
+        leon
+      } = this.element.entity;
+      leon[compoAttribute] = this.getFraction(m) * difference + initialValue;
+    });
+    this.clearRect();
+    this.animate(this.getFraction(m));
+    this.drawning();
+  }
 
-        if (compoAttribute === "completion_rate") {
-          leon.drawing.forEach(function (drawingElement) {
-            drawingElement.value = finalValue;
-          });
-        }
-      });
-    }
-  }, {
-    key: "onProgress",
-    value: function onProgress(m) {
-      var _this2 = this;
+}
 
-      compositeAttributes.LeonAttrs.forEach(function (compoAttribute) {
-        var initialValue = _this2.initialValue[compoAttribute];
-        var targetValue = _this2.targetValue[compoAttribute];
-        var difference = targetValue - initialValue;
-        var leon = _this2.element.entity.leon;
-        leon[compoAttribute] = _this2.getFraction(m) * difference + initialValue;
-      });
-      this.clearRect();
-      this.animate(this.getFraction(m));
-      this.drawning();
-    }
-  }]);
-
-  return LeonIncident;
-}(MC.Effect);
-
-var _COLOR = "color";
-var animatedAttrs = {
+const _COLOR = "color";
+const animatedAttrs = {
   type: "object",
   // strict : true,
   props: {
@@ -7806,7 +5029,7 @@ var animatedAttrs = {
     }
   }
 };
-var clipValidationRules = {
+const clipValidationRules = {
   canvasId: {
     type: "string",
     optional: false
@@ -7901,16 +5124,17 @@ var index = {
   version: version,
   Clip: {
     exportable: LeonSans,
-    attributesValidationRules: _objectSpread2({}, clipValidationRules)
+    attributesValidationRules: { ...clipValidationRules
+    }
   },
   incidents: [{
     exportable: LeonIncident,
     name: "LeonIncident",
     attributesValidationRules: {
-      animatedAttrs: animatedAttrs
+      animatedAttrs
     }
   }],
-  compositeAttributes: compositeAttributes
+  compositeAttributes
 };
 
 module.exports = index;
