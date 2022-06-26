@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/donkeyclip/motorcortex-leonsans/compare/v1.3.1...v1.3.2) (2022-06-26)
+
+
+### Bug Fixes
+
+* import only effect instead of full MC ([be79371](https://github.com/donkeyclip/motorcortex-leonsans/commit/be793714b44dcac978627feeec1c4630ae15cfcb))
+
 ## [1.3.1](https://github.com/donkeyclip/motorcortex-leonsans/compare/v1.3.0...v1.3.1) (2022-06-05)
 
 
