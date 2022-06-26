@@ -1,10 +1,6 @@
 'use strict';
 
-var MC = require('@donkeyclip/motorcortex');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var MC__default = /*#__PURE__*/_interopDefaultLegacy(MC);
+var motorcortex = require('@donkeyclip/motorcortex');
 
 class Dispatcher {
   constructor() {
@@ -4788,7 +4784,7 @@ class LeonSans$1 extends Dispatcher {
 let cValue = 0;
 const PI2 = 2 * Math.PI;
 
-class LeonSans extends MC__default["default"].BrowserClip {
+class LeonSans extends motorcortex.BrowserClip {
   get html() {
     return " <canvas> </canvas>";
   }
@@ -4891,7 +4887,7 @@ var compositeAttributes = {
   LeonAttrs: ["completion_rate", "weight", "tracking", "leading", "size", "pathGap", "patternWidth", "patternHeight"]
 };
 
-class LeonIncident extends MC.Effect {
+class LeonIncident extends motorcortex.Effect {
   getScratchValue() {
     const scratchValues = {};
     const LeonClip = this.element.entity.leon;

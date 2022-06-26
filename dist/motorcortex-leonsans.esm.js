@@ -1,4 +1,4 @@
-import MC, { Effect } from '@donkeyclip/motorcortex';
+import { BrowserClip, Effect } from '@donkeyclip/motorcortex';
 
 class Dispatcher {
   constructor() {
@@ -4782,7 +4782,7 @@ class LeonSans$1 extends Dispatcher {
 let cValue = 0;
 const PI2 = 2 * Math.PI;
 
-class LeonSans extends MC.BrowserClip {
+class LeonSans extends BrowserClip {
   get html() {
     return " <canvas> </canvas>";
   }
