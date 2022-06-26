@@ -5111,7 +5111,7 @@ const clipValidationRules = {
 };
 
 var name = "@donkeyclip/motorcortex-leonsans";
-var version = "1.3.1";
+var version = "1.3.2";
 
 var index = {
   npm_name: name,
