@@ -13,12 +13,12 @@ class Dispatcher {
 
   on(event, callback) {
     if (typeof callback !== "function") {
-      console.error("The listener callback must be a function, the given type is ".concat(typeof callback));
+      console.error(`The listener callback must be a function, the given type is ${typeof callback}`);
       return false;
     }
 
     if (typeof event !== "string") {
-      console.error("The event name must be a string, the given type is ".concat(typeof event));
+      console.error(`The event name must be a string, the given type is ${typeof event}`);
       return false;
     }
 
@@ -33,7 +33,7 @@ class Dispatcher {
 
   off(event, callback) {
     if (this.handlers_[event] === undefined) {
-      console.error("This event: ".concat(event, " does not exist"));
+      console.error(`This event: ${event} does not exist`);
       return false;
     }
 
@@ -4786,7 +4786,7 @@ const PI2 = 2 * Math.PI;
 
 class LeonSans extends motorcortex.BrowserClip {
   get html() {
-    return " <canvas> </canvas>";
+    return ` <canvas> </canvas>`;
   }
 
   onAfterRender() {
@@ -4891,17 +4891,11 @@ class LeonIncident extends motorcortex.Effect {
   getScratchValue() {
     const scratchValues = {};
     const LeonClip = this.element.entity.leon;
-    compositeAttributes.LeonAttrs.forEach(key => {
-      var _LeonClip$key;
-
-      return scratchValues[key] = (_LeonClip$key = LeonClip[key]) !== null && _LeonClip$key !== void 0 ? _LeonClip$key : 0;
-    });
+    compositeAttributes.LeonAttrs.forEach(key => scratchValues[key] = LeonClip[key] ?? 0);
     return scratchValues;
   }
 
   drawning() {
-    var _leon$patternWidth, _leon$patternHeight;
-
     // handle different cases of drawing functionalities
     const {
       drawing,
@@ -4917,7 +4911,7 @@ class LeonIncident extends motorcortex.Effect {
         break;
 
       case "pattern":
-        leon.pattern(ctx, (_leon$patternWidth = leon.patternWidth) !== null && _leon$patternWidth !== void 0 ? _leon$patternWidth : patternWidth, (_leon$patternHeight = leon.patternHeight) !== null && _leon$patternHeight !== void 0 ? _leon$patternHeight : patternHeight);
+        leon.pattern(ctx, leon.patternWidth ?? patternWidth, leon.patternHeight ?? patternHeight);
         break;
 
       default:
