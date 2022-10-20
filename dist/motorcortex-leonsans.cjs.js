@@ -10,44 +10,36 @@ class Dispatcher {
       }
     };
   }
-
   on(event, callback) {
     if (typeof callback !== "function") {
       console.error(`The listener callback must be a function, the given type is ${typeof callback}`);
       return false;
     }
-
     if (typeof event !== "string") {
       console.error(`The event name must be a string, the given type is ${typeof event}`);
       return false;
     }
-
     if (this.handlers_[event] === undefined) {
       this.handlers_[event] = {
         listeners: []
       };
     }
-
     this.handlers_[event].listeners.push(callback);
   }
-
   off(event, callback) {
     if (this.handlers_[event] === undefined) {
       console.error(`This event: ${event} does not exist`);
       return false;
     }
-
     this.handlers_[event].listeners = this.handlers_[event].listeners.filter(listener => {
       return listener.toString() !== callback.toString();
     });
   }
-
   dispatch(event, data) {
     this.handlers_[event].listeners.forEach(listener => {
       listener(data);
     });
   }
-
 }
 
 const DEFAULT_FONT_SIZE = 500;
@@ -77,8 +69,8 @@ function getScale(size) {
 }
 function getLineW(fontW, scale) {
   let lw = fontW * scale;
-  if (lw < 1) lw = 1; //if (weight == 1) lw = 1
-
+  if (lw < 1) lw = 1;
+  //if (weight == 1) lw = 1
   return lw;
 }
 function getTracking(tracking, scale) {
@@ -102,6 +94,7 @@ function getRect(d, scale) {
     h: h
   };
 }
+
 /**
  * @name getGap
  * @property {Object} - typo data object from 'font/index.js'
@@ -109,7 +102,6 @@ function getRect(d, scale) {
  * @returns {Object} the gap x and y
  * @description get a typo gap from thin to bold weight
  */
-
 /*
 export function getGap(d, weightRatio) {
     const gx1 = d.ratio.x1
@@ -133,7 +125,6 @@ export function getGap(d, weightRatio) {
  * @returns {Object} center position x and y
  * @description get a center position of a typo
  */
-
 function getCenter(w, h, scale) {
   const x = w / 2;
   const y = (h - (220 - 90) * RECT_RATIO * scale) / 2;
@@ -142,6 +133,7 @@ function getCenter(w, h, scale) {
     y: y
   };
 }
+
 /**
  * @name getRange
  * @property {Object} - typo data object from 'font/index.js'
@@ -150,7 +142,6 @@ function getCenter(w, h, scale) {
  * @returns {Object} ratio range
  * @description save ratio range to control each line's coordinate
  */
-
 function getRange(d, weightRatio, circleRound) {
   const gx1 = d.ratio.x1;
   const gx2 = d.ratio.x2;
@@ -177,26 +168,22 @@ function getLines(data) {
   const lines = [];
   let i, j, k, j_total;
   let d2, d3, cp, dir, lt, ltRatio, prevRatio;
-
   for (i = 0; i < total; i++) {
     d2 = data.typo.p[i];
     j_total = d2.cv.length;
-
     for (j = 0; j < j_total; j++) {
-      d3 = d2.cv[j]; // add current position to all points
-
+      d3 = d2.cv[j];
+      // add current position to all points
       cp = d3.addRect(data.rect);
       dir = d2.d;
       lt = data.pointsLength.lengths[i];
       ltRatio = lt / data.pointsLength.max;
       prevRatio = 0;
-
       if (i > 0) {
         for (k = 0; k < i; k++) {
           prevRatio += data.pointsLength.lengths[k] / data.pointsLength.max;
         }
       }
-
       ltRatio += prevRatio;
       lines.push({
         pos: cp,
@@ -207,10 +194,10 @@ function getLines(data) {
         minDrawing: prevRatio,
         closePath: d3.ratio.c,
         stroke: (ctx, d) => {
-          const dv = getCurrent(d.drawing.value, d.maxDrawing, d.minDrawing, 1, 0); //if (d.direction == 1) {
+          const dv = getCurrent(d.drawing.value, d.maxDrawing, d.minDrawing, 1, 0);
+          //if (d.direction == 1) {
           //    dv = getCurrent(1 - d.drawing.value, d.minDrawing, d.maxDrawing, 1, 0);
           //}
-
           if (dv > 0 && d.pos.type != "a") {
             const frac = d.lengths * dv;
             ctx.setLineDash([d.lengths]);
@@ -221,47 +208,40 @@ function getLines(data) {
       });
     }
   }
-
   return lines;
 }
 function addRectToPaths(path, data) {
   const total = path.length;
   const arr = [];
   let i, cp, p;
-
   for (i = 0; i < total; i++) {
     p = path[i];
     cp = p.addRect(data.rect);
     arr.push(cp);
   }
-
   return arr;
 }
 function shuffle(oldArray) {
   const newArray = oldArray.slice(),
-        len = newArray.length;
+    len = newArray.length;
   let i = len,
-      p,
-      t;
-
+    p,
+    t;
   while (i--) {
     p = Math.random() * len | 0;
     t = newArray[i];
     newArray[i] = newArray[p];
     newArray[p] = t;
   }
-
   return newArray;
 }
 
 function Lines(ctx, data) {
   const total = data.lines.length;
   let i, d, pos;
-
   for (i = 0; i < total; i++) {
     d = data.lines[i];
     pos = d.pos;
-
     if (pos.type == "a") {
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, pos.radius * d.drawing.value, 0, PI2$1);
@@ -275,7 +255,6 @@ function Lines(ctx, data) {
     } else if (pos.type == "b") {
       ctx.bezierCurveTo(pos.x, pos.y, pos.x2, pos.y2, pos.x3, pos.y3);
     }
-
     d.stroke(ctx, d);
   }
 }
@@ -285,31 +264,24 @@ function Points(ctx, data) {
   ctx.lineWidth = 1;
   let total = data.lines.length;
   let i;
-
   for (i = 0; i < total; i++) {
     eachLine_$1(ctx, data.lines[i]);
   }
-
   ctx.restore();
   ctx.save();
   ctx.lineWidth = 1;
   total = data.typo.p.length;
-
   for (i = 0; i < total; i++) {
     eachPoint_(ctx, data.typo.p[i], data);
   }
-
   ctx.restore();
 }
-
 function eachPoint_(ctx, p, data) {
   const total = p.v.length;
   let i, mp, cp;
-
   for (i = 0; i < total; i++) {
     mp = p.cv[i];
     cp = mp.addRect(data.rect);
-
     if (mp.type == "b") {
       ctx.fillStyle = "#ff2a00";
       ctx.beginPath();
@@ -338,10 +310,8 @@ function eachPoint_(ctx, p, data) {
     }
   }
 }
-
 function eachLine_$1(ctx, d) {
   const pos = d.pos;
-
   if (pos.type != "a") {
     if (pos.type == "m") {
       ctx.strokeStyle = "#ff2a00";
@@ -352,7 +322,6 @@ function eachLine_$1(ctx, d) {
     } else if (pos.type == "b") {
       ctx.bezierCurveTo(pos.x, pos.y, pos.x2, pos.y2, pos.x3, pos.y3);
     }
-
     ctx.stroke();
   }
 }
@@ -364,13 +333,11 @@ function Grids(ctx, data) {
   ctx.strokeStyle = "#aaaaaa";
   const total = data.guide.length;
   let i, grid;
-
   for (i = 0; i < total; i++) {
     grid = data.rect.y + data.grid[i];
     ctx.moveTo(data.rect.x, grid);
     ctx.lineTo(data.rect.x + data.rect.w, grid);
   }
-
   ctx.stroke();
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -389,10 +356,8 @@ function Wave(ctx, data, scale, amplitude, weight, fps) {
   let i, p, prev, qx, qy;
   const saveDot = [];
   ctx.beginPath();
-
   for (i = 0; i < total; i++) {
     p = data.wavePaths[i];
-
     if (fps) {
       const ranx = Math.random() * m_amplitude - m_amplitude / 2;
       const rany = Math.random() * m_amplitude - m_amplitude / 2;
@@ -401,7 +366,6 @@ function Wave(ctx, data, scale, amplitude, weight, fps) {
       p.sx = p.x + ranx;
       p.sy = p.y + rany;
     }
-
     if (p.type == "a") {
       saveDot.push(p);
     } else if (p.start == 1) {
@@ -411,7 +375,6 @@ function Wave(ctx, data, scale, amplitude, weight, fps) {
     } else {
       if (weight < THIN_LIMIT) {
         prev = data.wavePaths[i - 1];
-
         if (prev) {
           qx = prev.x + (p.x - prev.x) * 0.5;
           qy = prev.y + (p.y - prev.y) * 0.5;
@@ -422,9 +385,7 @@ function Wave(ctx, data, scale, amplitude, weight, fps) {
       }
     }
   }
-
   ctx.stroke();
-
   for (i = 0; i < saveDot.length; i++) {
     p = saveDot[i];
     ctx.beginPath();
@@ -439,16 +400,13 @@ function Pattern(ctx, data, w, h) {
   const w3 = w / 3;
   const h2 = h / 2;
   let i, p;
-
   for (i = 0; i < total; i++) {
     p = data.paths[i];
-
     if (p.num == 1) {
       ctx.fillStyle = "#ff00c5";
     } else {
       ctx.fillStyle = "#ff95f8";
     }
-
     if (p.type == "a") {
       ctx.beginPath();
       ctx.arc(p.x, p.y, w3, 0, PI2$1);
@@ -467,18 +425,15 @@ function Pattern(ctx, data, w, h) {
 function Color(ctx, no, data, color) {
   let c_total = color.length;
   const cur = (no + c_total * (Math.abs(no / 10 | 0) + 1)) % c_total;
-
   if (Array.isArray(color[cur])) {
     c_total = color[cur].length;
     const vv = 1 / (c_total + 1);
     const g = ctx.createLinearGradient(data.rect.x, data.rect.y, data.rect.x, data.rect.y + data.rect.h);
     let i;
     g.addColorStop(vv, color[cur][0]);
-
     for (i = 0; i < c_total; i++) {
       g.addColorStop(vv * (i + 1), color[cur][i]);
     }
-
     g.addColorStop(vv * (c_total + 1), color[cur][c_total - 1]);
     ctx.strokeStyle = g;
     ctx.fillStyle = g;
@@ -491,12 +446,11 @@ function Color(ctx, no, data, color) {
 function getLengths(item, model) {
   const total = item.typo.p.length;
   let c,
-      p,
-      max = 0,
-      i;
+    p,
+    max = 0,
+    i;
   const arr = [],
-        lt = [];
-
+    lt = [];
   for (i = 0; i < total; i++) {
     p = item.typo.p[i];
     c = getEachPath(item, p.v, model);
@@ -504,30 +458,26 @@ function getLengths(item, model) {
     arr.push(c.v);
     lt.push(c.l);
   }
-
   return {
     max: max,
     lines: arr,
     lengths: lt
   };
 }
-
 function getEachPath(item, points, model) {
   const total = points.length;
   let i,
-      p,
-      line,
-      cp1,
-      cp2,
-      prev,
-      length = 0;
+    p,
+    line,
+    cp1,
+    cp2,
+    prev,
+    length = 0;
   const lines = [];
-
   for (i = 0; i < total; i++) {
     p = points[i];
     line = {};
     cp2 = p.convert(item, model);
-
     if (i == 0 || p.type == "a") {
       line.x1 = cp2.x;
       line.y1 = cp2.y;
@@ -535,7 +485,6 @@ function getEachPath(item, points, model) {
       line.radius = cp2.radius;
     } else {
       cp1 = prev.convert(item, model);
-
       if (prev.type == "b") {
         line.x1 = cp1.x3;
         line.y1 = cp1.y3;
@@ -543,10 +492,8 @@ function getEachPath(item, points, model) {
         line.x1 = cp1.x;
         line.y1 = cp1.y;
       }
-
       line.x2 = cp2.x;
       line.y2 = cp2.y;
-
       if (p.type == "b") {
         line.x3 = cp2.x2;
         line.y3 = cp2.y2;
@@ -557,7 +504,6 @@ function getEachPath(item, points, model) {
         line.distance = distance(line.x1, line.y1, line.x2, line.y2);
       }
     }
-
     line.type = p.type;
     line.rotation = p.ratio.r;
     line.pat = p.ratio.p;
@@ -567,20 +513,17 @@ function getEachPath(item, points, model) {
     length += line.distance;
     prev = p;
   }
-
   return {
     v: lines,
     l: length
   };
 }
-
 function cubicBezierLength(x1, y1, x2, y2, x3, y3, x4, y4, sampleCount) {
   const ptCount = sampleCount || 40;
   let totDist = 0;
   let lastX = x1;
   let lastY = y1;
   let dx, dy, i, pt;
-
   for (i = 1; i < ptCount; i++) {
     pt = cubicQxy(i / ptCount, x1, y1, x2, y2, x3, y3, x4, y4);
     dx = pt.x - lastX;
@@ -589,13 +532,11 @@ function cubicBezierLength(x1, y1, x2, y2, x3, y3, x4, y4, sampleCount) {
     lastX = pt.x;
     lastY = pt.y;
   }
-
   dx = x4 - lastX;
   dy = y4 - lastY;
   totDist += Math.sqrt(dx * dx + dy * dy);
   return totDist;
 }
-
 function cubicQxy(t, x1, y1, x2, y2, x3, y3, x4, y4) {
   x1 += (x2 - x1) * t;
   x2 += (x3 - x2) * t;
@@ -612,10 +553,9 @@ function cubicQxy(t, x1, y1, x2, y2, x3, y3, x4, y4) {
     y: y1 + (y2 - y1) * t
   };
 }
-
 function distance(x1, y1, x2, y2) {
   const a = x2 - x1,
-        b = y2 - y1;
+    b = y2 - y1;
   return Math.sqrt(a * a + b * b);
 }
 
@@ -630,18 +570,15 @@ function Colorful(ctx, model, colors) {
   const total = model.data.length;
   let i, d, j, j_total, line, pos, prev;
   let max, length, prevRatio;
-
   for (i = 0; i < total; i++) {
     d = model.data[i];
     max = d.pointsLength.max;
     prevRatio = 0;
     j_total = d.lines.length;
     prev = null;
-
     for (j = 0; j < j_total; j++) {
       line = d.lines[j];
       pos = line.pos;
-
       if (pos.type == "a") {
         setColor(ctx);
         ctx.beginPath();
@@ -652,7 +589,6 @@ function Colorful(ctx, model, colors) {
         prev = pos;
       } else if (pos.type == "l") {
         length = distance(prev.x, prev.y, pos.x, pos.y);
-
         if (length / model.scale > MIN_DISTANCE) {
           // ignore short distance paths
           setColor(ctx);
@@ -661,11 +597,9 @@ function Colorful(ctx, model, colors) {
           ctx.lineTo(pos.x, pos.y);
           prevRatio += draw(ctx, line, length, max, d, prevRatio);
         }
-
         prev = pos;
       } else if (pos.type == "b") {
         length = cubicBezierLength(prev.x, prev.y, pos.x, pos.y, pos.x2, pos.y2, pos.x3, pos.y3);
-
         if (length / model.scale > MIN_DISTANCE) {
           setColor(ctx);
           ctx.beginPath();
@@ -673,7 +607,6 @@ function Colorful(ctx, model, colors) {
           ctx.bezierCurveTo(pos.x, pos.y, pos.x2, pos.y2, pos.x3, pos.y3);
           prevRatio += draw(ctx, line, length, max, d, prevRatio);
         }
-
         prev = {
           x: pos.x3,
           y: pos.y3
@@ -682,58 +615,47 @@ function Colorful(ctx, model, colors) {
     }
   }
 }
-
 function setColor(ctx) {
   const color = getColor();
   ctx.fillStyle = color;
   ctx.strokeStyle = color;
 }
-
 function getColor() {
   curColor++;
   if (curColor == colorTotal) curColor = 0;
   return colorArr[curColor];
 }
-
 function draw(ctx, line, length, max, d, prevRatio) {
   const ltRatio = length / max;
   let dv = getCurrent(d.drawing.value, prevRatio + ltRatio, prevRatio, 1, 0);
-
   if (line.direction == 1) {
     dv = getCurrent(1 - d.drawing.value, prevRatio, prevRatio + ltRatio, 1, 0);
   }
-
   if (dv > 0) {
     const frac = length * dv;
     ctx.setLineDash([length]);
     ctx.lineDashOffset = line.direction * (frac + length);
     ctx.stroke();
   }
-
   return ltRatio;
 }
 
 function PixiLines(graphics, data, lineW, color) {
   let total, i;
-
   if (data.drawing.value == 1) {
     total = data.lines.length;
-
     for (i = 0; i < total; i++) {
       eachLine_(graphics, data.lines[i], lineW, color);
     }
   } else {
     total = data.drawingPaths.length * data.drawing.value;
-
     for (i = 0; i < total; i++) {
       eachPath_(graphics, data.drawingPaths[i], lineW, color, data.drawing.value);
     }
   }
 }
-
 function eachLine_(graphics, data, lineW, color) {
   const pos = data.pos;
-
   if (pos.type == "a") {
     graphics.lineStyle(0, color, 0);
     graphics.beginFill(color);
@@ -747,12 +669,10 @@ function eachLine_(graphics, data, lineW, color) {
   } else if (pos.type == "b") {
     graphics.bezierCurveTo(pos.x, pos.y, pos.x2, pos.y2, pos.x3, pos.y3);
   }
-
   if (data.closePath) {
     graphics.closePath();
   }
 }
-
 function eachPath_(graphics, pos, lineW, color, dValue) {
   if (pos.type == "a") {
     graphics.lineStyle(0, color, 0);
@@ -772,7 +692,6 @@ function eachPath_(graphics, pos, lineW, color, dValue) {
 function PixiColor(no, data, color) {
   const c_total = color.length;
   const cur = (no + c_total * (Math.abs(no / 10 | 0) + 1)) % c_total;
-
   if (Array.isArray(color[cur])) ; else {
     return color[cur];
   }
@@ -785,12 +704,10 @@ function PixiColor(no, data, color) {
  * @returns {Object} the guide pos array
  * @description get a guide pos
  */
-
 function getGuide(d, scale) {
   const guide = [],
-        ggap = 10;
+    ggap = 10;
   let i, gvx, gvy;
-
   for (i = 0; i < 6; i++) {
     gvx = ggap * i + 20;
     gvy = ggap * i + 90;
@@ -801,9 +718,9 @@ function getGuide(d, scale) {
       y2: (d.rect.h - gvy) * RECT_RATIO * scale - i * ggap * RECT_RATIO * scale
     };
   }
-
   return guide;
 }
+
 /**
  * @name getGuide
  * @property {Object} - typo data object from 'font/index.js'
@@ -811,16 +728,13 @@ function getGuide(d, scale) {
  * @returns {Object} the guide pos array
  * @description get a guide pos
  */
-
 function getGrid(d, scale) {
   const grid = [],
-        gvy = [98, 340, 815];
+    gvy = [98, 340, 815];
   let i;
-
   for (i = 0; i < 3; i++) {
     grid[i] = gvy[i] * RECT_RATIO * scale;
   }
-
   return grid;
 }
 
@@ -849,13 +763,11 @@ function Vector(mp) {
   this.type = mp[0];
   this.x = mp[1] || 0;
   this.y = mp[2] || 0;
-
   if (this.type == "b") {
     this.x2 = mp[3] || 0;
     this.y2 = mp[4] || 0;
     this.x3 = mp[5] || 0;
     this.y3 = mp[6] || 0;
-
     if (mp[7] == null) {
       this.ratio = {
         x: 1,
@@ -869,7 +781,6 @@ function Vector(mp) {
         c: 0,
         // 1 is close path for PIXI bug - graphics.closePath()
         v: 0 // 1 is vertex, it's only for the vertex shape like V, W, A
-
       };
     } else {
       this.ratio = {};
@@ -924,13 +835,11 @@ Object.assign(Vector.prototype, {
     return vv;
   }
 });
-
 function convertR(type, pos, model) {
   let rd = 0;
   if (type == "a") rd = pos.range.cr * model.scale * model.fontRatio;
   return rd;
 }
-
 function convertX(x, pos, ratio, model) {
   const rr = pos.range.r * ratio.x;
   const gx = (pos.range.gx2 - pos.range.gx1) * rr + pos.range.gx1;
@@ -946,6 +855,7 @@ function convertY(y, pos, ratio, model) {
 }
 
 let prevPoint = null;
+
 /**
  * @name getPaths
  * @property {Model} model - mode.js
@@ -954,37 +864,31 @@ let prevPoint = null;
  * @returns {Array} Returns paths array
  * @description get a guide pos
  */
-
 function getPaths(model, data, pathGap, isPattern) {
   const lines = data.pointsLength.lines;
   const scale = model.scale;
   let total = lines.length,
-      i,
-      j_total,
-      j,
-      line,
-      lg,
-      direction,
-      paths2 = [];
+    i,
+    j_total,
+    j,
+    line,
+    lg,
+    direction,
+    paths2 = [];
   const arr = [],
-        paths = [];
-
+    paths = [];
   for (i = 0; i < total; i++) {
     line = lines[i];
     prevPoint = null;
     arr.push(getDotPos(line, pathGap, scale));
   }
-
   total = arr.length;
-
   for (i = 0; i < total; i++) {
     lg = arr[i];
     j_total = lg.length;
     paths2 = [];
-
     for (j = 0; j < j_total; j++) {
       line = lg[j];
-
       if (line.rotation != ROTATE_NONE) {
         if (isPattern) {
           // If the 'p' value of the font data is 1, it's not included in the pattern paths.
@@ -996,22 +900,17 @@ function getPaths(model, data, pathGap, isPattern) {
         }
       }
     }
-
     direction = data.typo.p[i].d;
-
     if (direction == 1) {
       paths2.reverse();
     }
-
     if (paths2.length > 0) {
       paths2[0].start = 1;
       Array.prototype.push.apply(paths, paths2);
     }
   }
-
   return paths;
 }
-
 function getDotPos(lines, pathGap, scale) {
   const total = lines.length;
   let i, j, j_total;
@@ -1022,10 +921,8 @@ function getDotPos(lines, pathGap, scale) {
   let isFirst = 1;
   let pgap = 1;
   if (pathGap > -1) pgap = getCurrent(pathGap, 1, 0, 80, 10) * scale;
-
   for (i = 0; i < total; i++) {
     line = lines[i];
-
     if (line.type == "a") {
       arr.push(new Point({
         x: line.x1,
@@ -1047,25 +944,20 @@ function getDotPos(lines, pathGap, scale) {
         fix: line.fix
       });
       pp = setPointValues(curPoint, prevPoint, line, 1);
-
       if (pp != null) {
         if (isFirst) {
           pp.type = "m";
           isFirst = 0;
         }
-
         arr.push(pp);
       }
-
       prevPoint = new Point(curPoint); //Object.assign({}, curPoint)
     } else {
       j_total = Math.ceil(line.distance / pgap);
       if (j_total < 3) j_total = 3;
       if (line.vt) j_total = 2;
-
       for (j = 1; j < j_total; j++) {
         num = j / (j_total - 1);
-
         if (line.type == "b") {
           curPoint = getCubicBezierXYatT(line, num);
         } else {
@@ -1075,24 +967,19 @@ function getDotPos(lines, pathGap, scale) {
             type: line.type
           });
         }
-
         if (line.rotation != 0 && num == 1) curPoint.rotation = line.rotation;
         if (line.pat && num == 1) curPoint.pat = line.pat;
         if (line.fix && num == 1) curPoint.fix = line.fix;
-
         if (j_total > 0) {
           pp = setPointValues(curPoint, prevPoint, line, num);
-
           if (pp != null) {
             if (isFirst) {
               pp.type = "m";
               isFirst = 0;
             }
-
             arr.push(pp);
           }
         }
-
         prevPoint = new Point(curPoint); //Object.assign({}, curPoint)
       }
     }
@@ -1100,26 +987,22 @@ function getDotPos(lines, pathGap, scale) {
 
   return arr;
 }
-
 function setPointValues(cur, prev, line, num) {
   cur.type = line.type;
   cur.distance = line.distance;
   cur.num = num;
-
   if (!(!prev || cur.rotation != null)) {
     const dx = cur.x - prev.x;
     const dy = cur.y - prev.y;
     const rad = Math.atan2(dx, dy);
     cur.rotation = -rad;
   }
-
   if (cur.rotation == ROTATE_NONE) {
     return null;
   } else {
     return cur;
   }
 }
-
 function getCubicBezierXYatT(line, t) {
   const x = CubicN(line.x1, line.x2, line.x3, line.x4, t);
   const y = CubicN(line.y1, line.y2, line.y3, line.y4, t);
@@ -1132,15 +1015,14 @@ function getCubicBezierXYatT(line, t) {
     rotation: rotation
   });
 }
-
 function CubicN(a, b, c, d, t) {
   const t2 = t * t;
   const t3 = t2 * t;
   return a + (-a * 3 + t * (3 * a - a * t)) * t + (3 * b + t * (-6 * b + b * 3 * t)) * t + (c * 3 - c * 3 * t) * t2 + d * t3;
-} //http://qaru.site/questions/10657973/quadratic-curve-with-rope-pattern
+}
+
+//http://qaru.site/questions/10657973/quadratic-curve-with-rope-pattern
 //https://stackoverflow.com/questions/32322966/quadratic-curve-with-rope-pattern
-
-
 function bezierTangent(a, b, c, d, t) {
   return 3 * t * t * (-a + 3 * b - 3 * c + d) + 6 * t * (a - 2 * b + c) + 3 * (-a + b);
 }
@@ -1156,14 +1038,12 @@ function generateFontData(w, fw, fh, x1, x2, y1, y2, path) {
   const arr = [];
   const total = path.length;
   let i;
-
   for (i = 0; i < total; i++) {
     arr.push({
       d: path[i].d,
       v: setCenter(path[i].v, fw, fh)
     });
   }
-
   return {
     rect: {
       w: w,
@@ -1180,32 +1060,26 @@ function generateFontData(w, fw, fh, x1, x2, y1, y2, path) {
     p: arr
   };
 }
-
 function setCenter(arr, fw, fh) {
   const total = arr.length;
   const cx = fw / 2;
   const cy = fh / 2;
   let mp, i;
   const ct = [];
-
   for (i = 0; i < total; i++) {
     mp = arr[i];
     mp[1] -= cx;
     mp[2] -= cy;
-
     if (mp[0] == "b") {
       mp[3] -= cx;
       mp[4] -= cy;
       mp[5] -= cx;
       mp[6] -= cy;
     }
-
     ct.push(new Vector(mp));
   }
-
   return ct;
 }
-
 function getR(x1, y1, x2, y2) {
   const x = x1 - x2;
   const y = y1 - y2;
@@ -2334,7 +2208,8 @@ const LOWER = {
     }]]
   }]),
   y: generateFontData(500, 225.5, 331.5, 10, 10, -119, -119, JSON.parse(JSON.stringify(DATA_LY))),
-  z: generateFontData( // 232, 224
+  z: generateFontData(
+  // 232, 224
   420, 172, 352, 0, 0, 0, 0, [{
     d: -1,
     v: [["m", 6, 130, {
@@ -3325,11 +3200,13 @@ const SPECIAL = {
       x: 0
     }], ["b", 145.2, 0.0, 191.0, 27.9, 191.0, 81.0, {
       x: 1
-    }], ["b", 191.0, 110.7, 165.6, 131.8, 151.8, 140.9], ["l", 140.0, 148.8], ["b", 120.6, 161.7, 110.8, 172.8, 110.8, 185.5], ["b", 110.8, 206.7, 131.6, 213.8, 140.0, 217.5], //['l', 163.7, 228.6],
+    }], ["b", 191.0, 110.7, 165.6, 131.8, 151.8, 140.9], ["l", 140.0, 148.8], ["b", 120.6, 161.7, 110.8, 172.8, 110.8, 185.5], ["b", 110.8, 206.7, 131.6, 213.8, 140.0, 217.5],
+    //['l', 163.7, 228.6],
     ["b", 190.6, 241.1, 211.0, 262.7, 211.0, 289.6], ["b", 211.0, 329.5, 174.8, 352.0, 142.5, 352.0], ["b", 97.3, 352.0, 75.2, 319.7, 72.3, 289.3]]
   }])
 };
 
+//À
 function getLatin1(x, y) {
   const tx = x;
   const ty = -60 + y;
@@ -3345,8 +3222,8 @@ function getLatin1(x, y) {
       f: 1
     }]]
   }];
-} //Á
-
+}
+//Á
 function getLatin2(x, y) {
   const tx = x;
   const ty = -60 + y;
@@ -3362,8 +3239,8 @@ function getLatin2(x, y) {
       f: 1
     }]]
   }];
-} //Â
-
+}
+//Â
 function getLatin3(x, y) {
   const tx = -68 + x;
   const ty = 0 + y;
@@ -3390,8 +3267,8 @@ function getLatin3(x, y) {
       f: 1
     }]]
   }];
-} //Ã
-
+}
+//Ã
 function getLatin4(x, y) {
   const tx = x - 76.24;
   const ty = y;
@@ -3418,8 +3295,8 @@ function getLatin4(x, y) {
       y: -0.2
     }]]
   }];
-} //Ä
-
+}
+//Ä
 function getLatin5(x, y) {
   return [{
     d: 1,
@@ -3434,8 +3311,8 @@ function getLatin5(x, y) {
       y: 0
     }]]
   }];
-} //Ŭ
-
+}
+//Ŭ
 function getLatin6(x, y) {
   const tx = x - 57;
   const ty = y;
@@ -3466,8 +3343,8 @@ function getLatin6(x, y) {
       y: 0
     }]]
   }];
-} //Å
-
+}
+//Å
 function getLatin7(x, y) {
   const tx = 88 + x;
   const ty = -116 + y;
@@ -3489,8 +3366,8 @@ function getLatin7(x, y) {
       c: 1
     }]]
   }];
-} //Ð
-
+}
+//Ð
 function getLatin8(x, y) {
   return [{
     d: 1,
@@ -3504,8 +3381,8 @@ function getLatin8(x, y) {
       f: 1
     }]]
   }];
-} //Ç
-
+}
+//Ç
 function getLatin9(x, y) {
   return [{
     d: -1,
@@ -3516,8 +3393,8 @@ function getLatin9(x, y) {
       f: 1
     }]]
   }];
-} //Ą
-
+}
+//Ą
 function getLatin10(x, y) {
   return [{
     d: -1,
@@ -3528,8 +3405,9 @@ function getLatin10(x, y) {
       f: 1
     }]]
   }];
-} //Ċ
+}
 
+//Ċ
 function getLatin11(x, y) {
   return [{
     d: 1,
@@ -3538,8 +3416,9 @@ function getLatin11(x, y) {
       y: 0
     }]]
   }];
-} //Č
+}
 
+//Č
 function getLatin12(x, y) {
   const tx = -68 + x;
   const ty = y;
@@ -3566,8 +3445,9 @@ function getLatin12(x, y) {
       f: 1
     }]]
   }];
-} //ď
+}
 
+//ď
 function getLatin13(x, y) {
   return [{
     d: -1,
@@ -3580,8 +3460,8 @@ function getLatin13(x, y) {
       f: 1
     }]]
   }];
-} //Ē
-
+}
+//Ē
 function getLatin14(x, y) {
   return [{
     d: 1,
@@ -3840,7 +3720,6 @@ function typo(v) {
 
 function getTextGroup(text, scale, width, isBreakAll) {
   let group;
-
   if (text.indexOf("\n") > 0) {
     group = text.split("\n");
   } else if (text.indexOf("\\n") > 0) {
@@ -3848,137 +3727,112 @@ function getTextGroup(text, scale, width, isBreakAll) {
   } else {
     group = [text];
   }
-
   if (width == 0) return keepAll(group);else if (isBreakAll) return breakAll(group, scale, width);else return breakWord(group, scale, width);
 }
-
 function keepAll(group) {
   const textGroup = [];
   const total = group.length;
   let i;
-
   for (i = 0; i < total; i++) {
     textGroup[i] = group[i].split("");
   }
-
   return textGroup;
 }
-
 function breakWord(group, scale, width) {
   let g2,
-      g3,
-      t,
-      m_rect,
-      tw = 0,
-      tw2 = 0,
-      i,
-      j,
-      k,
-      total,
-      j_total,
-      k_total,
-      index = 0;
+    g3,
+    t,
+    m_rect,
+    tw = 0,
+    tw2 = 0,
+    i,
+    j,
+    k,
+    total,
+    j_total,
+    k_total,
+    index = 0;
   const tg = [];
   total = group.length;
-
   for (i = 0; i < total; i++) {
     g2 = group[i].split(" ");
     tg[index] = [];
     j_total = g2.length;
-
     for (j = 0; j < j_total; j++) {
       tw2 = 0;
       g3 = g2[j];
       k_total = g3.length;
-
       for (k = 0; k < k_total; k++) {
         t = typo(g3[k]);
         m_rect = getRect(t, scale);
         tw2 += m_rect.w;
       }
-
       t = typo(" ");
       m_rect = getRect(t, scale);
       tw2 += m_rect.w;
       tw += tw2;
-
       if (tw > width) {
         index += 1;
         tw = tw2;
         tg[index] = [];
       }
-
       tg[index].push(g3);
     }
-
     index += 1;
     tw = 0;
   }
-
   total = tg.length;
   const textGroup = [];
-
   for (i = 0; i < total; i++) {
     t = tg[i].join(" ").split("");
-
     if (t.length > 0) {
       textGroup.push(t);
     }
   }
-
   return textGroup;
 }
-
 function breakAll(group, scale, width) {
   let t,
-      i,
-      total,
-      j,
-      j_total,
-      m_rect,
-      g2,
-      g3,
-      tw = 0,
-      index = 0;
+    i,
+    total,
+    j,
+    j_total,
+    m_rect,
+    g2,
+    g3,
+    tw = 0,
+    index = 0;
   const tg = [];
   total = group.length;
-
   for (i = 0; i < total; i++) {
     g2 = group[i];
     tw = 0;
     tg[index] = [];
     j_total = g2.length;
-
     for (j = 0; j < j_total; j++) {
       g3 = g2[j];
       t = typo(g3);
       m_rect = getRect(t, scale);
       tw += m_rect.w;
       tg[index].push(g3);
-
       if (tw >= width) {
         index += 1;
         tw = m_rect.w;
         tg[index] = [];
       }
     }
-
     index += 1;
   }
-
   const textGroup = [];
   total = tg.length;
-
   for (i = 0; i < total; i++) {
     t = tg[i];
-
     if (t.length > 0) {
       if (t[0] == " ") t.shift();
       if (t[t.length - 1] == " ") t.pop();
       if (t.length > 0) textGroup.push(t);
     }
   }
-
   return textGroup;
 }
 
@@ -4016,54 +3870,42 @@ class Model {
     this.scale_ = 1;
     this.fontRatio_ = 1;
   }
-
   get data() {
     return this.data_;
   }
-
   get paths() {
     return this.paths_;
   }
-
   get lines() {
     return this.lines_;
   }
-
   set lines(v) {
     this.lines_ = v;
   }
-
   get lineWidth() {
     return this.lineWidth_;
   }
-
   get fontRatio() {
     return this.fontRatio_;
   }
-
   get scale() {
     return this.scale_;
   }
-
   get rect() {
     return this.rect_;
   }
-
   get drawing() {
     return this.drawing_;
   }
-
   set align(v) {
     if (this.align_ != v) {
       this.align_ = v;
       this.setPosition();
     }
   }
-
   get align() {
     return this.align_;
   }
-
   position(x, y) {
     if (this.rect_.x != x || this.rect_.y != y) {
       this.rect_.x = x;
@@ -4074,59 +3916,48 @@ class Model {
       return false;
     }
   }
-
   setPosition() {
     const total = this.data_.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.data_[i];
       d.rect.x = d.originPos.x + this.rect_.x + getAlignGapX(this.align_, d.alignGapX);
       d.rect.y = d.originPos.y + this.rect_.y;
     }
   }
-
   updateDrawingPaths() {
     const total = this.data_.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.data_[i];
       d.drawingPaths = addRectToPaths(getPaths(this, d, -1, false), d);
     }
   }
-
   updatePatternPaths(pathGap) {
     const total = this.data_.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.data_[i];
       d.rawPaths = getPaths(this, d, pathGap, true);
     }
   }
-
   updateWavePaths(pathGap) {
     const total = this.data_.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.data_[i];
       d.rawWavePaths = getPaths(this, d, pathGap, false);
     }
   }
-
   updateGuide() {
     const total = this.data_.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.data_[i];
       d.guide = getGuide(d.typo, this.scale);
       d.grid = getGrid(d.typo, this.scale);
     }
   }
-
   update(text, width, breakWord, weight, size, tracking, leading) {
     const fontW = getFontW(weight);
     const weightRatio = getWeightRatio(fontW);
@@ -4142,22 +3973,21 @@ class Model {
     const total = textGroup.length;
     const total2 = total - 1;
     let i,
-        j,
-        j_total,
-        j_total2,
-        gt,
-        t,
-        str,
-        m_rect,
-        s_pos,
-        tw = 0,
-        th = 0,
-        tx = 0,
-        ty = 0,
-        maxW = 0,
-        maxH = 0;
+      j,
+      j_total,
+      j_total2,
+      gt,
+      t,
+      str,
+      m_rect,
+      s_pos,
+      tw = 0,
+      th = 0,
+      tx = 0,
+      ty = 0,
+      maxW = 0,
+      maxH = 0;
     const tmp = [];
-
     for (i = 0; i < total; i++) {
       gt = textGroup[i];
       j_total = gt.length;
@@ -4168,22 +3998,18 @@ class Model {
         tw: 0,
         arr: []
       };
-
       for (j = 0; j < j_total; j++) {
         str = gt[j];
         t = typo(str);
         m_rect = getRect(t, scale);
         tw += m_rect.w;
         th = m_rect.h;
-
         if (j < j_total2) {
           tw += m_tracking;
         }
-
         if (i < total2) {
           th += m_leading;
         }
-
         m_rect.x = tx;
         m_rect.y = ty;
         s_pos = {
@@ -4200,22 +4026,18 @@ class Model {
         };
         tx = tw;
       }
-
       ty += th;
       tmp[i].tw = tw;
       maxW = Math.max(maxW, tw);
       maxH += th;
     }
-
     this.rect_.w = maxW;
     this.rect_.h = maxH;
     this.drawing_ = [];
     const arr = [];
     let aGapX, drawing;
-
     for (const a of tmp) {
       aGapX = setAlignGapX(maxW, a.tw);
-
       for (const b of a.arr) {
         b.alignGapX = aGapX;
         b.pointsLength = getLengths(b, this);
@@ -4224,53 +4046,44 @@ class Model {
           value: 1
         };
         this.drawing_.push(drawing);
-        b.drawing = drawing; // add converted Vector
+        b.drawing = drawing;
 
+        // add converted Vector
         for (const c of b.typo.p) {
           c.cv = [];
-
           for (const d of c.v) {
             c.cv.push(d.convert(b, this));
           }
         }
       }
     }
-
     this.data_ = arr;
     this.setPosition();
   }
-
   updatePathsForRect() {
     const total = this.data_.length;
     const paths = [];
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.data_[i];
-
       if (d.rawWavePaths) {
         d.wavePaths = addRectToPaths(d.rawWavePaths, d);
       }
-
       if (d.rawPaths) {
         d.paths = addRectToPaths(d.rawPaths, d);
         Array.prototype.push.apply(paths, d.paths);
       }
     }
-
     this.paths_ = paths;
   }
-
   updateLinesForRect() {
     const total = this.data_.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.data_[i];
       d.lines = getLines(d);
     }
   }
-
   reset() {
     this.lineWidth_ = 1;
     this.drawing_ = [];
@@ -4287,7 +4100,6 @@ class Model {
     this.scale_ = 1;
     this.fontRatio_ = 1;
   }
-
 }
 
 /*!
@@ -4344,89 +4156,72 @@ class LeonSans$1 extends Dispatcher {
     this.text = text;
     this.model.align = align;
   }
-
   on(event, callback) {
     super.on(event, callback);
     this.update();
   }
-
   off(event, callback) {
     super.off(event, callback);
   }
-
   get text() {
     return this.str_;
   }
-
   set text(str) {
     if (this.str_ == str) return;
     this.str_ = str;
     this.update();
   }
-
   get size() {
     return this.size_;
   }
-
   set size(v) {
     if (this.size_ == v) return;
     this.size_ = v;
     this.update();
     this.isForceRander_ = true;
   }
-
   get weight() {
     return this.weight_;
   }
-
   set weight(v) {
     if (v < MIN_FONT_WEIGHT) {
       v = MIN_FONT_WEIGHT;
     } else if (v > MAX_FONT_WEIGHT) {
       v = MAX_FONT_WEIGHT;
     }
-
     if (this.weight_ == v) return;
     this.weight_ = v;
     this.update();
     this.isForceRander_ = true;
   }
-
   get color() {
     return this.color_;
   }
-
   set color(v) {
     if (this.color_ == v) return;
     this.color_ = v;
   }
-
   get tracking() {
     return this.tracking_;
   }
-
   set tracking(v) {
     if (this.tracking_ == v) return;
     this.tracking_ = v;
     this.update();
     this.isForceRander_ = true;
   }
-
   get leading() {
     return this.leading_;
   }
-
   set leading(v) {
     if (this.leading_ == v) return;
     this.leading_ = v;
     this.update();
     this.isForceRander_ = true;
   }
-
   get align() {
     return this.model.align;
   }
-
   set align(v) {
     if (this.model.align != v) {
       this.model.align = v;
@@ -4434,11 +4229,9 @@ class LeonSans$1 extends Dispatcher {
       this.updateSignal();
     }
   }
-
   get pathGap() {
     return this.pathGap_;
   }
-
   set pathGap(v) {
     if (this.pathGap_ != v) {
       this.pathGap_ = v;
@@ -4447,108 +4240,84 @@ class LeonSans$1 extends Dispatcher {
       this.isForceRander_ = true;
     }
   }
-
   get amplitude() {
     return this.amplitude_;
   }
-
   set amplitude(v) {
     this.amplitude_ = v;
   }
-
   get rect() {
     return this.model.rect;
   }
-
   set maxWidth(v) {
     if (this.width_ == v) return;
     this.width_ = v;
     this.update();
   }
-
   get maxWidth() {
     return this.width_;
   }
-
   set breakWord(v) {
     if (this.breakWord_ == v) return;
     this.breakWord_ = v;
     this.update();
   }
-
   get breakWord() {
     return this.breakWord_;
   }
-
   get isPath() {
     return this.isPath_;
   }
-
   set isPath(v) {
     this.isPath_ = v;
     this.updatePatternPaths(true);
   }
-
   get isWave() {
     return this.isWave_;
   }
-
   set isWave(v) {
     this.isWave_ = v;
     this.updateWavePaths(true);
   }
-
   get fps() {
     return this.fps_;
   }
-
   set fps(v) {
     this.fps_ = v;
     this.fpsTime_ = 1000 / this.fps_;
   }
-
   get lineWidth() {
     return this.model.lineWidth;
   }
-
   get scale() {
     return this.model.scale;
   }
-
   get drawing() {
     return this.model.drawing;
   }
-
   get data() {
     return this.model.data;
   }
-
   get paths() {
     return this.model.paths;
   }
-
   get drawingPaths() {
     return this.model.drawingPaths;
   }
-
   get wavePaths() {
     return this.model.wavePaths;
   }
-
   position() {
     let x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
     let y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
     if (this.model.position(x, y)) {
       this.updateID_++;
       this.updateSignal();
     }
   }
-
   update() {
     this.updateID_++;
     this.model.update(this.str_, this.width_, this.breakWord_, this.weight_, this.size_, this.tracking_, this.leading_);
-
     if (this.isPath_ || this.isWave_) {
       this.updatePatternPaths();
       this.updateWavePaths();
@@ -4556,30 +4325,27 @@ class LeonSans$1 extends Dispatcher {
       this.updateSignal();
     }
   }
-
   updateGuide() {
     if (this.guideID_ != this.updateID_) {
       this.guideID_ = this.updateID_;
       this.model.updateGuide();
     }
   }
+
   /**
    * Update paths for drawing in WebGL (PIXI.js). It's very expensive, only call when it needs.
    */
-
-
   updateDrawingPaths() {
     if (this.dPathsID_ != this.updateID_) {
       this.dPathsID_ = this.updateID_;
       this.model.updateDrawingPaths();
     }
   }
+
   /**
    * Update paths for pattern
    * @param {boolean} force - Force execution
    */
-
-
   updatePatternPaths(force) {
     if (this.isPath_ && (force || this.pPathsID_ != this.updateID_)) {
       this.pPathsID_ = this.updateID_;
@@ -4588,12 +4354,11 @@ class LeonSans$1 extends Dispatcher {
       this.updateSignal();
     }
   }
+
   /**
    * Update paths for wave effect
    * @param {boolean} force - Force execution
    */
-
-
   updateWavePaths(force) {
     if (this.isWave_ && (force || this.wPathsID_ != this.updateID_)) {
       this.wPathsID_ = this.updateID_;
@@ -4602,13 +4367,11 @@ class LeonSans$1 extends Dispatcher {
       this.updateSignal();
     }
   }
-
   updateSignal() {
     this.model.updateLinesForRect();
     this.model.updatePathsForRect();
     this.dispatch("update", this.model);
   }
-
   reset() {
     this.size_ = 500;
     this.weight_ = MIN_FONT_WEIGHT;
@@ -4634,68 +4397,59 @@ class LeonSans$1 extends Dispatcher {
     this.guideID_ = null;
     this.model.reset();
   }
-
   dispose() {
     this.reset();
     this.model = null;
   }
+
   /**
    * Draw text in WebGL with PIXI.js
    * @param {PIXI.Graphics} graphics
    */
-
-
   drawPixi(graphics) {
     const total = this.model.data.length;
     let i, d, color;
-
     for (i = 0; i < total; i++) {
       d = this.model.data[i];
       color = PixiColor(i, d, this.color_);
       PixiLines(graphics, d, this.lineWidth, color);
     }
   }
+
   /**
    * Draw text in the Canvas element.
    * @param {CanvasRenderingContext2D} ctx
    */
-
-
   draw(ctx) {
     ctx.lineWidth = this.lineWidth;
     const total = this.model.data.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.model.data[i];
       Color(ctx, i, d, this.color_);
       Lines(ctx, d);
     }
   }
+
   /**
    * Draw the colorful effect.
    * @param {CanvasRenderingContext2D} ctx
    */
-
-
   drawColorful(ctx) {
     ctx.lineWidth = this.lineWidth;
     Colorful(ctx, this.model, this.colorful_);
   }
+
   /**
    * Draw the wave effect.
    * @param {CanvasRenderingContext2D} ctx
    * @param {DOMHighResTimeStamp} t time stemp from requestAnimationFrame()
    */
-
-
   wave(ctx, t) {
     ctx.lineWidth = this.lineWidth;
-
     if (t) {
       if (!this.time_) this.time_ = t;
       const p = t - this.time_;
-
       if (p > this.fpsTime_ || this.isForceRander_) {
         this.time_ = t;
         this.isFps_ = true;
@@ -4703,74 +4457,65 @@ class LeonSans$1 extends Dispatcher {
         this.isFps_ = false;
       }
     }
-
     this.isForceRander_ = false;
     const total = this.model.data.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.model.data[i];
       Color(ctx, i, d, this.color_);
       Wave(ctx, d, this.model.scale, this.amplitude_, this.weight_, this.isFps_);
     }
   }
+
   /**
    * Draw rectangle shapes at each path point.
    * @param {CanvasRenderingContext2D} ctx
    * @param {number} w pattern width
    * @param {number} h pattern height
    */
-
-
   pattern(ctx, w, h) {
     const tw = w * this.model.scale;
     const th = h * this.model.scale;
     const total = this.model.data.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.model.data[i];
       Pattern(ctx, d, tw, th);
     }
   }
+
   /**
    * Draw grid for each type.
    * @param {CanvasRenderingContext2D} ctx
    */
-
-
   grid(ctx) {
     this.updateGuide();
     const total = this.model.data.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.model.data[i];
       Grids(ctx, d);
     }
   }
+
   /**
    * Draw circles at each drawing point and lines for each type.
    * @param {CanvasRenderingContext2D} ctx
    */
-
-
   point(ctx) {
     const total = this.model.data.length;
     let i, d;
-
     for (i = 0; i < total; i++) {
       d = this.model.data[i];
       Points(ctx, d);
     }
   }
+
   /**
    * Draw outline box for the text.
    * @param {CanvasRenderingContext2D} ctx
    * @private
    */
-
-
   box(ctx) {
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -4778,17 +4523,14 @@ class LeonSans$1 extends Dispatcher {
     ctx.rect(this.model.rect.x, this.model.rect.y, this.model.rect.w, this.model.rect.h);
     ctx.stroke();
   }
-
 }
 
 let cValue = 0;
 const PI2 = 2 * Math.PI;
-
 class LeonSans extends motorcortex.BrowserClip {
   get html() {
     return ` <canvas> </canvas>`;
   }
-
   onAfterRender() {
     this.cValue = 0;
     const canvas = this.context.getElements("canvas")[0];
@@ -4814,7 +4556,9 @@ class LeonSans extends motorcortex.BrowserClip {
       patternWidth: 10,
       patternHeight: 90,
       colorful: this.attrs.colorful
-    }); // leon.grid(this.ctx);
+    });
+
+    // leon.grid(this.ctx);
 
     this.attrs.round ? this.ctx.lineCap = "round" : this.ctx.lineCap = "butt";
     this.attrs.multiply ? this.ctx.globalCompositeOperation = "multiply" : this.ctx.globalCompositeOperation = "source-over";
@@ -4827,7 +4571,9 @@ class LeonSans extends motorcortex.BrowserClip {
       pathGap: this.attrs.pathGap,
       patternWidth: this.attrs.patternWidth,
       patternHeight: this.attrs.patternHeight
-    }); // switch (this.attrs.drawing) {
+    });
+
+    // switch (this.attrs.drawing) {
     //   case "colorful":
     //     leon.drawColorful(this.ctx);
     //     break;
@@ -4846,7 +4592,6 @@ class LeonSans extends motorcortex.BrowserClip {
 
     this.leon = leon;
   }
-
   onAfterProgress() {
     if (this.attrs.drawing === "colorPattern") {
       this.ctx.clearRect(0, 0, this.sw, this.sh);
@@ -4854,14 +4599,12 @@ class LeonSans extends motorcortex.BrowserClip {
       const w = this.attrs.patternWidth;
       const total = this.leon.data.length;
       let i,
-          pos,
-          no = 0;
+        pos,
+        no = 0;
       let d, j, j_total;
-
       for (i = 0; i < total; i++) {
         d = this.leon.data[i].paths;
         j_total = Math.round(d.length * this.leon.drawing[i].value);
-
         for (j = 0; j < j_total; j++) {
           pos = d[j];
           this.ctx.fillStyle = this.randomColor(no);
@@ -4872,15 +4615,12 @@ class LeonSans extends motorcortex.BrowserClip {
           no += 1;
         }
       }
-
       cValue -= this.attrs.speed;
     }
   }
-
   randomColor(no) {
     return "hsl(" + (no + cValue) + "," + "70%," + "50%)";
   }
-
 }
 
 var compositeAttributes = {
@@ -4894,7 +4634,6 @@ class LeonIncident extends motorcortex.Effect {
     compositeAttributes.LeonAttrs.forEach(key => scratchValues[key] = LeonClip[key] ?? 0);
     return scratchValues;
   }
-
   drawning() {
     // handle different cases of drawing functionalities
     const {
@@ -4904,21 +4643,17 @@ class LeonIncident extends motorcortex.Effect {
       patternHeight,
       patternWidth
     } = this.element.entity;
-
     switch (drawing) {
       case "colorful":
         leon.drawColorful(ctx);
         break;
-
       case "pattern":
         leon.pattern(ctx, leon.patternWidth ?? patternWidth, leon.patternHeight ?? patternHeight);
         break;
-
       default:
         leon.draw(ctx);
     }
   }
-
   clearRect() {
     // this function clears the canvas in every RAF
     const {
@@ -4928,7 +4663,6 @@ class LeonIncident extends motorcortex.Effect {
     } = this.element.entity;
     ctx.clearRect(0, 0, sw, sh);
   }
-
   animate(fraction) {
     // this function animate the attributes before drawing them
     const {
@@ -4940,7 +4674,6 @@ class LeonIncident extends motorcortex.Effect {
       const difference = targetValue - initialValue;
       const finalValue = fraction * difference + initialValue;
       leon[compoAttribute] = finalValue;
-
       if (compoAttribute === "completion_rate") {
         leon.drawing.forEach(drawingElement => {
           drawingElement.value = finalValue;
@@ -4948,7 +4681,6 @@ class LeonIncident extends motorcortex.Effect {
       }
     });
   }
-
   onProgress(m) {
     compositeAttributes.LeonAttrs.forEach(compoAttribute => {
       const initialValue = this.initialValue[compoAttribute];
@@ -4963,7 +4695,6 @@ class LeonIncident extends motorcortex.Effect {
     this.animate(this.getFraction(m));
     this.drawning();
   }
-
 }
 
 const _COLOR = "color";
@@ -5114,7 +4845,8 @@ var index = {
   version: version,
   Clip: {
     exportable: LeonSans,
-    attributesValidationRules: { ...clipValidationRules
+    attributesValidationRules: {
+      ...clipValidationRules
     }
   },
   incidents: [{
