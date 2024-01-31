@@ -844,7 +844,6 @@ function convertX(x, pos, ratio, model) {
   const fr = (pos.range.fr2 - pos.range.fr1) * rr + pos.range.fr1;
   return pos.center.x + (x - gx) * model.scale * fr; // + pos.rect.x
 }
-
 function convertY(y, pos, ratio, model) {
   const rr = pos.range.r * ratio.y;
   const gy = (pos.range.gy2 - pos.range.gy1) * rr + pos.range.gy1;
@@ -982,7 +981,6 @@ function getDotPos(lines, pathGap, scale) {
       }
     }
   }
-
   return arr;
 }
 function setPointValues(cur, prev, line, num) {
