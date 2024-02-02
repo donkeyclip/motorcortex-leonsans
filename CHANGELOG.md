@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.0 (2024-02-02)
+
+
+### Features
+
+* declare mc 8 as compatible ([b91be11](https://github.com/donkeyclip/motorcortex-leonsans/commit/b91be11e1a64a57f9439be75c4c30dcf8698f126))
+* drop explorer 11 support ([87f77b7](https://github.com/donkeyclip/motorcortex-leonsans/commit/87f77b7ffeb5245e4171578d1c5fd3ad0dbd340f))
+* update compatibility with motorcortex ([7aae496](https://github.com/donkeyclip/motorcortex-leonsans/commit/7aae4961588f2479af7d88eee8e38b9164aa36aa))
+* update mc version ([c07cb5c](https://github.com/donkeyclip/motorcortex-leonsans/commit/c07cb5cf58e3f23e7f85b106b35f913caf04775c))
+
+
+### Bug Fixes
+
+* delete commitlint.config.js ([cc11b62](https://github.com/donkeyclip/motorcortex-leonsans/commit/cc11b62648c4ee5aa58119c0d4ccbcbb29509618))
+* import only effect instead of full MC ([be79371](https://github.com/donkeyclip/motorcortex-leonsans/commit/be793714b44dcac978627feeec1c4630ae15cfcb))
+
 ## [1.3.2](https://github.com/donkeyclip/motorcortex-leonsans/compare/v1.3.1...v1.3.2) (2022-06-26)
 
 
